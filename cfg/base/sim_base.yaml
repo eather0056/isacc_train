@@ -1,0 +1,5 @@
+sim:
+  device: cpu
+  dt: 0.02
+  substeps: 2
+  replicate_physics: true

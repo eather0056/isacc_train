@@ -1,0 +1,14 @@
+defaults:
+  - _self_
+  - base/env_base@_here_
+  - base/sim_base@_here_
+  - task: hover
+  - robot: bluerov 
+
+# required by marinegym.init_simulation_app(cfg)
+headless: false
+enable_livestream: false
+
+# optional but useful
+mode: train
+seed: 0

@@ -1,0 +1,9 @@
+env:
+  num_envs: 1
+  env_spacing: 6
+  max_episode_length: 400
+
+viewer:
+  eye: [3.0, 3.0, 3.0]
+  lookat: [0.0, 0.0, 2.0]
+  resolution: [1280, 720]

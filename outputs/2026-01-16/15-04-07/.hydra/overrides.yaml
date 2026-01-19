@@ -1,0 +1,3 @@
+- headless=false
+- enable_livestream=false
+- env.num_envs=1

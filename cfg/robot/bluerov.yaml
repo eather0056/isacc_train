@@ -1,0 +1,5 @@
+robot:
+  name: BlueROV
+  usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.usd
+  param_yaml: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.yaml
+  tank_usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd

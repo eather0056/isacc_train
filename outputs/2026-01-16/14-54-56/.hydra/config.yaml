@@ -1,0 +1,55 @@
+headless: false
+enable_livestream: false
+mode: train
+seed: 0
+env:
+  num_envs: 1
+  env_spacing: 6
+  max_episode_length: 400
+viewer:
+  eye:
+  - 3.0
+  - 3.0
+  - 3.0
+  lookat:
+  - 0.0
+  - 0.0
+  - 2.0
+  resolution:
+  - 1280
+  - 720
+sim:
+  device: cuda:0
+  dt: 0.02
+  substeps: 2
+  replicate_physics: true
+robot:
+  robot:
+    name: BlueROV
+    usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.usd
+    param_yaml: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.yaml
+task:
+  task:
+    name: Hover
+    target_pos:
+    - 0.0
+    - 0.0
+    - 2.0
+    time_encoding: true
+    disturbances:
+      flow:
+        enable_flow: false
+        max_flow_velocity:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        flow_velocity_gaussian_noise:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
