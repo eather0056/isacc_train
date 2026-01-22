@@ -1,0 +1,2 @@
+- headless=fatrue
+- env.num_envs=1
