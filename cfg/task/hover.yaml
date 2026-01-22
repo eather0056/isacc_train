@@ -1,7 +1,7 @@
 name: Hover
 # tank_usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
-tank_usd_path: ${hydra:runtime.cwd}/../MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
-obstacles_usd_path: ${hydra:runtime.cwd}/../MarineGym-main/marinegym/robots/assets/usd/BlueROV/obstacles.usd
+tank_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/tank.usd
+obstacles_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/obstacles.usd
 
 # Minimal set needed by marinegym.envs.single.hover.Hover
 drone_model:

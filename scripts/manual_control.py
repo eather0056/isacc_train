@@ -7,6 +7,18 @@ from omegaconf import OmegaConf
 
 from torchrl.envs.transforms import TransformedEnv, InitTracker, Compose
 
+from bluerov_manual.navigation import (
+    BehaviorFusion,
+    BehaviorFusionConfig,
+    GlobalPlanner,
+    GlobalPlannerConfig,
+    LocalPolicy,
+    LocalPolicyConfig,
+    ObstacleField,
+    ObstacleFieldConfig,
+    Sonar,
+    SonarConfig,
+)
 
 def build_allocation_matrix_from_usd(drone, device):
     """
@@ -146,6 +158,17 @@ def main(cfg):
     env = TransformedEnv(base_env, Compose(InitTracker())).train()
     env.set_seed(getattr(cfg, "seed", 0))
 
+    stack_cfg = cfg.task.get("planner_stack", {}) or {}
+    planner_stack_enabled = bool(stack_cfg.get("enable", False))
+    if planner_stack_enabled:
+        planner = GlobalPlanner(GlobalPlannerConfig())
+        sonar = Sonar(SonarConfig(), device=env.device)
+        local_policy = LocalPolicy(LocalPolicyConfig(), device=env.device)
+        behavior_fusion = BehaviorFusion(BehaviorFusionConfig(), device=env.device)
+        obstacles = ObstacleField(ObstacleFieldConfig(), device=env.device)
+    else:
+        planner = sonar = local_policy = behavior_fusion = obstacles = None
+
     td = env.reset()
 
     # Build allocation matrix (views valid after reset)
@@ -197,6 +220,22 @@ def main(cfg):
 
         # Update state buffers
         base_env.drone.get_state()
+
+        if planner_stack_enabled:
+            pos_w = base_env.drone.pos[:, 0, :]
+            rot_w = base_env.drone.rot[:, 0, :]
+            obs = sonar.scan(pos_w, rot_w)
+            behavior = local_policy.decide(obs)
+            waypoints = []
+            for env_idx in range(env.num_envs):
+                plan = planner.plan(
+                    start_w=pos_w[env_idx].tolist(),
+                    goal_w=goals[env_idx].tolist(),
+                    obstacles=obstacles.get_obstacles(),
+                )
+                waypoints.append(plan[0])
+            waypoint_w = torch.tensor(waypoints, device=env.device)
+            _ = behavior_fusion.to_local_target(behavior, waypoint_w, pos_w)
 
         # Controller: desired body wrench (E,6)
         wrench_b = wrench_pd_world_to_body(base_env.drone, goals, kp=25.0, kd=12.0)

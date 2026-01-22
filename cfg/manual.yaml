@@ -18,6 +18,8 @@ task:
     x_range: [0.2, 20.0]
     y_range: [0.2, 6.0]
     z_range: [0.0, -1.5]
+  planner_stack:
+    enable: true
 
   obstacles:
     enable: true
@@ -32,4 +34,3 @@ task:
       x_range: [0.2, 20.0]
       y_range: [0.2, 6.0]
       z_range: [0.0, -1.5]
-
