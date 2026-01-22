@@ -1,11 +1,12 @@
 name: Hover
-tank_usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
+# tank_usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
+tank_usd_path: ${hydra:runtime.cwd}/../MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
+obstacles_usd_path: ${hydra:runtime.cwd}/../MarineGym-main/marinegym/robots/assets/usd/BlueROV/obstacles.usd
 
 # Minimal set needed by marinegym.envs.single.hover.Hover
 drone_model:
   name: BlueROV
   controller: LeePositionController
-
 
 force_sensor: false
 time_encoding: true
@@ -13,6 +14,11 @@ time_encoding: true
 reward_effort_weight: 0.1
 reward_action_smoothness_weight: 0.0
 reward_distance_scale: 1.2
+
+termination:
+  enable: true
+  min_z: -5.0
+  max_distance: 1000.0
 
 # Hover expects disturbances indexed by mode (train/eval)
 disturbances:

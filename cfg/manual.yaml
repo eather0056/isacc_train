@@ -12,3 +12,24 @@ enable_livestream: false
 # optional but useful
 mode: train
 seed: 0
+
+task:
+  spawn_ranges:
+    x_range: [0.2, 20.0]
+    y_range: [0.2, 6.0]
+    z_range: [0.0, -1.5]
+
+  obstacles:
+    enable: true
+    num: 3
+    radius: 0.15
+    height: 0.30
+    speed: 0.5          # m/s (used for param motion)
+    motion: "circle"    # "circle" or "line"
+    center: [0.0, 0.0, 1.5]
+    amp: [1.0, 1.0, 0.0]  # motion amplitude
+    spawn_ranges:
+      x_range: [0.2, 20.0]
+      y_range: [0.2, 6.0]
+      z_range: [0.0, -1.5]
+

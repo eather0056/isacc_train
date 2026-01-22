@@ -1,0 +1,4 @@
+- headless=false
+- enable_livestream=false
+- env.num_envs=4
+- sim.device=cpu

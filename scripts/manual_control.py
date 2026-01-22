@@ -5,7 +5,6 @@ import hydra
 import torch
 from omegaconf import OmegaConf
 
-from tensordict import TensorDict
 from torchrl.envs.transforms import TransformedEnv, InitTracker, Compose
 
 
@@ -26,7 +25,6 @@ def build_allocation_matrix_from_usd(drone, device):
 
     # local +X expressed in world
     d_w = quat_axis(q_w, axis=0)  # (N,3)
-
     r_rel_w = r_w - base_pos_w.unsqueeze(0)  # (N,3)
 
     N = r_rel_w.shape[0]
@@ -44,133 +42,229 @@ def build_allocation_matrix_from_usd(drone, device):
     return A
 
 
-
-def goto_goal_wrench_pd(drone, goal_pos_w, kp=25.0, kd=12.0):
+def sample_random_goals(num_envs, device, *, x_range, y_range, z_range):
     """
-    Simple position PD controller producing desired wrench in BODY frame.
-    Returns (6,) tensor: [Fx,Fy,Fz,Tx,Ty,Tz] in BODY.
+    Random goals in WORLD frame. Returns (E,3).
+    """
+    lo = torch.tensor([x_range[0], y_range[0], z_range[0]], device=device)
+    hi = torch.tensor([x_range[1], y_range[1], z_range[1]], device=device)
+    u = torch.rand(num_envs, 3, device=device)
+    return lo + (hi - lo) * u
+
+
+def wrench_pd_world_to_body(drone, goals_w, kp=25.0, kd=12.0):
+    """
+    Vectorized PD in world frame, output desired BODY wrench.
+    returns wrench_b: (E,6) = [Fx,Fy,Fz,Tx,Ty,Tz] in BODY frame
     """
     from marinegym.utils.torch import quat_rotate_inverse
 
-    pos_w = drone.pos[0, 0]  # (3,)
-    rot_w = drone.rot[0, 0]  # (4,)
+    pos_w = drone.pos[:, 0, :]                         # (E,3)
+    rot_w = drone.rot[:, 0, :]                         # (E,4)
+    vel_w6 = drone.get_velocities(True)[:, 0, :]       # (E,6)
+    linvel_w = vel_w6[:, :3]                           # (E,3)
 
-    vel_w6 = drone.get_velocities(True)[0, 0]  # (6,)
-    linvel_w = vel_w6[:3]
-
-    e_p = goal_pos_w - pos_w
+    e_p = goals_w - pos_w
     e_v = -linvel_w
 
-    F_des_w = kp * e_p + kd * e_v
-    F_des_b = quat_rotate_inverse(rot_w.unsqueeze(0), F_des_w.unsqueeze(0)).squeeze(0)
+    F_des_w = kp * e_p + kd * e_v                      # (E,3)
+    F_des_b = quat_rotate_inverse(rot_w, F_des_w)      # (E,3)
+
+    T_des_b = torch.zeros(pos_w.shape[0], 3, device=pos_w.device)
+    return torch.cat([F_des_b, T_des_b], dim=-1)       # (E,6)
 
 
-    T_des_b = torch.zeros(3, device=F_des_b.device)
-
-    return torch.cat([F_des_b, T_des_b], dim=0)
-
-
-def thruster_forces_to_action(f, f_max):
-    """
-    Linear map force->action in [-1,1]. Tune f_max if needed.
-    """
+def forces_to_action(f, f_max):
     return torch.clamp(f / f_max, -1.0, 1.0)
+
+
+def read_reward_done(td):
+    """
+    Handle both ("agents","reward") and ("next","agents","reward") conventions.
+    """
+    if ("agents", "reward") in td.keys(True, True):
+        r = td[("agents", "reward")]
+        done = td["done"]
+    else:
+        r = td[("next", "agents", "reward")]
+        done = td[("next", "done")]
+    return r, done
+
+
+def _ensure_goal_markers(stage, env_paths, *, radius=0.5, height=0.02, color=(1.0, 0.0, 0.0)):
+    from pxr import UsdGeom
+    import omni.isaac.core.utils.prims as prim_utils
+
+    marker_paths = []
+    for env_path in env_paths:
+        root_path = f"{env_path}/goal_marker"
+        marker_path = f"{root_path}/circle"
+
+        if not prim_utils.is_prim_path_valid(root_path):
+            UsdGeom.Xform.Define(stage, root_path)
+
+        if not prim_utils.is_prim_path_valid(marker_path):
+            cyl = UsdGeom.Cylinder.Define(stage, marker_path)
+            cyl.CreateRadiusAttr(radius)
+            cyl.CreateHeightAttr(height)
+            cyl.CreateAxisAttr("Z")
+            cyl.CreateDisplayColorAttr().Set([color])
+
+        marker_paths.append(root_path)
+    return marker_paths
+
+
+def _update_goal_markers(stage, marker_paths, goals):
+    from pxr import UsdGeom
+
+    for marker_path, goal in zip(marker_paths, goals):
+        xform = UsdGeom.XformCommonAPI(stage.GetPrimAtPath(marker_path))
+        xform.SetTranslate((float(goal[0]), float(goal[1]), float(goal[2])))
+
+def _get_range(cfg, key, default):
+    raw = cfg.task.get("spawn_ranges", {}).get(key, default)
+    lo, hi = float(raw[0]), float(raw[1])
+    return (min(lo, hi), max(lo, hi))
 
 
 @hydra.main(version_base=None, config_path="../cfg", config_name="manual")
 def main(cfg):
     OmegaConf.resolve(cfg)
     OmegaConf.set_struct(cfg, False)
-    
 
     # Start Isaac FIRST
     from bluerov_manual.sim_app import init_app
     sim_app = init_app(cfg)
-    print(OmegaConf.to_yaml(cfg))
-    print("cfg.task keys:", list(cfg.task.keys()))
-    print("tank path:", cfg.task.get("tank_usd_path", None))
 
-
-    # Import AFTER app start (good)
+    # Import AFTER app start
     from marinegym.envs.isaac_env import IsaacEnv
-
-    # Import your env so it registers in IsaacEnv.REGISTRY
     from bluerov_manual.envs.hover_tank import HoverTank  # noqa: F401
 
     env_class = IsaacEnv.REGISTRY["HoverTank"]
-    # env_class = HoverTank
-
-
     base_env = env_class(cfg, headless=cfg.headless)
-    import omni.usd
-    stage = omni.usd.get_context().get_stage()
-    print("tank valid:", stage.GetPrimAtPath("/World/envs/env_0/tank").IsValid())
-
 
     env = TransformedEnv(base_env, Compose(InitTracker())).train()
     env.set_seed(getattr(cfg, "seed", 0))
 
     td = env.reset()
 
-    # Goal in WORLD coordinates (Hover env uses target_pos around z=2)
-    goal = torch.tensor([20.0, 0.0, -20.0], device=env.device)
-
-    # Build allocation matrix after first reset (views are valid)
-    # Ensure drone state is updated at least once
+    # Build allocation matrix (views valid after reset)
     base_env.drone.get_state()
-    A = build_allocation_matrix_from_usd(base_env.drone, device=env.device)
-    A_pinv = torch.linalg.pinv(A)  # (N,6)
+    A = build_allocation_matrix_from_usd(base_env.drone, device=env.device)  # (6,N)
+    A_pinv = torch.linalg.pinv(A)                                            # (N,6)
+    N = A.shape[1]
 
-    # Estimate per-thruster max thrust from yaml constants (KF * rpm^2)
-    # BlueROV.yaml: force_constants=4.4e-7, max_rotation_velocities=3900
-    # If you changed these, update here or load from params.
+    # Estimate per-thruster max thrust
     fc = float(base_env.drone.FORCE_CONSTANTS_0[0].item())
     rpm_max = 3900.0
-    f_max = torch.tensor(fc * (rpm_max ** 2), device=env.device)
+    f_max = torch.tensor(fc * (rpm_max ** 2), device=env.device)             # scalar
 
-    print("A shape:", tuple(A.shape), "f_max:", float(f_max.item()))
+    x_range = _get_range(cfg, "x_range", (0.2, 20.0))
+    y_range = _get_range(cfg, "y_range", (0.2, 6.0))
+    z_range = _get_range(cfg, "z_range", (0.0, -1.5))
+
+    # Random goals per env (WORLD frame)
+    goals = sample_random_goals(
+        env.num_envs,
+        env.device,
+        x_range=x_range,
+        y_range=y_range,
+        z_range=z_range,
+    )
+
+    from omni.isaac.core.utils import stage as stage_utils
+    stage = stage_utils.get_current_stage()
+    marker_paths = _ensure_goal_markers(stage, base_env.envs_prim_paths, radius=0.6, height=0.03)
+    _update_goal_markers(stage, marker_paths, goals)
+
+    base_env.drone.get_state()
+    start_pos = base_env.drone.pos[:, 0, :].detach().cpu().tolist()
+    print(f"start_pos[0:{min(5, env.num_envs)}]={start_pos[:min(5, env.num_envs)]}")
+    print(f"goals[0:{min(5, env.num_envs)}]={goals[:min(5, env.num_envs)].detach().cpu().tolist()}")
+
+    # Stop condition
+    goal_tol = 0.15
+
+    # Track which envs reached
+    reached = torch.zeros(env.num_envs, dtype=torch.bool, device=env.device)
+    step_i = 0
+
+    print(f"num_envs={env.num_envs} thrusters={N} f_max={float(f_max.item()):.6f}")
+    print(f"goals[0: min(5,E)]={goals[: min(5, env.num_envs)].detach().cpu().tolist()}")
 
     while True:
-        # Update drone state buffers
+        step_i += 1
+
+        # Update state buffers
         base_env.drone.get_state()
 
-        # Desired wrench (BODY)
-        wrench_b = goto_goal_wrench_pd(base_env.drone, goal, kp=25.0, kd=12.0)  # (6,)
+        # Controller: desired body wrench (E,6)
+        wrench_b = wrench_pd_world_to_body(base_env.drone, goals, kp=25.0, kd=12.0)
 
-        # Solve thruster forces f (N,)
-        f = (A_pinv @ wrench_b).reshape(-1)
+        # Wrench -> thruster forces: f = wrench_b @ A_pinv.T  => (E,N)
+        f = wrench_b @ A_pinv.T
 
-        # Convert to action [-1,1]
-        action_vec = thruster_forces_to_action(f, f_max)        # (6,)
-        action = action_vec.view(1, 1, -1).expand(env.num_envs, 1, -1)  # (num_envs,1,6)
+        # Forces -> action in expected shape (E,1,N)
+        action = forces_to_action(f, f_max).view(env.num_envs, 1, N)
 
-
-        # Step with rolling tensordict
+        # Step
         td.set(("agents", "action"), action)
         td = env.step(td)
 
-        # Read reward/done regardless of "next" convention
-        if ("agents", "reward") in td.keys(True, True):
-            r = td[("agents", "reward")].mean().item()
-            done = bool(td["done"].any().item())
-        else:
-            r = td[("next", "agents", "reward")].mean().item()
-            done = bool(td[("next", "done")].any().item())
+        # Reward/done
+        r, done = read_reward_done(td)
+        r_mean = float(r.mean().item())
+        done_any = bool(done.any().item())
 
-        # Position and distance to goal
-        pos = base_env.drone.pos[0, 0].detach()
-        dist = torch.norm(goal - pos).item()
+        # Distances to goals
+        pos_w = base_env.drone.pos[:, 0, :]  # (E,3)
+        dists = torch.norm(goals - pos_w, dim=-1)  # (E,)
 
-        print(f"reward={r:.4f} pos={pos.cpu().tolist()} dist={dist:.3f} action={action_vec.detach().cpu().tolist()}")
+        # Update reached mask
+        newly = (dists < goal_tol) & (~reached)
+        if newly.any():
+            reached = reached | newly
 
-        # Stop when close enough
-        if dist < 0.15:
-            print("Reached goal.")
+        reached_count = int(reached.sum().item())
+
+        # Print a compact per-step summary + a few env samples
+        if step_i % 10 == 1 or newly.any():
+            sample_k = min(3, env.num_envs)
+            pos_s = pos_w[:sample_k].detach().cpu().tolist()
+            dist_s = dists[:sample_k].detach().cpu().tolist()
+            act_s = action[:sample_k, 0, :].detach().cpu().tolist()
+
+            print(
+                f"step={step_i} reward_mean={r_mean:.4f} "
+                f"reached={reached_count}/{env.num_envs} done_any={done_any}\n"
+                f"  pos[0:{sample_k}]={pos_s}\n"
+                f"  dist[0:{sample_k}]={[round(x,3) for x in dist_s]}\n"
+                f"  action[0:{sample_k}]={act_s}"
+            )
+
+        # Stop when all envs reached their goals
+        if reached.all():
+            print(f"All envs reached goals. steps={step_i}")
             break
 
-        # Reset if episode ends
-        if done:
+        # If episode ends, reset and continue (keep the same goals by default)
+        if done_any:
             td = env.reset()
+            reached.zero_()  # optional: reset reached if reset happens
+            # optional: resample goals on reset
+            goals = sample_random_goals(
+                env.num_envs,
+                env.device,
+                x_range=x_range,
+                y_range=y_range,
+                z_range=z_range,
+            )
+            _update_goal_markers(stage, marker_paths, goals)
+            base_env.drone.get_state()
+            start_pos = base_env.drone.pos[:, 0, :].detach().cpu().tolist()
+            print(f"start_pos[0:{min(5, env.num_envs)}]={start_pos[:min(5, env.num_envs)]}")
+            print(f"goals[0:{min(5, env.num_envs)}]={goals[:min(5, env.num_envs)].detach().cpu().tolist()}")
+            print("Episode reset -> resampled goals.")
 
     sim_app.close()
 

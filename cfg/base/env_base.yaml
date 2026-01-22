@@ -1,6 +1,6 @@
 env:
   num_envs: 1
-  env_spacing: 6
+  env_spacing: 30
   max_episode_length: 400
 
 viewer:
