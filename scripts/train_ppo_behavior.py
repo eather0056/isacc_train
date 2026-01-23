@@ -31,6 +31,7 @@ def main(cfg):
     from marinegym.envs.isaac_env import IsaacEnv
 
     env_class = IsaacEnv.REGISTRY[cfg.task.name]
+    print(f"[train_ppo_behavior] task={cfg.task.name} env_class={env_class.__name__}")
     base_env = env_class(cfg, headless=cfg.headless)
 
     transforms = [InitTracker()]

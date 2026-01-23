@@ -1,0 +1,197 @@
+task:
+  env:
+    num_envs: 1
+    env_spacing: 6
+    max_episode_length: 400
+  viewer:
+    eye:
+    - 3.0
+    - 3.0
+    - 3.0
+    lookat:
+    - 0.0
+    - 0.0
+    - 2.0
+    resolution:
+    - 1280
+    - 720
+  sim:
+    device: cpu
+    dt: 0.02
+    substeps: 2
+    replicate_physics: true
+    enable_scene_query_support: true
+  name: HoverTankPPO
+  debug: true
+  debug_interval: 50
+  tank_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/tank.usd
+  spawn_ranges:
+    x_range:
+    - 0.2
+    - 20.0
+    y_range:
+    - 0.2
+    - 6.0
+    z_range:
+    - 0.0
+    - -1.5
+  goal_spawn_ranges:
+    x_range:
+    - 0.2
+    - 20.0
+    y_range:
+    - 0.2
+    - 6.0
+    z_range:
+    - 0.0
+    - -1.5
+  termination:
+    enable: true
+    min_z: -2.0
+    max_distance: 50.0
+  success_distance: 0.6
+  success_bonus: 5.0
+  reward_goal_progress: 1.0
+  obstacle_penalty: 0.5
+  obstacle_threshold: 1.0
+  drone_model:
+    name: BlueROV
+    controller: LeePositionController
+  force_sensor: false
+  time_encoding: false
+  reward_effort_weight: 0.1
+  reward_action_smoothness_weight: 0.0
+  reward_distance_scale: 1.2
+  disturbances:
+    train:
+      payload:
+        enable_payload: false
+        z:
+        - 0.0
+        - 0.0
+        mass:
+        - 1.0
+        - 1.0
+      flow:
+        enable_flow: false
+        max_flow_velocity:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        flow_velocity_gaussian_noise:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    eval:
+      payload:
+        enable_payload: false
+        z:
+        - 0.0
+        - 0.0
+        mass:
+        - 1.0
+        - 1.0
+      flow:
+        enable_flow: false
+        max_flow_velocity:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        flow_velocity_gaussian_noise:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+  sonar:
+    num_rays: 32
+    fov_deg: 180.0
+    max_range: 10.0
+    include_angle_encoding: false
+    min_range_filter: 0.2
+  obstacles:
+    enable: true
+    num: 3
+    radius: 0.2
+    height: 0.4
+    speed: 0.3
+    motion: circle
+    amp:
+    - 0.8
+    - 0.8
+    - 0.0
+    spawn_ranges:
+      x_range:
+      - 1.0
+      - 19.0
+      y_range:
+      - 1.0
+      - 5.0
+      z_range:
+      - -1.3
+      - -0.2
+  planner:
+    bounds_min:
+    - 0.0
+    - 0.0
+    - -2.0
+    bounds_max:
+    - 20.0
+    - 6.0
+    - 2.0
+    wall_margin: 0.3
+    step_size: 1.0
+    max_iters: 400
+    goal_sample_rate: 0.1
+    neighbor_radius: 2.0
+    goal_tolerance: 1.0
+    n_behaviors: 6
+    slow_scale: 0.3
+    avoidance_offset: 1.0
+    max_speed: 0.3
+    max_vert_speed: 0.1
+  controller:
+    u_max: 0.6
+    v_max: 0.4
+    w_max: 0.3
+    r_max: 0.6
+    vel_kp: 5.0
+    yaw_rate_kp: 1.5
+    stabilize_rp: true
+    rp_kp: 3.0
+    rp_kd: 0.3
+    allocation_update_every: 1
+    action_smooth_alpha: 0.8
+    thrust_axis: 0
+    thrust_sign: 1.0
+    gravity_comp_scale: 1.0
+  action_transform: null
+algo:
+  name: ppo
+  train_every: 32
+  ppo_epochs: 4
+  num_minibatches: 16
+  priv_actor: false
+  priv_critic: false
+  checkpoint_path: null
+headless: false
+enable_livestream: false
+mode: train
+sim: ${task.sim}
+env: ${task.env}
+viewer: ${task.viewer}
+total_frames: 2000000
+max_iters: -1
+eval_interval: -1
+save_interval: -1
+seed: 0

@@ -13,6 +13,7 @@ class GlobalPlannerConfig:
     fixed_depth: float | None = None
     bounds_min: Tuple[float, float, float] = (-10.0, -10.0, -5.0)
     bounds_max: Tuple[float, float, float] = (10.0, 10.0, 5.0)
+    wall_margin: float = 0.0
     step_size: float = 1.0
     max_iters: int = 400
     goal_sample_rate: float = 0.1
@@ -44,6 +45,8 @@ class GlobalPlanner:
             goal = (float(goal_w[0]), float(goal_w[1]), float(self.cfg.fixed_depth))
         else:
             goal = (float(goal_w[0]), float(goal_w[1]), float(goal_w[2]))
+        start = self._clamp_to_bounds(start)
+        goal = self._clamp_to_bounds(goal)
 
         nodes = [_Node(pos=start, parent=None, cost=0.0)]
         goal_idx = None
@@ -88,10 +91,11 @@ class GlobalPlanner:
     def _sample(self, goal: Tuple[float, float, float]) -> Tuple[float, float, float]:
         if random.random() < self.cfg.goal_sample_rate:
             return goal
+        mn, mx = self._bounds_with_margin()
         return (
-            random.uniform(self.cfg.bounds_min[0], self.cfg.bounds_max[0]),
-            random.uniform(self.cfg.bounds_min[1], self.cfg.bounds_max[1]),
-            random.uniform(self.cfg.bounds_min[2], self.cfg.bounds_max[2]),
+            random.uniform(mn[0], mx[0]),
+            random.uniform(mn[1], mx[1]),
+            random.uniform(mn[2], mx[2]),
         )
 
     def _nearest(self, nodes: List[_Node], point: Tuple[float, float, float]) -> int:
@@ -128,10 +132,30 @@ class GlobalPlanner:
         b: Tuple[float, float, float],
         obstacles: Sequence[Obstacle],
     ) -> bool:
+        if not (self._within_bounds(a) and self._within_bounds(b)):
+            return False
         for obs in obstacles:
             if self._segment_sphere_intersect(a, b, obs.position_w, obs.radius):
                 return False
         return True
+
+    def _bounds_with_margin(self) -> Tuple[Tuple[float, float, float], Tuple[float, float, float]]:
+        m = float(self.cfg.wall_margin)
+        mn = (self.cfg.bounds_min[0] + m, self.cfg.bounds_min[1] + m, self.cfg.bounds_min[2] + m)
+        mx = (self.cfg.bounds_max[0] - m, self.cfg.bounds_max[1] - m, self.cfg.bounds_max[2] - m)
+        return mn, mx
+
+    def _within_bounds(self, p: Tuple[float, float, float]) -> bool:
+        mn, mx = self._bounds_with_margin()
+        return mn[0] <= p[0] <= mx[0] and mn[1] <= p[1] <= mx[1] and mn[2] <= p[2] <= mx[2]
+
+    def _clamp_to_bounds(self, p: Tuple[float, float, float]) -> Tuple[float, float, float]:
+        mn, mx = self._bounds_with_margin()
+        return (
+            min(max(p[0], mn[0]), mx[0]),
+            min(max(p[1], mn[1]), mx[1]),
+            min(max(p[2], mn[2]), mx[2]),
+        )
 
     @staticmethod
     def _segment_sphere_intersect(

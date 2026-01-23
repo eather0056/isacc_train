@@ -1,4 +1,6 @@
 name: HoverTankPPO
+debug: true
+debug_interval: 50
 
 defaults:
   - /base/env_base@_here_
@@ -6,13 +8,34 @@ defaults:
 
 env:
   num_envs: 64
-  env_spacing: 6
+  env_spacing: 20
   max_episode_length: 400
 
 sim:
   enable_scene_query_support: true
 
 tank_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/tank.usd
+
+spawn_ranges:
+  x_range: [0.2, 20.0]
+  y_range: [0.2, 6.0]
+  z_range: [0.0, -1.0]
+
+goal_spawn_ranges:
+  x_range: [0.2, 20.0]
+  y_range: [0.2, 6.0]
+  z_range: [0.0, -1.0]
+
+termination:
+  enable: true
+  min_z: -2.0
+  max_distance: 50.0
+
+success_distance: 0.6
+success_bonus: 5.0
+reward_goal_progress: 1.0
+obstacle_penalty: 0.5
+obstacle_threshold: 1.0
 
 drone_model:
   name: BlueROV
@@ -49,12 +72,61 @@ sonar:
   num_rays: 32
   fov_deg: 180.0
   max_range: 10.0
-  include_angle_encoding: false
+  include_angle_encoding: true
   min_range_filter: 0.2
+
+planner_stack:
+  enable: true
+  rrt:
+    bounds_min: [0.0, 0.0, -2.0]
+    bounds_max: [20.0, 6.0, 2.0]
+    wall_margin: 0.3
+    step_size: 1.0
+    max_iters: 400
+    goal_sample_rate: 0.1
+    neighbor_radius: 2.0
+    goal_tolerance: 1.0
+    waypoint_tol: 0.5
+  sonar:
+    num_rays: 16
+    fov_deg: 180.0
+    max_range: 10.0
+    include_angle_encoding: true
+    min_range_filter: 0.2
+  policy:
+    min_range_stop: 0.5
+    min_range_replan: 0.8
+    min_range_avoid: 1.2
+  fusion:
+    slow_scale: 0.3
+    avoidance_offset: 1.0
+    yaw_kp: 2.0
+    yaw_kd: 0.2
+    yaw_align_threshold: 0.6
+    yaw_align_speed_scale: 0.0
+    max_speed: 0.3
+    max_vert_speed: 0.1
+  safety:
+    min_range: 0.6
+    max_speed: 0.5
+
+obstacles:
+  enable: true
+  num: 3
+  radius: 0.2
+  height: 0.4
+  speed: 0.3
+  motion: circle
+  amp: [0.8, 0.8, 0.0]
+  spawn_ranges:
+    x_range: [1.0, 19.0]
+    y_range: [1.0, 5.0]
+    z_range: [-1.3, -0.2]
 
 planner:
   bounds_min: [0.0, 0.0, -2.0]
   bounds_max: [20.0, 6.0, 2.0]
+  wall_margin: 0.3
   step_size: 1.0
   max_iters: 400
   goal_sample_rate: 0.1
@@ -71,7 +143,7 @@ controller:
   v_max: 0.4
   w_max: 0.3
   r_max: 0.6
-  vel_kp: 5.0
+  vel_kp: 30.0
   yaw_rate_kp: 1.5
   stabilize_rp: true
   rp_kp: 3.0
@@ -80,5 +152,9 @@ controller:
   action_smooth_alpha: 0.8
   thrust_axis: 0
   thrust_sign: 1.0
+  gravity_comp_scale: 0.0
+  max_accel: 0.5
+  max_force: null
+  max_torque: 5.0
 
 action_transform: null

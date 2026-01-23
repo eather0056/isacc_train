@@ -20,12 +20,31 @@ class HoverTankPPO(HoverTank):
 
     def __init__(self, cfg, headless):
         self.ctrl_cfg = cfg.task.get("controller", {}) or {}
-        self.sonar_cfg = cfg.task.get("sonar", {}) or {}
-        self.planner_cfg = cfg.task.get("planner", {}) or {}
-        self.n_behaviors = int(self.planner_cfg.get("n_behaviors", 6))
+        planner_stack = cfg.task.get("planner_stack", {}) or {}
+        if planner_stack.get("enable", False):
+            self.sonar_cfg = planner_stack.get("sonar", {}) or {}
+            self.planner_cfg = planner_stack.get("rrt", {}) or {}
+            self.fusion_cfg = planner_stack.get("fusion", {}) or {}
+        else:
+            self.sonar_cfg = cfg.task.get("sonar", {}) or {}
+            self.planner_cfg = cfg.task.get("planner", {}) or {}
+            self.fusion_cfg = self.planner_cfg
+        self.n_behaviors = int(cfg.task.get("n_behaviors", self.planner_cfg.get("n_behaviors", 6)))
+        self.success_distance = float(cfg.task.get("success_distance", 0.5))
+        self.success_bonus = float(cfg.task.get("success_bonus", 5.0))
+        self.reward_goal_progress = float(cfg.task.get("reward_goal_progress", 1.0))
+        self.obstacle_penalty = float(cfg.task.get("obstacle_penalty", 0.5))
+        self.obstacle_threshold = float(cfg.task.get("obstacle_threshold", 1.0))
+        self.debug = bool(cfg.task.get("debug", False))
+        self.debug_interval = int(cfg.task.get("debug_interval", 50))
         super().__init__(cfg, headless)
 
         self.target_pos = torch.zeros(self.num_envs, 1, 3, device=self.device)
+        self._prev_goal_dist = torch.zeros(self.num_envs, 1, device=self.device)
+        self._last_sonar = None
+        self._last_behavior = None
+        self._last_target_vel_w = None
+        self._waypoint_tol = float(self.planner_cfg.get("waypoint_tol", 0.5))
         goal_spawn = cfg.task.get("goal_spawn_ranges", cfg.task.get("spawn_ranges", {})) or {}
         if goal_spawn:
             def _axis_range(key, default):
@@ -65,10 +84,10 @@ class HoverTankPPO(HoverTank):
         )
         self.behavior_fusion = BehaviorFusion(
             BehaviorFusionConfig(
-                slow_scale=float(self.planner_cfg.get("slow_scale", 0.3)),
-                avoidance_offset=float(self.planner_cfg.get("avoidance_offset", 1.0)),
-                max_speed=float(self.planner_cfg.get("max_speed", 0.3)),
-                max_vert_speed=float(self.planner_cfg.get("max_vert_speed", 0.1)),
+                slow_scale=float(self.fusion_cfg.get("slow_scale", 0.3)),
+                avoidance_offset=float(self.fusion_cfg.get("avoidance_offset", 1.0)),
+                max_speed=float(self.fusion_cfg.get("max_speed", 0.3)),
+                max_vert_speed=float(self.fusion_cfg.get("max_vert_speed", 0.1)),
             ),
             device=self.device,
         )
@@ -126,6 +145,7 @@ class HoverTankPPO(HoverTank):
 
     def _reset_idx(self, env_ids: torch.Tensor):
         super()._reset_idx(env_ids)
+        self.drone.get_state()
         if self.goal_spawn_low is not None:
             rand = torch.rand(len(env_ids), 3, device=self.device)
             goal_w = self.goal_spawn_low + rand * (self.goal_spawn_high - self.goal_spawn_low)
@@ -136,6 +156,11 @@ class HoverTankPPO(HoverTank):
             rel = goal_w - self.drone.pos[env_ids, 0, :]
             rel_norm = torch.norm(rel, dim=-1, keepdim=True).clamp_min(1e-6)
             self.target_heading[env_ids] = (rel / rel_norm).unsqueeze(1)
+            self._prev_goal_dist[env_ids] = torch.norm(rel, dim=-1, keepdim=True)
+        if self.debug:
+            start_pos = self.drone.pos[env_ids, 0, :].detach().cpu().numpy()
+            goals = self.target_pos[env_ids, 0, :].detach().cpu().numpy()
+            print(f"[HoverTankPPO] reset env_ids={env_ids.tolist()} start_pos={start_pos} goals={goals}")
         self._plan_paths(env_ids)
         if self._prev_action is None:
             self._prev_action = torch.zeros(self.num_envs, 1, 1, device=self.device)
@@ -196,6 +221,7 @@ class HoverTankPPO(HoverTank):
         self._prev_action = actions
 
         behavior = self._behavior_from_action(actions.squeeze(1).squeeze(-1))
+        self._last_behavior = behavior
         if behavior.eq(self.n_behaviors - 1).any():
             env_ids = torch.where(behavior.eq(self.n_behaviors - 1))[0]
             self._plan_paths(env_ids)
@@ -207,10 +233,39 @@ class HoverTankPPO(HoverTank):
             idx = min(idx, len(path) - 1) if path else 0
             waypoints.append(path[idx] if path else self.target_pos[0].tolist())
         waypoint_w = torch.tensor(waypoints, device=self.device)
+        dist_to_wp = torch.norm(waypoint_w - self.drone.pos[:, 0, :], dim=-1)
+        reached = dist_to_wp < self._waypoint_tol
+        if reached.any():
+            for env_idx in torch.where(reached)[0].tolist():
+                new_idx = min(
+                    int(self._path_idx[env_idx].item()) + 1,
+                    max(len(self._paths[env_idx]) - 1, 0),
+                )
+                self._path_idx[env_idx] = new_idx
 
         local_cmd = self.behavior_fusion.to_local_target(behavior, waypoint_w, self.drone.pos[:, 0, :])
         target_vel_w = local_cmd["target_vel_w"]
-        r_cmd = torch.zeros(self.num_envs, device=self.device)
+        goal_w = self.target_pos[:, 0, :]
+        dz = goal_w[:, 2] - self.drone.pos[:, 0, 2]
+        max_vz = float(self.fusion_cfg.get("max_vert_speed", self.planner_cfg.get("max_vert_speed", 0.1)))
+        target_vel_w[:, 2] = torch.clamp(dz, -max_vz, max_vz)
+        self._last_target_vel_w = target_vel_w
+        vel_b = self.drone.vel_b[:, 0, :3]
+        ang_b = self.drone.vel_b[:, 0, 3:6]
+        yaw_des = local_cmd["target_yaw"]
+        yaw = quaternion_to_euler(self.drone.rot[:, 0, :])[:, 2]
+        yaw_err = (yaw_des - yaw + torch.pi) % (2 * torch.pi) - torch.pi
+        r_max = float(self.ctrl_cfg.get("r_max", 0.6))
+        yaw_rate_kp = float(self.ctrl_cfg.get("yaw_rate_kp", 1.5))
+        r_cmd = torch.clamp(yaw_rate_kp * yaw_err, -r_max, r_max)
+
+        yaw_align_threshold = float(self.fusion_cfg.get("yaw_align_threshold", 0.6))
+        yaw_align_scale = float(self.fusion_cfg.get("yaw_align_speed_scale", 0.0))
+        need_align = torch.abs(yaw_err) > yaw_align_threshold
+        if need_align.any():
+            target_vel_w[need_align, 0:2] *= yaw_align_scale
+        self._last_yaw_err = yaw_err
+        self._last_r_cmd = r_cmd
 
         v_cmd_b = quat_rotate_inverse(self.drone.rot[:, 0, :], target_vel_w)
         u_max = float(self.ctrl_cfg.get("u_max", 0.6))
@@ -219,11 +274,12 @@ class HoverTankPPO(HoverTank):
         v_cmd_b[:, 0] = torch.clamp(v_cmd_b[:, 0], -u_max, u_max)
         v_cmd_b[:, 1] = torch.clamp(v_cmd_b[:, 1], -v_max, v_max)
         v_cmd_b[:, 2] = torch.clamp(v_cmd_b[:, 2], -w_max, w_max)
-
-        vel_b = self.drone.vel_b[:, 0, :3]
-        ang_b = self.drone.vel_b[:, 0, 3:6]
         e_v = v_cmd_b - vel_b
         F_b = float(self.ctrl_cfg.get("vel_kp", 5.0)) * e_v
+        gravity_scale = float(self.ctrl_cfg.get("gravity_comp_scale", 0.0))
+        if gravity_scale != 0.0:
+            masses = self.drone.masses[:, 0].squeeze(-1)
+            F_b[:, 2] += masses * 9.81 * gravity_scale
         T_b = torch.zeros(self.num_envs, 3, device=self.device)
         T_b[:, 2] = float(self.ctrl_cfg.get("yaw_rate_kp", 1.5)) * (r_cmd - ang_b[:, 2])
         if bool(self.ctrl_cfg.get("stabilize_rp", True)):
@@ -265,6 +321,38 @@ class HoverTankPPO(HoverTank):
         depth = pos_w[:, 2:3]
 
         sonar_obs = self.sonar.scan(pos_w, rot_w)["ranges"]
+        self._last_sonar = sonar_obs
+
+        if self.debug and self.num_envs > 0:
+            step = int(self.progress_buf[0].item())
+            if step % max(self.debug_interval, 1) == 0:
+                dist = torch.norm(rel_w[0]).item()
+                behavior = -1 if self._last_behavior is None else int(self._last_behavior[0].item())
+                tgt_vel = (
+                    [0.0, 0.0, 0.0]
+                    if self._last_target_vel_w is None
+                    else self._last_target_vel_w[0].detach().cpu().numpy().tolist()
+                )
+                yaw_err_val = 0.0 if not hasattr(self, "_last_yaw_err") else float(self._last_yaw_err[0].item())
+                r_cmd_val = 0.0 if not hasattr(self, "_last_r_cmd") else float(self._last_r_cmd[0].item())
+                print(
+                    "[HoverTankPPO] step",
+                    step,
+                    "pos=",
+                    pos_w[0].detach().cpu().numpy(),
+                    "goal=",
+                    goal_w[0].detach().cpu().numpy(),
+                    "dist=",
+                    f"{dist:.3f}",
+                    "behavior=",
+                    behavior,
+                    "yaw_err=",
+                    f"{yaw_err_val:.3f}",
+                    "r_cmd=",
+                    f"{r_cmd_val:.3f}",
+                    "target_vel_w=",
+                    tgt_vel,
+                )
 
         obs = torch.cat(
             [
@@ -290,3 +378,45 @@ class HoverTankPPO(HoverTank):
             },
             self.batch_size,
         )
+
+    def _compute_reward_and_done(self):
+        td = super()._compute_reward_and_done()
+        reward = td["agents", "reward"]
+        dist = torch.norm(self.rpos, dim=-1)
+        progress = (self._prev_goal_dist - dist).clamp_min(-5.0)
+        self._prev_goal_dist = dist.detach()
+        reward = reward + self.reward_goal_progress * progress.unsqueeze(-1)
+
+        if self._last_sonar is not None:
+            min_range = torch.min(self._last_sonar, dim=1)[0]
+            proximity = (self.obstacle_threshold - min_range).clamp_min(0.0) / max(self.obstacle_threshold, 1e-6)
+            reward = reward - self.obstacle_penalty * proximity.view(-1, 1, 1)
+
+        success = dist < self.success_distance
+        if success.any():
+            reward[success] = reward[success] + self.success_bonus
+        terminated = td["terminated"] | success
+        truncated = td["truncated"]
+        done = terminated | truncated
+        td["agents", "reward"] = reward
+        td["terminated"] = terminated
+        td["done"] = done
+        if self.debug:
+            done_mask = td["done"].squeeze(-1).reshape(-1).bool()
+            if done_mask.any():
+                pos_error = torch.norm(self.rpos, dim=-1)
+                distance = torch.norm(torch.cat([self.rpos, self.rheading], dim=-1), dim=-1)
+                print(
+                    "[HoverTankPPO] done",
+                    "env_ids=",
+                    torch.where(done_mask)[0].tolist(),
+                    "pos_error=",
+                    pos_error[done_mask].detach().cpu().numpy(),
+                    "distance=",
+                    distance[done_mask].detach().cpu().numpy(),
+                    "progress=",
+                    self.progress_buf.reshape(-1)[done_mask].detach().cpu().numpy(),
+                    "success=",
+                    success[done_mask].detach().cpu().numpy(),
+                )
+        return td
