@@ -10,6 +10,7 @@ total_frames: 2_000_000
 max_iters: -1
 eval_interval: -1
 save_interval: -1
+checkpoint_dir: ${hydra:runtime.cwd}/checkpoints
 seed: 0
 
 defaults:

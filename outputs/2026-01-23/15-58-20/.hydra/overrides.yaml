@@ -1,0 +1,3 @@
+- headless=true
+- task.env.num_envs=4
+- max_iters=10

@@ -1,0 +1,2 @@
+- headless=false
+- checkpoint_path=/home/md-ether/MarineGym-main/bluerov_manual/checkpoints/ppo_behavior_iter_0.pt

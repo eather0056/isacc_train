@@ -11,12 +11,19 @@ class SonarConfig:
     max_range: float = 10.0
     include_angle_encoding: bool = True
     min_range_filter: float = 0.2
+    hit_path_allow: tuple[str, ...] = ("/tank", "/obstacles")
+    hit_path_deny: tuple[str, ...] = ( "/target", "/BlueROV")
+    origin_offset: float = 0.05
+    ignore_empty_path: bool = True
+    debug_first_hit: bool = False
 
 
 class Sonar:
     def __init__(self, cfg: SonarConfig, device: torch.device):
         self.cfg = cfg
         self.device = device
+        self.last_hit_path: str | None = None
+        self.last_hit_distance: float | None = None
         angles = torch.linspace(
             -0.5 * torch.deg2rad(torch.tensor(self.cfg.fov_deg)),
             0.5 * torch.deg2rad(torch.tensor(self.cfg.fov_deg)),
@@ -39,6 +46,9 @@ class Sonar:
             float(self.cfg.max_range),
             device=self.device,
         )
+        if self.cfg.debug_first_hit:
+            self.last_hit_path = None
+            self.last_hit_distance = None
         if self._scene_query is not None:
             from pxr import Gf
             from marinegym.utils.torch import quat_rotate
@@ -50,20 +60,32 @@ class Sonar:
             dir_body = dir_body.unsqueeze(0).expand(num_envs, -1, -1)
             rot_expanded = rot_w.unsqueeze(1).expand(-1, self.cfg.num_rays, -1)
             dir_world = quat_rotate(rot_expanded, dir_body).detach()
-            origins = pos_w.detach().cpu().tolist()
-            dirs = dir_world.cpu().tolist()
+            origins = (pos_w.unsqueeze(1) + dir_world * float(self.cfg.origin_offset)).detach().cpu()
+            dirs = dir_world.cpu()
 
             for env_idx in range(num_envs):
-                origin = Gf.Vec3f(*origins[env_idx])
                 for ray_idx in range(self.cfg.num_rays):
-                    direction = Gf.Vec3f(*dirs[env_idx][ray_idx])
+                    origin = Gf.Vec3f(*origins[env_idx, ray_idx].tolist())
+                    direction = Gf.Vec3f(*dirs[env_idx, ray_idx].tolist())
                     hit = self._scene_query.raycast_closest(
                         origin, direction, float(self.cfg.max_range)
                     )
                     if hit.get("hit", False):
+                        hit_path = str(hit.get("path", ""))
+                        if self.cfg.ignore_empty_path and not hit_path:
+                            continue
+                        if self.cfg.hit_path_allow:
+                            if not any(token in hit_path for token in self.cfg.hit_path_allow):
+                                continue
+                        if self.cfg.hit_path_deny:
+                            if any(token in hit_path for token in self.cfg.hit_path_deny):
+                                continue
                         dist = float(hit.get("distance", self.cfg.max_range))
                         if dist >= self.cfg.min_range_filter:
                             ranges[env_idx, ray_idx] = dist
+                            if self.cfg.debug_first_hit and self.last_hit_path is None:
+                                self.last_hit_path = hit_path
+                                self.last_hit_distance = dist
         obs = {"ranges": ranges}
         if self.cfg.include_angle_encoding:
             obs["angles"] = self.angles.expand(num_envs, -1)

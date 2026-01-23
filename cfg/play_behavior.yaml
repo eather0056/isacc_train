@@ -1,0 +1,20 @@
+headless: false
+enable_livestream: false
+mode: play
+
+sim: ${task.sim}
+env: ${task.env}
+viewer: ${task.viewer}
+
+seed: 0
+num_episodes: -1
+max_steps: ${task.env.max_episode_length}
+
+checkpoint_path: ""
+algo:
+  checkpoint_path: ${checkpoint_path}
+
+defaults:
+  - task: hover_tank_ppo
+  - algo: ppo
+  - _self_

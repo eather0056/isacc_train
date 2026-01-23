@@ -49,6 +49,11 @@ def main(cfg):
     frames_per_batch = env.num_envs * int(cfg.algo.train_every)
     total_frames = cfg.get("total_frames", -1) // frames_per_batch * frames_per_batch
     max_iters = cfg.get("max_iters", -1)
+    save_interval = int(cfg.get("save_interval", -1))
+    checkpoint_dir = cfg.get("checkpoint_dir", None)
+    if checkpoint_dir is None:
+        checkpoint_dir = os.path.join(os.getcwd(), "checkpoints")
+    os.makedirs(checkpoint_dir, exist_ok=True)
 
     stats_keys = [
         k for k in base_env.observation_spec.keys(True, True)
@@ -101,10 +106,31 @@ def main(cfg):
         info.update(policy.train_op(data.to_tensordict()))
         if i % 10 == 0:
             reward_mean = data["next", "agents", "reward"].mean().item()
-            print(f"iter={i} frames={collector._frames} reward_mean={reward_mean:.4f}")
+            progress = 0.0
+            eta = None
+            if total_frames > 0:
+                progress = 100.0 * (collector._frames / total_frames)
+                if collector._fps > 1e-6:
+                    eta = (total_frames - collector._frames) / collector._fps
+            if eta is not None:
+                print(
+                    f"iter={i} frames={collector._frames} reward_mean={reward_mean:.4f} "
+                    f"progress={progress:.1f}% eta={eta:.1f}s"
+                )
+            else:
+                print(f"iter={i} frames={collector._frames} reward_mean={reward_mean:.4f}")
+
+        if save_interval > 0 and i % save_interval == 0:
+            ckpt_path = os.path.join(checkpoint_dir, f"ppo_behavior_iter_{i}.pt")
+            torch.save(policy.state_dict(), ckpt_path)
+            print(f"[train_ppo_behavior] saved checkpoint: {ckpt_path}")
 
         if max_iters > 0 and i >= max_iters - 1:
             break
+
+    final_ckpt = os.path.join(checkpoint_dir, "ppo_behavior_final.pt")
+    torch.save(policy.state_dict(), final_ckpt)
+    print(f"[train_ppo_behavior] saved final checkpoint: {final_ckpt}")
 
     sim_app.close()
 

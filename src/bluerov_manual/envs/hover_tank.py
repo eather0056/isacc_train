@@ -41,7 +41,7 @@ class HoverTank(Hover):
             kit_utils.set_nested_rigid_body_properties(
                 tank_prim.GetPath(),
                 disable_gravity=True,
-                rigid_body_enabled=True,
+                rigid_body_enabled=False,
             )
 
         return global_paths
