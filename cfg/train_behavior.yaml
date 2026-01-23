@@ -1,0 +1,18 @@
+headless: true
+enable_livestream: false
+mode: train
+
+sim: ${task.sim}
+env: ${task.env}
+viewer: ${task.viewer}
+
+total_frames: 2_000_000
+max_iters: -1
+eval_interval: -1
+save_interval: -1
+seed: 0
+
+defaults:
+  - task: hover_tank_ppo
+  - algo: ppo
+  - _self_

@@ -1,0 +1,2 @@
+- headless=true
+- task.env.num_envs=6

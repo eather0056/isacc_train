@@ -32,7 +32,16 @@ class HoverTank(Hover):
             )
 
             # Static + collidable
-            kit_utils.set_nested_collision_properties(tank_prim.GetPath(), collision_enabled=True)
-            kit_utils.set_nested_rigid_body_properties(tank_prim.GetPath(), disable_gravity=True)
+            kit_utils.set_nested_collision_properties(
+                tank_prim.GetPath(),
+                collision_enabled=True,
+                contact_offset=0.02,
+                rest_offset=0.0,
+            )
+            kit_utils.set_nested_rigid_body_properties(
+                tank_prim.GetPath(),
+                disable_gravity=True,
+                rigid_body_enabled=True,
+            )
 
         return global_paths

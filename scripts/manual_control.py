@@ -138,6 +138,49 @@ def wrench_pd_world_to_body(
     return torch.cat([F_des_b, T_des_b], dim=-1)       # (E,6)
 
 
+def wrench_velocity_body(
+    drone,
+    v_cmd_b,
+    r_cmd,
+    kp_v=5.0,
+    kp_r=2.0,
+    max_accel=None,
+    max_force=None,
+    max_torque=None,
+    stabilize_rp=False,
+    rp_kp=2.0,
+    rp_kd=0.2,
+):
+    vel_b = drone.vel_b[:, 0, :3]
+    ang_b = drone.vel_b[:, 0, 3:6]
+    e_v = v_cmd_b - vel_b
+    F_b = kp_v * e_v
+    T_b = torch.zeros(v_cmd_b.shape[0], 3, device=v_cmd_b.device)
+    T_b[:, 2] = kp_r * (r_cmd - ang_b[:, 2])
+    if stabilize_rp:
+        from marinegym.utils.torch import quaternion_to_euler
+
+        rpy = quaternion_to_euler(drone.rot[:, 0, :])
+        T_b[:, 0] = -rp_kp * rpy[:, 0] - rp_kd * ang_b[:, 0]
+        T_b[:, 1] = -rp_kp * rpy[:, 1] - rp_kd * ang_b[:, 1]
+
+    if max_accel is not None:
+        masses = drone.masses[:, 0].squeeze(-1)
+        max_force = masses * float(max_accel)
+    if max_force is not None:
+        max_force_val = torch.as_tensor(max_force, device=v_cmd_b.device)
+        force_norm = torch.norm(F_b, dim=-1, keepdim=True).clamp_min(1e-6)
+        scale = torch.clamp(max_force_val / force_norm.squeeze(-1), max=1.0).unsqueeze(-1)
+        F_b = F_b * scale
+    if max_torque is not None:
+        max_torque_val = float(max_torque)
+        torque_norm = torch.norm(T_b, dim=-1, keepdim=True).clamp_min(1e-6)
+        scale = torch.clamp(max_torque_val / torque_norm.squeeze(-1), max=1.0).unsqueeze(-1)
+        T_b = T_b * scale
+
+    return torch.cat([F_b, T_b], dim=-1)
+
+
 def forces_to_action(f, f_max):
     return torch.clamp(f / f_max, -1.0, 1.0)
 
@@ -476,24 +519,66 @@ def main(cfg):
         target_vel = local_cmd["target_vel_w"] if planner_stack_enabled else None
         target_yaw = local_cmd["target_yaw"] if planner_stack_enabled else None
         ctrl_cfg = cfg.task.get("controller", {}) or {}
-        wrench_b = wrench_pd_world_to_body(
-            base_env.drone,
-            target_pos,
-            kp=float(ctrl_cfg.get("kp", 25.0)),
-            kd=float(ctrl_cfg.get("kd", 12.0)),
-            target_vel_w=target_vel,
-            target_yaw=target_yaw,
-            yaw_kp=float(stack_cfg.get("fusion", {}).get("yaw_kp", 2.0)),
-            yaw_kd=float(stack_cfg.get("fusion", {}).get("yaw_kd", 0.2)),
-            gravity_comp=bool(ctrl_cfg.get("gravity_comp", True)),
-            gravity_scale=float(ctrl_cfg.get("gravity_scale", 1.0)),
-            max_accel=ctrl_cfg.get("max_accel", None),
-            max_force=ctrl_cfg.get("max_force", None),
-            max_torque=ctrl_cfg.get("max_torque", None),
-            stabilize_rp=bool(ctrl_cfg.get("stabilize_rp", True)),
-            rp_kp=float(ctrl_cfg.get("rp_kp", 2.0)),
-            rp_kd=float(ctrl_cfg.get("rp_kd", 0.2)),
-        )
+        ctrl_mode = str(ctrl_cfg.get("mode", "position")).lower()
+        if ctrl_mode == "velocity":
+            from marinegym.utils.torch import quat_rotate_inverse
+
+            if target_vel is None:
+                v_cmd_b = torch.zeros(env.num_envs, 3, device=env.device)
+            else:
+                v_cmd_b = quat_rotate_inverse(base_env.drone.rot[:, 0, :], target_vel)
+            u_max = float(ctrl_cfg.get("u_max", 0.6))
+            v_max = float(ctrl_cfg.get("v_max", 0.4))
+            w_max = float(ctrl_cfg.get("w_max", 0.3))
+            v_cmd_b[:, 0] = torch.clamp(v_cmd_b[:, 0], -u_max, u_max)
+            v_cmd_b[:, 1] = torch.clamp(v_cmd_b[:, 1], -v_max, v_max)
+            v_cmd_b[:, 2] = torch.clamp(v_cmd_b[:, 2], -w_max, w_max)
+
+            if target_yaw is None:
+                r_cmd = torch.zeros(env.num_envs, device=env.device)
+            else:
+                from marinegym.utils.torch import quaternion_to_euler
+
+                yaw = quaternion_to_euler(base_env.drone.rot[:, 0, :])[:, 2]
+                yaw_err = target_yaw - yaw
+                yaw_err = (yaw_err + torch.pi) % (2 * torch.pi) - torch.pi
+                yaw_rate_kp = float(ctrl_cfg.get("yaw_rate_kp", 1.5))
+                r_cmd = yaw_rate_kp * yaw_err
+            r_max = float(ctrl_cfg.get("r_max", 0.6))
+            r_cmd = torch.clamp(r_cmd, -r_max, r_max)
+
+            wrench_b = wrench_velocity_body(
+                base_env.drone,
+                v_cmd_b,
+                r_cmd,
+                kp_v=float(ctrl_cfg.get("vel_kp", 5.0)),
+                kp_r=float(ctrl_cfg.get("yaw_rate_kp", 1.5)),
+                max_accel=ctrl_cfg.get("max_accel", None),
+                max_force=ctrl_cfg.get("max_force", None),
+                max_torque=ctrl_cfg.get("max_torque", None),
+                stabilize_rp=bool(ctrl_cfg.get("stabilize_rp", True)),
+                rp_kp=float(ctrl_cfg.get("rp_kp", 2.0)),
+                rp_kd=float(ctrl_cfg.get("rp_kd", 0.2)),
+            )
+        else:
+            wrench_b = wrench_pd_world_to_body(
+                base_env.drone,
+                target_pos,
+                kp=float(ctrl_cfg.get("kp", 25.0)),
+                kd=float(ctrl_cfg.get("kd", 12.0)),
+                target_vel_w=target_vel,
+                target_yaw=target_yaw,
+                yaw_kp=float(stack_cfg.get("fusion", {}).get("yaw_kp", 2.0)),
+                yaw_kd=float(stack_cfg.get("fusion", {}).get("yaw_kd", 0.2)),
+                gravity_comp=bool(ctrl_cfg.get("gravity_comp", True)),
+                gravity_scale=float(ctrl_cfg.get("gravity_scale", 1.0)),
+                max_accel=ctrl_cfg.get("max_accel", None),
+                max_force=ctrl_cfg.get("max_force", None),
+                max_torque=ctrl_cfg.get("max_torque", None),
+                stabilize_rp=bool(ctrl_cfg.get("stabilize_rp", True)),
+                rp_kp=float(ctrl_cfg.get("rp_kp", 2.0)),
+                rp_kd=float(ctrl_cfg.get("rp_kd", 0.2)),
+            )
 
         # Wrench -> thruster forces: f = wrench_b @ A_pinv.T  => (E,N)
         f = wrench_b @ A_pinv.T

@@ -68,6 +68,13 @@ task:
     enable: true
     print_every: 10
   controller:
+    mode: velocity
+    u_max: 0.6
+    v_max: 0.4
+    w_max: 0.3
+    r_max: 0.6
+    vel_kp: 30.0
+    yaw_rate_kp: 1.5
     kp: 2500.0
     kd: 1200.0
     gravity_comp: false
