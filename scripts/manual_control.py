@@ -15,6 +15,7 @@ from bluerov_manual.navigation import (
     GlobalPlannerConfig,
     LocalPolicy,
     LocalPolicyConfig,
+    Obstacle,
     ObstacleField,
     ObstacleFieldConfig,
     Sonar,
@@ -248,6 +249,30 @@ def _draw_cross(draw, center, size=0.2, color=(1.0, 1.0, 1.0, 1.0)):
     draw.plot(torch.tensor(pts, device="cpu"), size=2.0, color=color)
 
 
+def _sonar_ranges_to_obstacles(pos_w, rot_w, obs_sonar, sonar):
+    """
+    Convert sonar ranges to obstacle positions for planning.
+    Assumes short ranges indicate obstacles.
+    """
+    obstacles = []
+    ranges = obs_sonar["ranges"][0]  # (num_rays,)
+    angles = obs_sonar.get("angles", sonar.angles)[0]  # (num_rays,)
+    max_range = sonar.cfg.max_range
+    min_range = sonar.cfg.min_range_filter
+    for r, ang in zip(ranges, angles):
+        if r < max_range and r > min_range:  # Detected obstacle
+            # Compute position in world frame
+            from marinegym.utils.torch import quaternion_to_euler
+            yaw = quaternion_to_euler(rot_w.unsqueeze(0))[0, 2]
+            world_ang = yaw + ang.item()
+            dx = r.item() * torch.cos(torch.tensor(world_ang))
+            dy = r.item() * torch.sin(torch.tensor(world_ang))
+            dz = 0.0  # Assume same depth
+            obs_pos = pos_w + torch.tensor([dx, dy, dz], device=pos_w.device)
+            obstacles.append(Obstacle(position_w=obs_pos.tolist(), radius=0.2))  # Small radius for sonar
+    return obstacles
+
+
 def _safe_write_video(path, frames, fps):
     if not frames:
         return
@@ -428,11 +453,22 @@ def main(cfg):
                     obst_pos_w[env_idx],
                     radius=float(cfg.task.get("obstacles", {}).get("radius", 0.5)),
                 )
+            # Integrate sonar for obstacle detection
+            if planner_stack_enabled:
+                rot_w = base_env.drone.rot[:, 0, :]
+                obs_sonar = sonar.scan(pos_w[env_idx:env_idx+1], rot_w[env_idx:env_idx+1])
+                sonar_obstacles = _sonar_ranges_to_obstacles(
+                    pos_w[env_idx], rot_w[env_idx], obs_sonar, sonar
+                )
+                print(f"DEBUG SONAR OBST: env={env_idx} sonar_ranges={obs_sonar['ranges'][0].tolist()[:5]}... sonar_obstacles={len(sonar_obstacles)}")
+                obstacles._obstacles.extend(sonar_obstacles)
+            print(f"DEBUG PLAN: env={env_idx} start={pos_w[env_idx].tolist()} goal={goals[env_idx].tolist()} num_obstacles={len(obstacles.get_obstacles())}")
             plan = planner.plan(
                 start_w=pos_w[env_idx].tolist(),
                 goal_w=goals[env_idx].tolist(),
                 obstacles=obstacles.get_obstacles(),
             )
+            print(f"DEBUG PLAN: env={env_idx} path_length={len(plan)} waypoints={plan[:5] if len(plan) > 5 else plan}")
             paths.append(plan)
 
     prev_action = torch.zeros(env.num_envs, 1, N, device=env.device)
@@ -461,6 +497,8 @@ def main(cfg):
             vel_w = base_env.drone.get_velocities(True)[:, 0, :3]
             obs = sonar.scan(pos_w, rot_w)
             obs["vel_w"] = vel_w
+            if step_i % debug_every == 0:
+                print(f"DEBUG SONAR: step={step_i} ranges[0]={obs['ranges'][0].tolist()[:5]}... min={obs['ranges'][0].min().item():.3f}")
 
             waypoints = []
             for env_idx in range(env.num_envs):
@@ -491,17 +529,29 @@ def main(cfg):
             replan = behavior == int(BehaviorAction.REQUEST_REPLAN)
             if replan.any():
                 for env_idx in torch.where(replan)[0].tolist():
+                    print(f"DEBUG REPLAN: env={env_idx} triggering replan")
                     if getattr(base_env, "enable_obstacles", False):
                         obst_pos_w, _ = base_env.obstacles.get_world_poses()
                         obstacles.update_from_positions(
                             obst_pos_w[env_idx],
                             radius=float(cfg.task.get("obstacles", {}).get("radius", 0.5)),
                         )
+                    # Integrate sonar for replanning
+                    if planner_stack_enabled:
+                        rot_w = base_env.drone.rot[:, 0, :]
+                        obs_sonar = sonar.scan(pos_w[env_idx:env_idx+1], rot_w[env_idx:env_idx+1])
+                        sonar_obstacles = _sonar_ranges_to_obstacles(
+                            pos_w[env_idx], rot_w[env_idx], obs_sonar, sonar
+                        )
+                        print(f"DEBUG SONAR OBST REPLAN: env={env_idx} sonar_ranges={obs_sonar['ranges'][0].tolist()[:5]}... sonar_obstacles={len(sonar_obstacles)}")
+                        obstacles._obstacles.extend(sonar_obstacles)
+                    print(f"DEBUG REPLAN: env={env_idx} start={pos_w[env_idx].tolist()} goal={goals[env_idx].tolist()} num_obstacles={len(obstacles.get_obstacles())}")
                     paths[env_idx] = planner.plan(
                         start_w=pos_w[env_idx].tolist(),
                         goal_w=goals[env_idx].tolist(),
                         obstacles=obstacles.get_obstacles(),
                     )
+                    print(f"DEBUG REPLAN: env={env_idx} new_path_length={len(paths[env_idx])} waypoints={paths[env_idx][:5] if len(paths[env_idx]) > 5 else paths[env_idx]}")
                     path_indices[env_idx] = 0
 
             local_cmd = behavior_fusion.to_local_target(behavior, waypoint_w, pos_w)

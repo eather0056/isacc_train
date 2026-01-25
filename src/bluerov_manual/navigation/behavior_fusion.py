@@ -46,7 +46,12 @@ class BehaviorFusion:
             target_pos,
         )
 
-        target_vel = dir_unit * self.cfg.max_speed
+        # Compute direction to the (possibly modified) target_pos
+        target_direction = target_pos - pos_w
+        target_norm = torch.norm(target_direction, dim=-1, keepdim=True).clamp_min(1e-6)
+        target_dir_unit = target_direction / target_norm
+
+        target_vel = target_dir_unit * self.cfg.max_speed
         target_vel = torch.where(
             (behavior == int(BehaviorAction.SLOW)).unsqueeze(-1),
             target_vel * self.cfg.slow_scale,
@@ -65,7 +70,7 @@ class BehaviorFusion:
             pos_w,
             target_pos,
         )
-        target_yaw = torch.atan2(dir_unit[..., 1], dir_unit[..., 0])
+        target_yaw = torch.atan2(target_dir_unit[..., 1], target_dir_unit[..., 0])
         return {
             "target_pos_w": target_pos,
             "target_vel_w": target_vel,

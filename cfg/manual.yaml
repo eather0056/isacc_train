@@ -24,7 +24,7 @@ task:
       bounds_min: [0.0, 0.0, -2.0]
       bounds_max: [20.0, 6.0, 2.0]
       step_size: 1.0
-      max_iters: 400
+      max_iters: 1000
       goal_sample_rate: 0.1
       neighbor_radius: 2.0
       goal_tolerance: 1.0
@@ -34,6 +34,8 @@ task:
       max_range: 10.0
       include_angle_encoding: true
       min_range_filter: 0.2
+      hit_path_allow: []
+      debug_first_hit: true
     policy:
       min_range_stop: 0.5
       min_range_replan: 0.8
@@ -92,11 +94,11 @@ task:
 
   obstacles:
     enable: true
-    num: 3
+    num: 8
     radius: 0.15
     height: 0.30
     speed: 0.5          # m/s (used for param motion)
-    motion: "circle"    # "circle" or "line"
+    motion: "line"    # "circle" or "line"
     center: [0.0, 0.0, 1.5]
     amp: [1.0, 1.0, 0.0]  # motion amplitude
     spawn_ranges:

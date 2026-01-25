@@ -1,0 +1,211 @@
+headless: false
+enable_livestream: false
+mode: train
+seed: 0
+task:
+  spawn_ranges:
+    x_range:
+    - 0.2
+    - 20.0
+    y_range:
+    - 0.2
+    - 6.0
+    z_range:
+    - 0.0
+    - -1.0
+  planner_stack:
+    enable: true
+    rrt:
+      bounds_min:
+      - 0.0
+      - 0.0
+      - -2.0
+      bounds_max:
+      - 20.0
+      - 6.0
+      - 2.0
+      step_size: 1.0
+      max_iters: 400
+      goal_sample_rate: 0.1
+      neighbor_radius: 2.0
+      goal_tolerance: 1.0
+    sonar:
+      num_rays: 16
+      fov_deg: 180.0
+      max_range: 10.0
+      include_angle_encoding: true
+      min_range_filter: 0.2
+    policy:
+      min_range_stop: 0.5
+      min_range_replan: 0.8
+      min_range_avoid: 1.2
+    fusion:
+      slow_scale: 0.3
+      avoidance_offset: 1.0
+      yaw_kp: 2.0
+      yaw_kd: 0.2
+      max_speed: 0.3
+      max_vert_speed: 0.1
+    safety:
+      min_range: 0.6
+      max_speed: 0.5
+  visualization:
+    enable: true
+    draw_every: 5
+    trail_length: 200
+    draw_global_path: true
+    draw_local_target: true
+    draw_trail: true
+  record_video:
+    enable: true
+    interval: 2
+    fps: 30
+    output: ${hydra:runtime.cwd}/outputs/manual_run.mp4
+    max_frames: 2000
+  session:
+    continue_on_success: true
+    max_successes: 0
+  debug:
+    enable: true
+    print_every: 10
+  controller:
+    mode: velocity
+    u_max: 0.6
+    v_max: 0.4
+    w_max: 0.3
+    r_max: 0.6
+    vel_kp: 30.0
+    yaw_rate_kp: 1.5
+    kp: 2500.0
+    kd: 1200.0
+    gravity_comp: false
+    gravity_scale: 0.0
+    allocation_update_every: 1
+    action_smooth_alpha: 0.8
+    thrust_axis: 0
+    thrust_sign: 1.0
+    max_accel: 0.5
+    max_force: null
+    max_torque: 5.0
+    stabilize_rp: true
+    rp_kp: 3.0
+    rp_kd: 0.3
+  obstacles:
+    enable: true
+    num: 8
+    radius: 0.15
+    height: 0.3
+    speed: 0.5
+    motion: line
+    center:
+    - 0.0
+    - 0.0
+    - 1.5
+    amp:
+    - 1.0
+    - 1.0
+    - 0.0
+    spawn_ranges:
+      x_range:
+      - 0.2
+      - 20.0
+      y_range:
+      - 0.2
+      - 6.0
+      z_range:
+      - 0.0
+      - -1.5
+  name: Hover
+  tank_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/tank.usd
+  obstacles_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/obstacles.usd
+  drone_model:
+    name: BlueROV
+    controller: LeePositionController
+  force_sensor: false
+  time_encoding: true
+  reward_effort_weight: 0.1
+  reward_action_smoothness_weight: 0.0
+  reward_distance_scale: 1.2
+  termination:
+    enable: true
+    min_z: -5.0
+    max_distance: 1000.0
+  disturbances:
+    train:
+      payload:
+        enable_payload: false
+        z:
+        - 0.0
+        - 0.0
+        mass:
+        - 1.0
+        - 1.0
+      flow:
+        enable_flow: false
+        max_flow_velocity:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        flow_velocity_gaussian_noise:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    eval:
+      payload:
+        enable_payload: false
+        z:
+        - 0.0
+        - 0.0
+        mass:
+        - 1.0
+        - 1.0
+      flow:
+        enable_flow: false
+        max_flow_velocity:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        flow_velocity_gaussian_noise:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+  action_transform: null
+env:
+  num_envs: 1
+  env_spacing: 30
+  max_episode_length: 400
+viewer:
+  eye:
+  - 3.0
+  - 3.0
+  - 3.0
+  lookat:
+  - 0.0
+  - 0.0
+  - 2.0
+  resolution:
+  - 1280
+  - 720
+sim:
+  device: cpu
+  dt: 0.02
+  substeps: 2
+  replicate_physics: true
+robot:
+  robot:
+    name: BlueROV
+    usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.usd
+    param_yaml: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/BlueROV.yaml
+    tank_usd_path: /home/md-ether/MarineGym-main/marinegym/robots/assets/usd/BlueROV/tank.usd
