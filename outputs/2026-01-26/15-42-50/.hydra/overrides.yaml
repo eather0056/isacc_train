@@ -1,0 +1,3 @@
+- headless=true
+- task.env.num_envs=2
+- save_interval=100
