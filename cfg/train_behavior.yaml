@@ -13,6 +13,12 @@ save_interval: -1
 checkpoint_dir: ${hydra:runtime.cwd}/checkpoints
 seed: 0
 
+wandb:
+  enable: false
+  project: bluerov_manual
+  name: null
+  tags: []
+
 defaults:
   - task: hover_tank_ppo
   - algo: ppo

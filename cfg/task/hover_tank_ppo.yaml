@@ -1,5 +1,5 @@
 name: HoverTankPPO
-debug: false
+debug: true
 debug_interval: 50
 
 defaults:
@@ -9,7 +9,7 @@ defaults:
 env:
   num_envs: 64
   env_spacing: 20
-  max_episode_length: 1000
+  max_episode_length: 400
 
 sim:
   enable_scene_query_support: true
@@ -17,23 +17,25 @@ sim:
 tank_usd_path: ${hydra:runtime.cwd}/../marinegym/robots/assets/usd/BlueROV/tank.usd
 
 spawn_ranges:
-  x_range: [0.2, 20.0]
-  y_range: [0.2, 6.0]
+  x_range: [0.8, 19.2]
+  y_range: [0.8, 5.2]
   z_range: [0.0, -1.0]
 
 goal_spawn_ranges:
-  x_range: [0.2, 20.0]
-  y_range: [0.2, 6.0]
+  x_range: [0.8, 19.2]
+  y_range: [0.8, 5.2]
   z_range: [0.0, -1.0]
 
 termination:
   enable: true
   min_z: -2.0
+  max_z: 0.0
   max_distance: 50.0
 
 success_distance: 0.6
 success_bonus: 5.0
-reward_goal_progress: 1.0
+reward_goal_progress: 1.5
+reward_waypoint_bonus: 0.3
 obstacle_penalty: 0.5
 obstacle_threshold: 1.0
 terminate_on_collision: true
@@ -60,6 +62,16 @@ time_encoding: false
 reward_effort_weight: 0.1
 reward_action_smoothness_weight: 0.0
 reward_distance_scale: 1.2
+reward_forward_weight: 0.05
+yaw_align_reward_weight: 0.03
+yaw_blend_gain: 0.4
+yaw_blend_thresh: 0.15
+surface_penalty: 0.2
+use_waypoint_reward: true
+tilt_penalty_weight: 0.05
+tilt_limit_deg: 10.0
+tilt_slow_scale: 0.2
+action_saturation_penalty: 0.05
 
 disturbances:
   train:
@@ -125,7 +137,7 @@ planner_stack:
     goal_sample_rate: 0.1
     neighbor_radius: 2.0
     goal_tolerance: 1.0
-    waypoint_tol: 0.5
+    waypoint_tol: 1.2
     plot_every: 0 #50
     plot_gif: false
     plot_gif_every: 5
@@ -143,9 +155,11 @@ planner_stack:
     ignore_empty_path: true
     debug_first_hit: true
   policy:
-    min_range_stop: 0.5
-    min_range_replan: 0.8
-    min_range_avoid: 1.2
+    min_range_stop: 0.4
+    min_range_replan: 0.7
+    min_range_avoid: 1.0
+    use_front_safety: true
+    front_safety_deg: 90.0
     stuck_replan_steps: 60
     stuck_speed_thresh: 0.02
   fusion:
@@ -205,13 +219,13 @@ planner:
 controller:
   u_max: 0.6
   v_max: 0.4
-  w_max: 0.3
+  w_max: 0.2
   r_max: 0.6
   vel_kp: 30.0
   yaw_rate_kp: 1.5
   stabilize_rp: true
-  rp_kp: 3.0
-  rp_kd: 0.3
+  rp_kp: 8.0
+  rp_kd: 0.8
   allocation_update_every: 1
   action_smooth_alpha: 0.8
   thrust_axis: 0

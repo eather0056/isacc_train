@@ -1,0 +1,6 @@
+- headless=true
+- task.env.num_envs=10
+- save_interval=100
+- wandb.enable=true
+- wandb.project=bluerov_manual
+- wandb.name=hover_tank_ppo_run

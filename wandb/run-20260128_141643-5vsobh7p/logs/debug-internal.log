@@ -1,0 +1,72 @@
+{"time":"2026-01-28T14:16:43.327698421+01:00","level":"INFO","msg":"stream: starting","core version":"0.23.1"}
+{"time":"2026-01-28T14:16:43.776054972+01:00","level":"INFO","msg":"stream: created new stream","id":"5vsobh7p"}
+{"time":"2026-01-28T14:16:43.777526397+01:00","level":"INFO","msg":"handler: started","stream_id":"5vsobh7p"}
+{"time":"2026-01-28T14:16:43.778184125+01:00","level":"INFO","msg":"stream: started","id":"5vsobh7p"}
+{"time":"2026-01-28T14:16:43.778202593+01:00","level":"INFO","msg":"writer: started","stream_id":"5vsobh7p"}
+{"time":"2026-01-28T14:16:43.778207878+01:00","level":"INFO","msg":"sender: started","stream_id":"5vsobh7p"}
+{"time":"2026-01-28T14:16:45.123728505+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":77}
+{"time":"2026-01-28T14:16:45.133022153+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":39}
+{"time":"2026-01-28T14:17:16.461033426+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":3354}
+{"time":"2026-01-28T14:17:16.461512044+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:18:03.987017324+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":5747}
+{"time":"2026-01-28T14:18:03.987344188+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:19:25.504528265+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":11790}
+{"time":"2026-01-28T14:19:25.505531581+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:19:37.019585073+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":12778}
+{"time":"2026-01-28T14:19:37.021854771+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:19:44.635779532+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13667}
+{"time":"2026-01-28T14:19:44.637145223+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:19:44.685398989+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":13736}
+{"time":"2026-01-28T14:19:44.685651264+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-01-28T14:20:28.642845265+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":17915}
+{"time":"2026-01-28T14:20:28.643561921+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2026-01-28T14:20:35.40464346+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":1}
+{"time":"2026-01-28T14:20:35.404334246+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":18965}
+{"time":"2026-01-28T14:20:35.470723755+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":19031}
+{"time":"2026-01-28T14:20:35.471330079+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:21:22.775121949+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":22541}
+{"time":"2026-01-28T14:21:22.776173134+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2026-01-28T14:21:51.979585959+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":26191}
+{"time":"2026-01-28T14:21:51.979885418+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2026-01-28T14:22:11.216669768+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":29185}
+{"time":"2026-01-28T14:22:11.217488323+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:22:52.4366699+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":32665}
+{"time":"2026-01-28T14:22:52.445336498+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":3}
+{"time":"2026-01-28T14:23:15.885841714+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":35475}
+{"time":"2026-01-28T14:23:15.886178757+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:23:24.062412929+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":36670}
+{"time":"2026-01-28T14:23:24.075116584+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:24:34.559715552+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":42818}
+{"time":"2026-01-28T14:24:34.561003779+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":2}
+{"time":"2026-01-28T14:25:13.584943966+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":47745}
+{"time":"2026-01-28T14:25:13.585856357+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":47747}
+{"time":"2026-01-28T14:25:13.585860456+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":2}
+{"time":"2026-01-28T14:25:13.586232635+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-01-28T14:25:27.837310837+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":49961}
+{"time":"2026-01-28T14:25:27.84047903+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2026-01-28T14:25:27.86541758+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":50029}
+{"time":"2026-01-28T14:25:27.866146773+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":4}
+{"time":"2026-01-28T14:25:42.536433208+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":51919}
+{"time":"2026-01-28T14:25:42.537057495+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-01-28T14:25:42.613573425+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":51985}
+{"time":"2026-01-28T14:25:42.614737031+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:25:54.472428054+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":53019}
+{"time":"2026-01-28T14:25:54.472889085+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:25:54.547765481+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":53089}
+{"time":"2026-01-28T14:25:54.548074819+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":8}
+{"time":"2026-01-28T14:26:49.099678199+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":56692}
+{"time":"2026-01-28T14:26:49.100245717+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":8}
+{"time":"2026-01-28T14:27:20.320604775+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":60983}
+{"time":"2026-01-28T14:27:20.321465087+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:27:47.145380526+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":63596}
+{"time":"2026-01-28T14:27:47.152803864+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:27:47.175002763+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":63664}
+{"time":"2026-01-28T14:27:47.175360548+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:28:09.788148786+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":66087}
+{"time":"2026-01-28T14:28:09.788701245+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":10}
+{"time":"2026-01-28T14:28:16.700672629+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":67184}
+{"time":"2026-01-28T14:28:16.701910492+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}
+{"time":"2026-01-28T14:28:36.987492758+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":67720}
+{"time":"2026-01-28T14:28:36.988313648+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":9}
+{"time":"2026-01-28T14:28:48.003037076+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":68537}
+{"time":"2026-01-28T14:28:48.003533976+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":11}

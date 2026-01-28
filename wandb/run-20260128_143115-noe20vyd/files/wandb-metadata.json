@@ -1,0 +1,48 @@
+{
+  "os":  "Linux-6.14.0-37-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.11.13",
+  "startedAt":  "2026-01-28T13:31:15.504666Z",
+  "args":  [
+    "headless=true",
+    "task.env.num_envs=1",
+    "save_interval=100",
+    "wandb.enable=true",
+    "wandb.project=bluerov_manual",
+    "wandb.name=hover_tank_ppo_run"
+  ],
+  "program":  "/home/md-ether/MarineGym-main/bluerov_manual/scripts/train_ppo_behavior.py",
+  "codePath":  "scripts/train_ppo_behavior.py",
+  "codePathLocal":  "scripts/train_ppo_behavior.py",
+  "git":  {
+    "remote":  "https://github.com/eather0056/isacc_train.git",
+    "commit":  "1456e70a0619ca5fb8724cd9a9eaff3925eb6ea2"
+  },
+  "email":  "mdeather0056@gmail.com",
+  "root":  "/home/md-ether/MarineGym-main/bluerov_manual",
+  "host":  "shortname",
+  "executable":  "/home/md-ether/isaac51/kit/python/bin/python3",
+  "cpu_count":  16,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA RTX PRO 3000 Blackwell Generation Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "360095375360",
+      "used":  "313039474688"
+    }
+  },
+  "memory":  {
+    "total":  "66849153024"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA RTX PRO 3000 Blackwell Generation Laptop GPU",
+      "memoryTotal":  "12820938752",
+      "cudaCores":  5888,
+      "architecture":  "Blackwell",
+      "uuid":  "GPU-cbafc8cc-45dc-22b9-7d0c-325643750223"
+    }
+  ],
+  "cudaVersion":  "13.0",
+  "writerId":  "jwr3tsdquq84gieqn0b7savsisbzhhc2"
+}

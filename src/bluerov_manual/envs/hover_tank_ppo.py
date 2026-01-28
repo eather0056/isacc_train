@@ -54,6 +54,9 @@ class HoverTankPPO(HoverTank):
         self.collision_distance = float(cfg.task.get("collision_distance", 0.15))
         self.collision_penalty = float(cfg.task.get("collision_penalty", 1.0))
         self.reset_cooldown_steps = int(cfg.task.get("reset_cooldown_steps", 5))
+        self.termination_max_z = float(cfg.task.get("termination", {}).get("max_z", 0.0))
+        self.surface_penalty = float(cfg.task.get("surface_penalty", 0.2))
+        self.use_waypoint_reward = bool(cfg.task.get("use_waypoint_reward", True))
         self.safety_cfg = cfg.task.get("safety", {}) or {}
         self.debug = bool(cfg.task.get("debug", False))
         self.debug_interval = int(cfg.task.get("debug_interval", 50))
@@ -225,12 +228,12 @@ class HoverTankPPO(HoverTank):
             self._reset_cooldown[env_ids] = self.reset_cooldown_steps
         if self.goal_spawn_low is not None:
             rand = torch.rand(len(env_ids), 3, device=self.device)
-            goal_w = self.goal_spawn_low + rand * (self.goal_spawn_high - self.goal_spawn_low)
-            self.target_pos[env_ids, 0, :] = goal_w
-            goal_world = goal_w + self.envs_positions[env_ids]
+            goal_local = self.goal_spawn_low + rand * (self.goal_spawn_high - self.goal_spawn_low)
+            goal_world = goal_local + self.envs_positions[env_ids]
+            self.target_pos[env_ids, 0, :] = goal_world
             target_rot = euler_to_quaternion(torch.zeros(len(env_ids), 1, 3, device=self.device))
             self.target_vis.set_world_poses(positions=goal_world, orientations=target_rot, env_indices=env_ids)
-            rel = goal_w - self.drone.pos[env_ids, 0, :]
+            rel = goal_world - self.drone.pos[env_ids, 0, :]
             rel_norm = torch.norm(rel, dim=-1, keepdim=True).clamp_min(1e-6)
             self.target_heading[env_ids] = (rel / rel_norm).unsqueeze(1)
             self._prev_goal_dist[env_ids] = torch.norm(rel, dim=-1, keepdim=True)
@@ -245,17 +248,32 @@ class HoverTankPPO(HoverTank):
     def _plan_paths(self, env_ids: torch.Tensor):
         pos_w = self.drone.pos[env_ids, 0, :]
         for i, env_id in enumerate(env_ids.tolist()):
-            goal_w = self.target_pos[env_id, 0, :].tolist()
+            # Plan in local coordinates per-env, then convert path back to world.
+            env_offset = self.envs_positions[env_id]
+            start_local = (pos_w[i] - env_offset).tolist()
+            goal_local = (self.target_pos[env_id, 0, :] - env_offset).tolist()
+            if self.debug and (int(self._plan_counts[env_id].item()) < 3):
+                print(
+                    "[HoverTankPPO] plan_local",
+                    f"env={env_id}",
+                    f"start_local={start_local}",
+                    f"goal_local={goal_local}",
+                    f"bounds_min={self.planner_cfg.get('bounds_min')}",
+                    f"bounds_max={self.planner_cfg.get('bounds_max')}",
+                )
             obstacles = []
             if self.enable_obstacles:
                 radius = float(self.obst_cfg.get("radius", 0.15))
                 for pos in self.obst_center[env_id].tolist():
                     obstacles.append(Obstacle(tuple(pos), radius))
             plan = self.planner.plan(
-                start_w=pos_w[i].tolist(),
-                goal_w=goal_w,
+                start_w=start_local,
+                goal_w=goal_local,
                 obstacles=obstacles,
             )
+            # Convert path to world coordinates
+            if plan:
+                plan = [(p[0] + env_offset[0].item(), p[1] + env_offset[1].item(), p[2] + env_offset[2].item()) for p in plan]
             self._paths[env_id] = plan
             self._path_idx[env_id] = 0
             self._plan_counts[env_id] += 1
@@ -424,7 +442,7 @@ class HoverTankPPO(HoverTank):
         actions = alpha * self._prev_action + (1.0 - alpha) * actions
         self._prev_action = actions
 
-        # Safety override using analytic clearance (walls/maze/obstacles)
+        # Safety override using directional sonar (front cone) + analytic clearance.
         min_range = self._wall_clearance(pos_w)
         maze_clear = self._maze_clearance(pos_w)
         if maze_clear is not None:
@@ -435,8 +453,20 @@ class HoverTankPPO(HoverTank):
 
         stop_dist = float(self.policy_cfg.get("min_range_stop", 0.5))
         replan_dist = float(self.policy_cfg.get("min_range_replan", 0.8))
+        avoid_dist = float(self.policy_cfg.get("min_range_avoid", 1.2))
+        front_deg = float(self.policy_cfg.get("front_safety_deg", 90.0))
+        use_front = bool(self.policy_cfg.get("use_front_safety", True))
 
         safety_stop = min_range < stop_dist
+        safety_avoid = min_range < avoid_dist
+        if use_front and front_deg > 0.0:
+            fallback = self._fallback_sonar_ranges(pos_w, rot_w)
+            if fallback is not None:
+                angles = self.sonar.angles.to(self.device)
+                front_mask = angles.abs() <= (front_deg * torch.pi / 180.0) * 0.5
+                front_min = torch.min(fallback[:, front_mask], dim=1)[0]
+                safety_stop = front_min < stop_dist
+                safety_avoid = front_min < avoid_dist
         safety_replan = (min_range < replan_dist) & ~safety_stop
 
         # Stuck replan trigger: low speed + not at goal for N steps.
@@ -467,11 +497,14 @@ class HoverTankPPO(HoverTank):
                     max(len(self._paths[env_idx]) - 1, 0),
                 )
                 self._path_idx[env_idx] = new_idx
+        self._last_waypoint_reached = reached
 
         act = actions.squeeze(1)
         if act.dim() == 1:
             act = act.unsqueeze(0)
         act = torch.nan_to_num(act, nan=0.0, posinf=0.0, neginf=0.0)
+        act = act.clamp(-1.0, 1.0)
+        self._last_action_clamped = act
         u_max = float(self.ctrl_cfg.get("u_max", 0.6))
         v_max = float(self.ctrl_cfg.get("v_max", 0.4))
         w_max = float(self.ctrl_cfg.get("w_max", 0.3))
@@ -481,6 +514,22 @@ class HoverTankPPO(HoverTank):
         v_cmd_b[:, 1] = act[:, 1] * v_max
         v_cmd_b[:, 2] = act[:, 2] * w_max
         r_cmd = act[:, 3].clamp(-1.0, 1.0) * r_max
+        # If tilted too much, slow commands to let stabilizer recover.
+        tilt_limit_deg = float(self.cfg.task.get("tilt_limit_deg", 10.0))
+        tilt_slow = float(self.cfg.task.get("tilt_slow_scale", 0.2))
+        if tilt_limit_deg > 0.0 and tilt_slow < 1.0:
+            rpy = quaternion_to_euler(rot_w)
+            tilt = rpy[:, :2].abs().max(dim=-1).values
+            tilt_limit = tilt_limit_deg * torch.pi / 180.0
+            tilt_mask = tilt > tilt_limit
+            if tilt_mask.any():
+                v_cmd_b[tilt_mask] *= tilt_slow
+                r_cmd[tilt_mask] *= tilt_slow
+        # Prevent commanding upward motion above the water surface.
+        if self.termination_max_z is not None:
+            above_surface = pos_w[:, 2] > self.termination_max_z
+            if above_surface.any():
+                v_cmd_b[above_surface, 2] = torch.minimum(v_cmd_b[above_surface, 2], torch.zeros_like(v_cmd_b[above_surface, 2]))
         if safety_stop.any():
             v_cmd_b[safety_stop] = 0.0
             r_cmd[safety_stop] = 0.0
@@ -494,6 +543,12 @@ class HoverTankPPO(HoverTank):
             (waypoint_w[:, 0] - pos_w[:, 0]),
         )
         yaw_err = (yaw_goal - yaw + torch.pi) % (2 * torch.pi) - torch.pi
+        yaw_blend_gain = float(self.cfg.task.get("yaw_blend_gain", 0.0))
+        yaw_blend_thresh = float(self.cfg.task.get("yaw_blend_thresh", 0.1))
+        if yaw_blend_gain > 0.0 and yaw_blend_thresh >= 0.0:
+            weak_mask = r_cmd.abs() < yaw_blend_thresh
+            r_cmd = torch.where(weak_mask, r_cmd + yaw_blend_gain * yaw_err, r_cmd)
+            r_cmd = r_cmd.clamp(-r_max, r_max)
         self._last_yaw_err = yaw_err
         self._last_r_cmd = r_cmd
         e_v = v_cmd_b - vel_b
@@ -730,6 +785,11 @@ class HoverTankPPO(HoverTank):
         vel_b = self.drone.vel_b[:, 0, :3]
         ang_b = self.drone.vel_b[:, 0, 3:6]
 
+        # Refresh target heading based on current position -> goal direction.
+        rel_goal = self.target_pos[:, 0, :] - pos_w
+        rel_norm = torch.norm(rel_goal, dim=-1, keepdim=True).clamp_min(1e-6)
+        self.target_heading = (rel_goal / rel_norm).unsqueeze(1)
+
         waypoint_w = self._current_waypoints()
         rel_w = waypoint_w - pos_w
         rel_b = quat_rotate_inverse(rot_w, rel_w)
@@ -822,7 +882,16 @@ class HoverTankPPO(HoverTank):
             step = int(self.progress_buf[0].item())
             if step % max(self.debug_interval, 1) == 0:
                 dist = torch.norm(rel_w[0]).item()
+                wp = self._current_waypoints()[0].detach().cpu().numpy()
+                wp_dist = float(torch.norm(self._current_waypoints()[0] - pos_w[0]).item())
+                path_len = len(self._paths[0]) if self._paths[0] is not None else 0
+                path_idx = int(self._path_idx[0].item())
                 action_dbg = (
+                    [0.0, 0.0, 0.0, 0.0]
+                    if not hasattr(self, "_last_action_clamped") or self._last_action_clamped is None
+                    else self._last_action_clamped[0].detach().cpu().numpy().tolist()
+                )
+                action_raw_dbg = (
                     [0.0, 0.0, 0.0, 0.0]
                     if self._prev_action is None
                     else self._prev_action[0, 0].detach().cpu().numpy().tolist()
@@ -839,6 +908,8 @@ class HoverTankPPO(HoverTank):
                 wall_min_dbg = None
                 maze_min_dbg = None
                 obst_min_dbg = None
+                safety_min_dbg = None
+                front_min_dbg = None
                 zone = "clear"
                 if self._last_sonar is not None:
                     min_range = float(torch.min(self._last_sonar[0]).item())
@@ -848,12 +919,19 @@ class HoverTankPPO(HoverTank):
                     if self._last_wall_dist is not None:
                         wall_min_dbg = float(self._last_wall_dist[0].item())
                         min_range = min(min_range, wall_min_dbg)
+                        safety_min_dbg = wall_min_dbg
                     if self._last_maze_dist is not None:
                         maze_min_dbg = float(self._last_maze_dist[0].item())
                         min_range = min(min_range, maze_min_dbg)
+                        safety_min_dbg = maze_min_dbg if safety_min_dbg is None else min(safety_min_dbg, maze_min_dbg)
                     if self._last_obst_dist is not None:
                         obst_min_dbg = float(self._last_obst_dist[0].item())
                         min_range = min(min_range, obst_min_dbg)
+                        safety_min_dbg = obst_min_dbg if safety_min_dbg is None else min(safety_min_dbg, obst_min_dbg)
+                    angles = self.sonar.angles.to(self.device)
+                    front_deg = float(self.policy_cfg.get("front_safety_deg", 90.0))
+                    front_mask = angles.abs() <= (front_deg * torch.pi / 180.0) * 0.5
+                    front_min_dbg = float(torch.min(self._last_sonar[0, front_mask]).item())
                     stop_dist = float(self.policy_cfg.get("min_range_stop", 0.5))
                     avoid_dist = float(self.policy_cfg.get("min_range_avoid", 1.2))
                     replan_dist = float(self.policy_cfg.get("min_range_replan", 0.8))
@@ -869,12 +947,19 @@ class HoverTankPPO(HoverTank):
                     f"pos={pos_w[0].detach().cpu().numpy()}",
                     f"goal={self.target_pos[0, 0, :].detach().cpu().numpy()}",
                     f"dist={dist:.3f}",
+                    f"wp={wp}",
+                    f"wp_dist={wp_dist:.3f}",
+                    f"wp_tol={self._waypoint_tol:.3f}",
+                    f"path_idx={path_idx}/{path_len}",
+                    f"action_raw={action_raw_dbg}",
                     f"action={action_dbg}",
                     f"min_range={min_range:.3f}" if min_range is not None else "min_range=na",
                     f"depth_min={depth_min_dbg:.3f}" if depth_min_dbg is not None else "depth_min=na",
                     f"wall_min={wall_min_dbg:.3f}" if wall_min_dbg is not None else "wall_min=na",
                     f"maze_min={maze_min_dbg:.3f}" if maze_min_dbg is not None else "maze_min=na",
                     f"obst_min={obst_min_dbg:.3f}" if obst_min_dbg is not None else "obst_min=na",
+                    f"safety_min={safety_min_dbg:.3f}" if safety_min_dbg is not None else "safety_min=na",
+                    f"front_min={front_min_dbg:.3f}" if front_min_dbg is not None else "front_min=na",
                     f"zone={zone}",
                     f"yaw_err={yaw_err_val:.3f}",
                     f"r_cmd={r_cmd_val:.3f}",
@@ -914,10 +999,29 @@ class HoverTankPPO(HoverTank):
     def _compute_reward_and_done(self):
         td = super()._compute_reward_and_done()
         reward = td["agents", "reward"]
-        dist = torch.norm(self.rpos, dim=-1)
+        if self.use_waypoint_reward:
+            pos_w = self.drone.pos[:, 0, :]
+            waypoint_w = self._current_waypoints()
+            dist = torch.norm(waypoint_w - pos_w, dim=-1).view(-1, 1)
+        else:
+            dist = torch.norm(self.rpos, dim=-1)
         progress = (self._prev_goal_dist - dist).clamp_min(-5.0)
         self._prev_goal_dist = dist.detach()
-        reward = reward + self.reward_goal_progress * progress.unsqueeze(-1)
+        reward = reward + self.reward_goal_progress * progress.view(-1, 1, 1)
+        waypoint_bonus = float(self.cfg.task.get("reward_waypoint_bonus", 0.0))
+        if waypoint_bonus > 0.0 and hasattr(self, "_last_waypoint_reached"):
+            reward = reward + waypoint_bonus * self._last_waypoint_reached.view(-1, 1, 1).float()
+        yaw_align_weight = float(self.cfg.task.get("yaw_align_reward_weight", 0.0))
+        if yaw_align_weight > 0.0:
+            pos_w = self.drone.pos[:, 0, :]
+            yaw = quaternion_to_euler(self.drone.rot[:, 0, :])[:, 2]
+            yaw_goal = torch.atan2(
+                (self.target_pos[:, 0, 1] - pos_w[:, 1]),
+                (self.target_pos[:, 0, 0] - pos_w[:, 0]),
+            )
+            yaw_err = (yaw_goal - yaw + torch.pi) % (2 * torch.pi) - torch.pi
+            yaw_align = 1.0 - (yaw_err.abs() / torch.pi)
+            reward = reward + yaw_align_weight * yaw_align.view(-1, 1, 1)
 
         if self._last_sonar is not None:
             min_range = torch.min(self._last_sonar, dim=1)[0]
@@ -931,6 +1035,32 @@ class HoverTankPPO(HoverTank):
                 min_range = torch.minimum(min_range, self._last_obst_dist)
             proximity = (self.obstacle_threshold - min_range).clamp_min(0.0) / max(self.obstacle_threshold, 1e-6)
             reward = reward - self.obstacle_penalty * proximity.view(-1, 1, 1)
+            avoid_dist = float(self.policy_cfg.get("min_range_avoid", 1.2))
+            safe_mask = (min_range >= avoid_dist).view(-1, 1, 1)
+            forward_speed = self.drone.vel_b[:, 0, 0].clamp_min(0.0).view(-1, 1, 1)
+            reward_forward = float(self.cfg.task.get("reward_forward_weight", 0.0))
+            if reward_forward > 0.0:
+                reward = reward + reward_forward * forward_speed * safe_mask
+
+        if self.termination_max_z is not None:
+            pos_w = self.drone.pos[:, 0, :]
+            surface_violation = (pos_w[:, 2] > self.termination_max_z).view(-1, 1, 1)
+            if self.surface_penalty > 0.0:
+                reward = reward - self.surface_penalty * surface_violation.float()
+        tilt_penalty = float(self.cfg.task.get("tilt_penalty_weight", 0.0))
+        if tilt_penalty > 0.0:
+            rpy = quaternion_to_euler(self.drone.rot[:, 0, :])
+            tilt = rpy[:, :2].abs().sum(dim=-1).view(-1, 1, 1)
+            reward = reward - tilt_penalty * tilt
+        sat_penalty = float(self.cfg.task.get("action_saturation_penalty", 0.0))
+        if sat_penalty > 0.0 and hasattr(self, "_last_action_clamped"):
+            raw = (
+                self._prev_action.squeeze(1)
+                if self._prev_action is not None
+                else torch.zeros_like(self._last_action_clamped)
+            )
+            sat = (raw.abs() - 1.0).clamp_min(0.0).mean(dim=-1).view(-1, 1, 1)
+            reward = reward - sat_penalty * sat
 
         success = dist < self.success_distance
         success_mask = success.unsqueeze(-1)
@@ -951,27 +1081,43 @@ class HoverTankPPO(HoverTank):
             if collision.any():
                 reward = reward - collision.unsqueeze(-1) * self.collision_penalty
         terminated = td["terminated"] | success | collision
+        if self.termination_max_z is not None:
+            pos_w = self.drone.pos[:, 0, :]
+            terminated = terminated | (pos_w[:, 2] > self.termination_max_z).unsqueeze(-1)
         truncated = td["truncated"]
         done = terminated | truncated
+        base_shape = td["terminated"].shape
+        if terminated.numel() != td["terminated"].numel():
+            terminated = terminated.reshape(-1)[: td["terminated"].numel()].reshape(base_shape)
+        else:
+            terminated = terminated.reshape(base_shape)
+        if done.numel() != td["done"].numel():
+            done = done.reshape(-1)[: td["done"].numel()].reshape(td["done"].shape)
+        else:
+            done = done.reshape(td["done"].shape)
         td["agents", "reward"] = reward
         td["terminated"] = terminated
         td["done"] = done
         if self.debug:
-            done_mask = td["done"].squeeze(-1).reshape(-1).bool()
+            done_mask = td["done"].reshape(-1).bool()
             if done_mask.any():
                 pos_error = torch.norm(self.rpos, dim=-1)
                 distance = torch.norm(torch.cat([self.rpos, self.rheading], dim=-1), dim=-1)
+                pos_error_flat = pos_error.reshape(-1)
+                distance_flat = distance.reshape(-1)
+                if done_mask.numel() != pos_error_flat.numel():
+                    done_mask = done_mask[:pos_error_flat.numel()]
                 print(
                     "[HoverTankPPO] done",
                     "env_ids=",
                     torch.where(done_mask)[0].tolist(),
                     "pos_error=",
-                    pos_error[done_mask].detach().cpu().numpy(),
+                    pos_error_flat[done_mask].detach().cpu().numpy(),
                     "distance=",
-                    distance[done_mask].detach().cpu().numpy(),
+                    distance_flat[done_mask].detach().cpu().numpy(),
                     "progress=",
                     self.progress_buf.reshape(-1)[done_mask].detach().cpu().numpy(),
                     "success=",
-                    success[done_mask].detach().cpu().numpy(),
+                    success.reshape(-1)[done_mask].detach().cpu().numpy(),
                 )
         return td
