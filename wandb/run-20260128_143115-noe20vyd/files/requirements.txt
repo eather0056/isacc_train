@@ -289,7 +289,7 @@ frozenlist==1.5.0
 pydantic==2.11.7
 qrcode==7.4.2
 sniffio==1.3.1
-aiohttp==3.11.11
+aiohttp==3.13.3
 starlette==0.45.3
 websockets==12.0
 fastapi==0.115.7
