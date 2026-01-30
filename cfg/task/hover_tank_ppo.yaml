@@ -237,13 +237,13 @@ controller:
   w_max: 0.2
   r_max: 0.6
   vel_kp: 30.0
-  yaw_rate_kp: 1.5
+  yaw_rate_kp: 0.8
   stabilize_rp: true
-  rp_kp: 8.0
-  rp_kd: 0.8
+  rp_kp: 4.0
+  rp_kd: 0.4
   allocation_update_every: 1
   action_smooth_alpha: 0.8
-  thrust_axis: 0
+  thrust_axis: 2
   thrust_sign: 1.0
   gravity_comp_scale: 0.0
   max_accel: 0.5

@@ -1,0 +1,7 @@
+name: ppo
+train_every: 32
+ppo_epochs: 4
+num_minibatches: 16
+priv_actor: false
+priv_critic: false
+checkpoint_path: null

@@ -252,6 +252,8 @@ class HoverTankPPO(HoverTank):
         self.stats = stats_spec.zero()
 
     def _reset_idx(self, env_ids: torch.Tensor):
+        if env_ids.device != self.device:
+            env_ids = env_ids.to(self.device)
         super()._reset_idx(env_ids)
         self.drone.get_state()
         if self._reset_cooldown is not None:
@@ -262,7 +264,7 @@ class HoverTankPPO(HoverTank):
             goal_world = goal_local + self.envs_positions[env_ids]
             self.target_pos[env_ids, 0, :] = goal_world
             target_rot = euler_to_quaternion(torch.zeros(len(env_ids), 1, 3, device=self.device))
-            self.target_vis.set_world_poses(positions=goal_world, orientations=target_rot, env_indices=env_ids)
+            self._set_target_poses(positions=goal_world, orientations=target_rot, env_ids=env_ids)
             rel = goal_world - self.drone.pos[env_ids, 0, :]
             rel_norm = torch.norm(rel, dim=-1, keepdim=True).clamp_min(1e-6)
             self.target_heading[env_ids] = (rel / rel_norm).unsqueeze(1)
@@ -613,22 +615,30 @@ class HoverTankPPO(HoverTank):
         self._alloc_step += 1
 
         wrench = torch.cat([F_b, T_b], dim=-1).unsqueeze(1)
-        forces = wrench @ self._A_pinv.transpose(-1, -2)
-        f_max = float(self.drone.FORCE_CONSTANTS_0[0].item()) * (3900.0 ** 2)
-        thr_action = torch.clamp(forces / f_max, -1.0, 1.0)
-        thr_action = torch.nan_to_num(thr_action, nan=0.0, posinf=0.0, neginf=0.0)
-        bad_thr = ~torch.isfinite(thr_action).all(dim=-1)
-        if bad_thr.any():
-            thr_action[bad_thr] = 0.0
-            if self.debug:
-                bad_envs = torch.where(bad_thr)[0].tolist()
-                print(f"[HoverTankPPO] zero thrusters for envs={bad_envs}")
-        if self._reset_cooldown is not None:
-            cooldown_mask = self._reset_cooldown > 0
-            if cooldown_mask.any():
-                thr_action[cooldown_mask] = 0.0
-                self._reset_cooldown[cooldown_mask] -= 1
-        self.effort = torch.abs(self.drone.apply_action(thr_action))
+        if bool(self.ctrl_cfg.get("direct_force", False)):
+            self.drone.base_link.apply_forces_and_torques_at_pos(
+                F_b.reshape(-1, 3),
+                T_b.reshape(-1, 3),
+                is_global=False,
+            )
+            self.effort = torch.norm(F_b, dim=-1)
+        else:
+            forces = wrench @ self._A_pinv.transpose(-1, -2)
+            f_max = float(self.drone.FORCE_CONSTANTS_0[0].item()) * (3900.0 ** 2)
+            thr_action = torch.clamp(forces / f_max, -1.0, 1.0)
+            thr_action = torch.nan_to_num(thr_action, nan=0.0, posinf=0.0, neginf=0.0)
+            bad_thr = ~torch.isfinite(thr_action).all(dim=-1)
+            if bad_thr.any():
+                thr_action[bad_thr] = 0.0
+                if self.debug:
+                    bad_envs = torch.where(bad_thr)[0].tolist()
+                    print(f"[HoverTankPPO] zero thrusters for envs={bad_envs}")
+            if self._reset_cooldown is not None:
+                cooldown_mask = self._reset_cooldown > 0
+                if cooldown_mask.any():
+                    thr_action[cooldown_mask] = 0.0
+                    self._reset_cooldown[cooldown_mask] -= 1
+            self.effort = torch.abs(self.drone.apply_action(thr_action))
 
     def _fallback_sonar_ranges(self, pos_w: torch.Tensor, rot_w: torch.Tensor) -> torch.Tensor | None:
         """Fallback sonar: ray distances to walls/obstacles using analytic geometry."""
@@ -695,6 +705,8 @@ class HoverTankPPO(HoverTank):
         if self.enable_obstacles and self.obstacles is not None:
             obst_pos, _ = self.obstacles.get_world_poses()
             obst_pos = obst_pos.to(pos_w.device)
+            if obst_pos.ndim == 2:
+                obst_pos = obst_pos.view(self.num_envs, self.num_obstacles, 3)
             radius = float(self.obst_cfg.get("radius", 0.15))
             height = float(self.obst_cfg.get("height", 0.30))
             z_tol = height * 0.5 + radius

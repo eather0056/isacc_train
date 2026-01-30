@@ -1,4 +1,70 @@
 
+# MarineGym + BlueROV Manual (Isaac Sim 5.1) — From Scratch
+
+This repo is meant to be run with the **Isaac Sim Python** environment.
+
+## 0) Prereqs
+
+- Isaac Sim 5.1 installed (e.g., `~/isaacsim51`)
+- This repo cloned at `~/isaacsim` (or adjust paths below)
+
+## 1) Environment setup (every new shell)
+
+```bash
+export ISAACSIM_PATH=~/isaacsim51
+export LD_LIBRARY_PATH=$ISAACSIM_PATH/python_packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
+```
+
+## 2) Install Python deps (once)
+
+From the **repo root** (where `setup.py` lives):
+
+```bash
+cd ~/isaacsim
+$ISAACSIM_PATH/python.sh -m pip install -U pip
+$ISAACSIM_PATH/python.sh -m pip install -e .
+```
+
+## 3) Run training
+
+```bash
+cd ~/isaacsim/bluerov_manual
+$ISAACSIM_PATH/python.sh scripts/train_ppo_behavior.py headless=false task.env.num_envs=1 save_interval=100
+```
+
+## 4) Run on GPU (override)
+
+If you want to force GPU without editing files:
+
+```bash
+$ISAACSIM_PATH/python.sh scripts/train_ppo_behavior.py \
+  headless=false \
+  task.env.num_envs=1 \
+  save_interval=100 \
+  task.sim.device=cuda:0 \
+  task.sim.use_gpu=True \
+  task.sim.use_gpu_pipeline=True
+```
+
+If GPU should always be used, edit `cfg/base/sim_base.yaml`:
+
+- `sim.device: "cuda:0"`
+- `sim.use_gpu: True`
+
+## 5) Manual control
+
+```bash
+cd ~/isaacsim/bluerov_manual
+$ISAACSIM_PATH/python.sh scripts/manual_control.py headless=false env.num_envs=1
+```
+
+## 6) Test (play a checkpoint)
+
+```bash
+cd ~/isaacsim/bluerov_manual
+$ISAACSIM_PATH/python.sh scripts/play_ppo_behavior.py headless=false checkpoint_path=/path/to/ppo_behavior_final.pt
+```
+
 cd ~/isaac51
 export LD_LIBRARY_PATH=$PWD/python_packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
 
@@ -277,5 +343,4 @@ scancel JOBID
 ```
 
 ---
-
 

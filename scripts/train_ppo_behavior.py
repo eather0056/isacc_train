@@ -6,12 +6,8 @@ import hydra
 import torch
 from omegaconf import OmegaConf
 
-from torchrl.envs.utils import set_exploration_type, ExplorationType
-from marinegym.utils.torchrl import SyncDataCollector
-from marinegym.utils.torchrl import RenderCallback, EpisodeStats
-from marinegym.learning import ALGOS
-
 from setproctitle import setproctitle
+from torchrl.envs.utils import set_exploration_type, ExplorationType
 from torchrl.envs.transforms import TransformedEnv, InitTracker, Compose
 
 
@@ -27,6 +23,10 @@ def main(cfg):
     from bluerov_manual.sim_app import init_app
     sim_app = init_app(cfg)
 
+    # Import MarineGym/Isaac modules only after SimulationApp is created.
+    from marinegym.utils.torchrl import SyncDataCollector
+    from marinegym.utils.torchrl import RenderCallback, EpisodeStats
+    from marinegym.learning import ALGOS
     import bluerov_manual.envs  # noqa: F401
     from marinegym.envs.isaac_env import IsaacEnv
 

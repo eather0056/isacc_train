@@ -1,0 +1,8 @@
+- headless=false
+- task.env.num_envs=1
+- save_interval=100
+- task.controller.u_max=1.5
+- task.controller.v_max=1.5
+- task.controller.w_max=0.6
+- task.controller.vel_kp=15.0
+- task.controller.action_smooth_alpha=0.2

@@ -1,0 +1,4 @@
+- headless=false
+- task.env.num_envs=1
+- save_interval=100
+- task.controller.gravity_comp_scale=1.0
