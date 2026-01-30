@@ -364,4 +364,4 @@ zipp==3.19.2
 jaraco.text==3.12.1
 typeguard==4.3.0
 jaraco.functools==4.0.1
-wheel==0.45.1
+wheel==0.46.2
