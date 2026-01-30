@@ -4,3 +4,7 @@
 {"time":"2026-01-28T14:31:16.115652033+01:00","level":"INFO","msg":"stream: started","id":"noe20vyd"}
 {"time":"2026-01-28T14:31:16.115695872+01:00","level":"INFO","msg":"writer: started","stream_id":"noe20vyd"}
 {"time":"2026-01-28T14:31:16.115790173+01:00","level":"INFO","msg":"sender: started","stream_id":"noe20vyd"}
+{"time":"2026-01-28T14:57:45.267319215+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":21600}
+{"time":"2026-01-28T14:57:45.26773478+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2026-01-28T15:48:25.809033227+01:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":71440}
+{"time":"2026-01-28T15:48:25.810033403+01:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":3}

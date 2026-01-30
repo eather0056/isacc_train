@@ -1,0 +1,158 @@
+/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/cuda/__init__.py:654: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+[HoverTankPPO] reset env_ids=[0] start_pos=[[14.039843    1.7669529  -0.20344067]] goals=[[ 4.1916394  2.2372186 -0.3177877]]
+[HoverTankPPO] plan_local env=0 start_local=[14.03984260559082, 1.7669528722763062, -0.20344066619873047] goal_local=[4.191639423370361, 2.2372186183929443, -0.31778770685195923] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=0 pos=[14.039843    1.7669529  -0.20344067] goal=[ 4.1916394  2.2372186 -0.3177877] dist=0.000 wp=[14.039843    1.7669529  -0.20344067] wp_dist=0.000 wp_tol=1.200 path_idx=0/8 action_raw=[0.0, 0.0, 0.0, 0.0] action=[0.0, 0.0, 0.0, 0.0] min_range=1.189 depth_min=na wall_min=1.467 maze_min=na obst_min=1.189 safety_min=1.189 front_min=3.939 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.000 r_cmd=0.000 target_vel_w=[0.0, 0.0, 0.0]
+/home/md-ether/MarineGym-main/marinegym/robots/drone/underwaterVehicle.py:175: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera disabled after repeated failures
+Error executing job with overrides: ['headless=true', 'task.env.num_envs=1', 'save_interval=100', 'wandb.enable=true', 'wandb.project=bluerov_manual', 'wandb.name=hover_tank_ppo_run']
+RuntimeError: TensorDictModule failed with operation
+    Sequential(
+      (0): Sequential(
+        (0): Linear(in_features=796, out_features=256, bias=True)
+        (1): LeakyReLU(negative_slope=0.01)
+        (2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (3): Linear(in_features=256, out_features=256, bias=True)
+        (4): LeakyReLU(negative_slope=0.01)
+        (5): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (6): Linear(in_features=256, out_features=256, bias=True)
+        (7): LeakyReLU(negative_slope=0.01)
+        (8): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): Actor(
+        (actor_mean): Linear(in_features=256, out_features=4, bias=True)
+      )
+    )
+    in_keys=[('agents', 'observation')]
+    out_keys=['loc', 'scale'].
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/md-ether/MarineGym-main/bluerov_manual/scripts/train_ppo_behavior.py", line 110, in main
+    for i, data in enumerate(pbar):
+  File "/home/md-ether/MarineGym-main/marinegym/utils/torchrl/collector.py", line 54, in iterator
+    tensordict_out = self.rollout()
+                     ^^^^^^^^^^^^^^
+  File "/home/md-ether/MarineGym-main/marinegym/utils/torchrl/collector.py", line 37, in rollout
+    _tensordict_out = super().rollout()
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torchrl/_utils.py", line 480, in unpack_rref_and_invoke_function
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torchrl/collectors/collectors.py", line 989, in rollout
+    policy_output = self.policy(policy_input)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/MarineGym-main/marinegym/learning/ppo/ppo.py", line 173, in __call__
+    self.actor(tensordict)
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 289, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/_contextlib.py", line 126, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/utils.py", line 261, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/probabilistic.py", line 576, in forward
+    tensordict_out = self.get_dist_params(tensordict, tensordict_out, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/probabilistic.py", line 528, in get_dist_params
+    return tds(tensordict, tensordict_out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 289, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/_contextlib.py", line 126, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/utils.py", line 261, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/sequence.py", line 428, in forward
+    tensordict = self._run_module(module, tensordict, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/sequence.py", line 409, in _run_module
+    tensordict = module(tensordict, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 289, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/_contextlib.py", line 126, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/utils.py", line 261, in wrapper
+    return func(_self, tensordict, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 1224, in forward
+    raise err from RuntimeError(
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 1198, in forward
+    raise err
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 1184, in forward
+    tensors = self._call_module(tensors, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/tensordict/nn/common.py", line 1141, in _call_module
+    out = self.module(*tensors, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/container.py", line 219, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/container.py", line 219, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 117, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x652 and 796x256)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

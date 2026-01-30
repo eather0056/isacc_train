@@ -162,6 +162,13 @@ def main(cfg):
                 info["train/wp_dist_mean"] = torch.norm(wp - pos_w, dim=-1).mean().item()
             except Exception:
                 pass
+        if hasattr(base_env, "_last_occ_grid") and base_env._last_occ_grid is not None:
+            try:
+                import wandb
+                occ = base_env._last_occ_grid[0].detach().cpu().numpy()
+                info["viz/occ_grid"] = wandb.Image(occ, caption="occ_grid_env0")
+            except Exception:
+                pass
         if hasattr(base_env, "_last_action_clamped") and base_env._last_action_clamped is not None:
             try:
                 rpy = base_env.drone.rot[:, 0, :]

@@ -10,6 +10,9 @@ $ISAACSIM_PATH/python.sh scripts/manual_control.py headless=false env.num_envs=1
 train:
 $ISAACSIM_PATH/python.sh scripts/train_ppo_behavior.py headless=false task.env.num_envs=1 save_interval=100
 
+$ISAACSIM_PATH/python.sh scripts/train_ppo_behavior.py   headless=true task.env.num_envs=1  save_interval=100   wandb.enable=true wandb.project=bluerov_manual wandb.name=hover_tank_ppo_run
+
+
 resume training from a checkpoint:
 $ISAACSIM_PATH/python.sh scripts/train_ppo_behavior.py headless=true task.env.num_envs=64 algo.checkpoint_path=/path/to/ppo_behavior_iter_100.pt
 

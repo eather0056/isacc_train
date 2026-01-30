@@ -121,10 +121,23 @@ depth_camera:
   extra_data_types: []
   clip_range: [0.05, 20.0]
   max_range: 10.0
+  fov_deg: 90.0
   min_range_filter: 0.2
   offset: [0.2, 0.0, 0.0]
   rot_offset_deg: [0.0, -90.0, 0.0]
-  viz_every: 0 # 50
+  viz_every: 50
+  fail_limit: 10
+  log_wandb: true
+  fuse_occ: true
+
+depth_obs:
+  enable: true
+  downsample: [16, 9]
+
+occ_grid:
+  enable: true
+  grid_size: 24
+  grid_range: 5.0
 
 planner_stack:
   enable: true
@@ -138,11 +151,13 @@ planner_stack:
     neighbor_radius: 2.0
     goal_tolerance: 1.0
     waypoint_tol: 1.2
-    plot_every: 0 #50
+    plot_every: 1
     plot_gif: false
     plot_gif_every: 5
     plot_history: 50
     plot_3d: false
+    log_wandb: true
+    log_gif_wandb: false
   sonar:
     num_rays: 64
     fov_deg: 120.0
@@ -176,7 +191,7 @@ planner_stack:
     max_speed: 0.5
 
 obstacles:
-  enable: false
+  enable: true
   num: 5
   radius: 0.25
   height: 0.5

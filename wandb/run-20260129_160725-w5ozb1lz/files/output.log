@@ -1,0 +1,1745 @@
+/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/cuda/__init__.py:654: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+[HoverTankPPO] reset env_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9] start_pos=[[ 1.8971916e+01  3.3400078e+00 -2.2111154e-01]
+ [ 1.3109188e+01  1.2600732e+00 -6.4236224e-01]
+ [ 1.5094444e+01  9.5509529e-01 -3.5307473e-01]
+ [ 2.8079424e+00  2.2542305e+00 -8.4339762e-01]
+ [ 1.2766987e+01  2.5177302e+00 -6.6957247e-01]
+ [ 1.5380104e+01  1.5179729e+00 -2.9613608e-01]
+ [ 7.0462699e+00  4.6087894e+00 -8.8260281e-01]
+ [ 3.8258228e+00  2.0574493e+00 -2.5040507e-03]
+ [ 1.0040750e+01  1.6032581e+00 -8.8976496e-01]
+ [ 1.1801373e+01  4.9072380e+00 -7.9919058e-01]] goals=[[ 39.989063   -18.516356    -0.63912   ]
+ [ 47.983395     3.863276    -0.25952154]
+ [ 37.347706    24.938152    -0.9565218 ]
+ [ 22.830887   -15.3547535   -0.8758661 ]
+ [ 15.475487     3.9820454   -0.47443974]
+ [ 21.109396    21.87356     -0.50663036]
+ [  4.3028336  -18.993689    -0.19589531]
+ [ -5.585321     4.9991093   -0.29308635]
+ [ -3.4962382   21.67389     -0.56498003]
+ [-22.584047   -17.115826    -0.66463685]]
+[HoverTankPPO] plan_local env=0 start_local=[-11.028083801269531, 23.340007781982422, -0.22111153602600098] goal_local=[9.989063262939453, 1.4836444854736328, -0.6391199827194214] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=1 start_local=[-16.890811920166016, 1.260073184967041, -0.6423622369766235] goal_local=[17.983394622802734, 3.8632760047912598, -0.2595215439796448] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=2 start_local=[-14.905555725097656, -19.044904708862305, -0.35307472944259644] goal_local=[7.347705841064453, 4.938152313232422, -0.9565218091011047] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=3 start_local=[-7.1920576095581055, 22.254230499267578, -0.8433976173400879] goal_local=[12.830886840820312, 4.645246505737305, -0.8758661150932312] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=4 start_local=[2.766986846923828, 2.517730236053467, -0.6695724725723267] goal_local=[5.475486755371094, 3.9820454120635986, -0.47443974018096924] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=5 start_local=[5.380104064941406, -18.482027053833008, -0.2961360812187195] goal_local=[11.109395980834961, 1.8735599517822266, -0.5066303610801697] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=6 start_local=[17.0462703704834, 24.608789443969727, -0.8826028108596802] goal_local=[14.302833557128906, 1.0063114166259766, -0.19589531421661377] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=7 start_local=[13.825822830200195, 2.0574493408203125, -0.0025040507316589355] goal_local=[4.414679050445557, 4.999109268188477, -0.29308634996414185] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=8 start_local=[20.040748596191406, -18.39674186706543, -0.8897649645805359] goal_local=[6.5037617683410645, 1.67388916015625, -0.5649800300598145] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=9 start_local=[41.80137252807617, 24.907238006591797, -0.7991905808448792] goal_local=[7.415952682495117, 2.884174346923828, -0.6646368503570557] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=0 pos=[18.971916    3.3400078  -0.22111154] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.550 wp=[ 30.         -14.          -0.22111154] wp_dist=20.550 wp_tol=1.200 path_idx=0/9 action_raw=[0.0, 0.0, 0.0, 0.0] action=[0.0, 0.0, 0.0, 0.0] min_range=0.728 depth_min=na wall_min=0.728 maze_min=na obst_min=23.382 safety_min=0.728 front_min=2.411 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=0.000 r_cmd=0.000 target_vel_w=[0.0, 0.0, 0.0]
+[HoverTankPPO] plan_local env=2 start_local=[-14.905555725097656, -19.044904708862305, -0.35307472944259644] goal_local=[7.347705841064453, 4.938152313232422, -0.9565218091011047] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+/home/md-ether/MarineGym-main/marinegym/robots/drone/underwaterVehicle.py:175: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+[HoverTankPPO] plan_local env=2 start_local=[-14.879249572753906, -19.03716468811035, -0.1485489308834076] goal_local=[7.347705841064453, 4.938152313232422, -0.9565218091011047] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 7] pos_error= [32.70781  21.15522   9.868732] distance= [32.75771  21.16628   9.990704] progress= [1. 1. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 7] start_pos=[[15.532269    1.0636063  -0.3439691 ]
+ [ 1.5510092   4.5371     -0.80597764]
+ [ 8.021089    3.1575136  -0.5211078 ]] goals=[[44.642735   24.089687   -0.11706156]
+ [18.910824   24.84938    -0.7894345 ]
+ [-0.18807411  3.9587293  -0.8080404 ]]
+[HoverTankPPO] plan_local env=5 start_local=[-8.448990821838379, -15.462900161743164, -0.8059776425361633] goal_local=[8.910823822021484, 4.8493804931640625, -0.7894344925880432] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=7 start_local=[18.021087646484375, 3.1575136184692383, -0.5211077928543091] goal_local=[9.811925888061523, 3.9587292671203613, -0.8080403804779053] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 9] pos_error= [34.965984  37.116405   3.1501756 40.84595  ] distance= [34.974716  37.11825    3.4387996 40.862667 ] progress= [2. 1. 2. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 9] start_pos=[[11.56189     2.022192   -0.89711416]
+ [11.443344    4.0044365  -0.2692454 ]
+ [ 5.7690525   4.1922116  -0.41501623]
+ [12.017878    2.1582222  -0.6890413 ]] goals=[[ 35.80124      4.374912    -0.4146971 ]
+ [ 46.30052     23.050068    -0.86725956]
+ [ 16.420387     0.8114726   -0.24130243]
+ [-26.430813   -14.910347    -0.6224063 ]]
+[HoverTankPPO] plan_local env=1 start_local=[-18.4381103515625, 2.0221920013427734, -0.8971141576766968] goal_local=[5.801239013671875, 4.374911785125732, -0.4146971106529236] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=4 start_local=[-4.230947494506836, 4.192211627960205, -0.415016233921051] goal_local=[6.420387268066406, 0.8114725947380066, -0.24130243062973022] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=9 start_local=[42.01787567138672, 22.158222198486328, -0.6890413165092468] goal_local=[3.5691871643066406, 5.089653015136719, -0.6224063038825989] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 6, 7, 8] pos_error= [39.73335  26.694899 23.784376  8.310816 24.184338] distance= [39.74599  26.746603 23.861917  8.322787 24.252878] progress= [1. 3. 3. 2. 3.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 6, 7, 8] start_pos=[[ 6.719898    3.4421253  -0.6625072 ]
+ [11.94516     3.9430008  -0.0297249 ]
+ [16.364227    1.0457611  -0.22696966]
+ [12.28553     1.848973   -0.26618242]
+ [16.379921    1.9539146  -0.17873693]] goals=[[ 47.8306      21.46619     -0.2618081 ]
+ [ 15.337706   -17.325016    -0.962376  ]
+ [  4.033843   -16.01878     -0.07741255]
+ [ -1.1880016    1.3967874   -0.7974679 ]
+ [  1.582344    23.090748    -0.23690689]]
+[HoverTankPPO] plan_local env=3 start_local=[1.945159912109375, 23.94300079345703, -0.02972489595413208] goal_local=[5.337705612182617, 2.6749839782714844, -0.9623759984970093] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=6 start_local=[26.364227294921875, 21.045761108398438, -0.2269696593284607] goal_local=[14.033843040466309, 3.981220245361328, -0.07741254568099976] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=7 start_local=[22.28553009033203, 1.848973035812378, -0.26618242263793945] goal_local=[8.81199836730957, 1.396787405014038, -0.7974678874015808] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=8 start_local=[26.379920959472656, -18.046085357666016, -0.17873692512512207] goal_local=[11.582344055175781, 3.090747833251953, -0.23690688610076904] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 4, 5, 6, 7, 8, 9] pos_error= [21.58224  11.174936 26.74211  21.057709 13.511051 25.806335 42.075558] distance= [21.63448  11.200568 26.792093 21.146801 13.582161 25.810461 42.12142 ] progress= [1. 2. 3. 1. 1. 1. 2.] success= [False False False False False False False]
+[HoverTankPPO] reset env_ids=[3, 4, 5, 6, 7, 8, 9] start_pos=[[ 1.2454987   2.8161583  -0.19989616]
+ [ 3.9595509   0.83653027 -0.91542745]
+ [15.433483    5.152424   -0.9636326 ]
+ [ 9.626184    3.4060345  -0.9117092 ]
+ [ 4.4971848   3.6874583  -0.8482842 ]
+ [12.60255     0.9834728  -0.13873369]
+ [14.851187    1.9600372  -0.69792134]] goals=[[ 2.5336296e+01 -1.8214296e+01 -1.3000667e-02]
+ [ 1.3080745e+01  5.0816288e+00 -7.8553200e-01]
+ [ 2.6401997e+01  2.2468351e+01 -2.5473279e-01]
+ [ 8.1618576e+00 -1.7643064e+01 -2.3844004e-01]
+ [ 1.0350075e+00  4.3796878e+00 -7.1502143e-01]
+ [-1.3325739e+00  2.4012941e+01 -4.6312219e-01]
+ [-1.3860291e+01 -1.7067854e+01 -1.3297075e-01]]
+[HoverTankPPO] plan_local env=3 start_local=[-8.754501342773438, 22.816158294677734, -0.19989615678787231] goal_local=[15.336296081542969, 1.7857036590576172, -0.013000667095184326] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=4 start_local=[-6.040449142456055, 0.8365302681922913, -0.9154274463653564] goal_local=[3.080744743347168, 5.081628799438477, -0.7855319976806641] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=5 start_local=[5.433483123779297, -14.847576141357422, -0.9636325836181641] goal_local=[16.401996612548828, 2.468351364135742, -0.25473278760910034] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=6 start_local=[19.626184463500977, 23.406034469604492, -0.911709189414978] goal_local=[18.16185760498047, 2.356935501098633, -0.23844003677368164] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=8 start_local=[22.602550506591797, -19.01652717590332, -0.13873368501663208] goal_local=[8.667426109313965, 4.012941360473633, -0.4631221890449524] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] plan_local env=9 start_local=[44.85118865966797, 21.960037231445312, -0.6979213356971741] goal_local=[16.13970947265625, 2.9321460723876953, -0.13297075033187866] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 8] pos_error= [24.269407 44.892303 31.979488 26.923935] distance= [24.34486  44.894505 31.991325 26.951275] progress= [3. 2. 1. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 8] start_pos=[[13.230682    3.256696   -0.6890649 ]
+ [10.211899    4.2573166  -0.42814654]
+ [12.249374    3.0674267  -0.25199932]
+ [14.753249    4.833397   -0.6664634 ]] goals=[[ 34.1627       1.727401    -0.07695121]
+ [ 34.350258    22.226719    -0.6560692 ]
+ [ 20.21484    -18.398962    -0.9284508 ]
+ [  0.86734104  22.278067    -0.37348032]]
+[HoverTankPPO] plan_local env=1 start_local=[-16.769317626953125, 3.2566959857940674, -0.6890649199485779] goal_local=[4.162700653076172, 1.7274010181427002, -0.07695120573043823] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 9] pos_error= [22.920166 34.454185] distance= [22.995556 34.472298] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[3, 9] start_pos=[[16.507734    2.3511562  -0.6694574 ]
+ [ 1.5914726   4.593355   -0.32109547]] goals=[[ 26.751625   -16.944359    -0.26039886]
+ [-16.178139   -18.349012    -0.04422927]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 6, 7, 8, 9] pos_error= [21.013504  30.11773   10.1343565 20.491892  21.025366   3.7370594
+ 22.300179  29.018272 ] distance= [21.026632 30.183674 10.20117  20.522121 21.064922  3.879436 22.30058
+ 29.019186] progress= [2. 2. 3. 3. 3. 3. 2. 1.] success= [False False False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 6, 7, 8, 9] start_pos=[[ 1.3674110e+01  4.9659524e+00 -9.0319920e-01]
+ [ 1.8511841e+01  2.8047066e+00 -4.8016936e-01]
+ [ 1.3021519e+01  5.1894093e+00 -7.0103216e-01]
+ [ 8.2628269e+00  4.2838898e+00 -3.0564201e-01]
+ [ 5.9783349e+00  4.5768070e+00 -5.4074287e-01]
+ [ 4.7844448e+00  4.7509475e+00 -2.3154378e-02]
+ [ 1.4114998e+01  2.0062656e+00 -7.9729211e-01]
+ [ 1.6880056e+01  4.3478823e+00 -1.3538003e-03]] goals=[[ 43.564674     1.1355691   -0.59685487]
+ [ 48.17968     24.089312    -0.32708943]
+ [ 29.00255      2.1718373   -0.60257006]
+ [ 29.082155    22.261034    -0.1868425 ]
+ [ -8.410983   -19.146605    -0.40773946]
+ [  0.5660496    1.0632677   -0.67581826]
+ [ -0.83052254  24.56553     -0.41842186]
+ [-26.68233    -15.817437    -0.19004673]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 5, 7, 9] pos_error= [22.070192  27.530426   5.6781173 47.88362  ] distance= [22.122469 27.589033  5.833911 47.885685] progress= [2. 1. 1. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[3, 5, 7, 9] start_pos=[[ 1.1246986   2.700159   -0.05109876]
+ [ 7.9507008   3.0083637  -0.96970975]
+ [ 4.6702075   3.9051216  -0.42910916]
+ [ 7.562708    3.1845245  -0.6599886 ]] goals=[[ 22.830894   -17.294552    -0.9125409 ]
+ [ 20.773418    21.938538    -0.97041804]
+ [  8.6887245    1.260387    -0.68176687]
+ [-17.377642   -16.907999    -0.7970287 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 4, 6, 8] pos_error= [36.513542 29.558266 16.27437  27.761166 27.055935] distance= [36.56591  29.574463 16.371166 27.780952 27.056791] progress= [2. 1. 2. 2. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 4, 6, 8] start_pos=[[17.055298    3.671648   -0.547914  ]
+ [18.814968    4.0944014  -0.3076207 ]
+ [ 5.013484    2.2283442  -0.31682009]
+ [10.847107    2.7419376  -0.05042523]
+ [15.304803    4.573591   -0.9509035 ]] goals=[[ 38.346268    23.783201    -0.2391327 ]
+ [ 13.043621   -17.58405     -0.31842613]
+ [ 25.695324     3.0148158   -0.7250171 ]
+ [  4.066757   -17.477137    -0.90549314]
+ [ -3.8180704   23.599115    -0.5429468 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 4, 6, 7, 9] pos_error= [30.157974 22.437298 20.708717 21.34995   4.902006 32.04146 ] distance= [30.158352 22.452267 20.715315 21.383165  5.124864 32.09524 ] progress= [3. 1. 1. 1. 2. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 6, 7, 9] start_pos=[[ 4.367817    4.281144   -0.749983  ]
+ [18.885618    3.4747124  -0.16535735]
+ [ 5.9509907   2.5686574  -0.3857401 ]
+ [ 5.4042645   3.4572048  -0.38769412]
+ [ 1.9182463   4.237483   -0.62230384]
+ [ 7.8700294   2.2245522  -0.72370493]] goals=[[ 36.388084     1.4419875   -0.17137933]
+ [ 20.941      -18.564869    -0.14046931]
+ [ 20.23225      4.5081277   -0.32807326]
+ [  7.749876   -16.402891    -0.05865127]
+ [ -8.559079     1.3976092   -0.2504835 ]
+ [-18.201626   -16.431973    -0.18062663]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 4, 5, 6] pos_error= [29.363432 22.139519 14.418132 22.894758 20.000751] distance= [29.364012 22.18046  14.454597 22.913618 20.085135] progress= [2. 1. 1. 3. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 4, 5, 6] start_pos=[[15.513863    2.4341087  -0.36493403]
+ [ 1.0179796   3.9627209  -0.55645466]
+ [ 8.604866    4.962139   -0.09684426]
+ [11.926224    4.6063347  -0.5986582 ]
+ [ 2.9449844   2.5724564  -0.9133204 ]] goals=[[ 33.412365    24.249464    -0.64852566]
+ [ 15.760756   -18.75492     -0.8049302 ]
+ [ 12.306391     3.0415597   -0.03571707]
+ [ 16.496708    24.73757     -0.9766154 ]
+ [  3.8137827  -15.095989    -0.65650254]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 7, 8, 9] pos_error= [31.93864  28.22751   4.198097 10.854301 26.984629 32.050884] distance= [31.980444 28.251686  4.641351 10.955431 27.052002 32.100536] progress= [2. 1. 1. 2. 3. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 7, 8, 9] start_pos=[[18.601532    2.2853577  -0.26634407]
+ [17.116993    4.5618954  -0.5464644 ]
+ [18.835754    1.4924042  -0.43090147]
+ [ 1.878398    3.515323   -0.47610295]
+ [10.111528    1.3835468  -0.66546845]
+ [13.2155075   3.90057    -0.7326531 ]] goals=[[ 37.924652     0.9081502   -0.4989053 ]
+ [ 43.370045    24.195206    -0.8625262 ]
+ [ 23.708477     2.485998    -0.9616784 ]
+ [ -4.080431     4.1159883   -0.7007    ]
+ [  1.0258131   20.90578     -0.97676086]
+ [-13.576897   -18.26652     -0.40240443]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 5] pos_error= [19.391283 27.11189  20.675339] distance= [19.451593 27.144567 20.745731] progress= [1. 2. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 5] start_pos=[[ 5.685116    1.1112331  -0.05007684]
+ [17.314909    3.5820198  -0.14136207]
+ [11.682735    4.502987   -0.5877521 ]] goals=[[ 39.37681      4.5482497   -0.72981226]
+ [ 10.931702   -17.573204    -0.74580675]
+ [ 22.13765     24.931797    -0.7546386 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 4, 6, 7, 8, 9] pos_error= [33.864162  33.153107  22.101126   5.107514  17.703625   6.0758076
+ 21.560795  34.77774  ] distance= [33.914288  33.19625   22.168646   5.1417537 17.726492   6.0913215
+ 21.57746   34.829517 ] progress= [1. 2. 1. 2. 3. 2. 2. 2.] success= [False False False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 4, 6, 7, 8, 9] start_pos=[[11.234985    4.040578   -0.89255154]
+ [17.054       1.3214664  -0.8883414 ]
+ [ 3.760106    3.8718853  -0.5761096 ]
+ [ 6.7287865   3.0594933  -0.10657424]
+ [ 3.0437527   3.435234   -0.0716638 ]
+ [15.848117    4.416336   -0.74845433]
+ [16.852306    4.3063965  -0.23631704]
+ [14.293036    3.960434   -0.5000409 ]] goals=[[ 41.66633      2.3836987   -0.8525662 ]
+ [ 46.341187    21.533222    -0.76572937]
+ [ 19.906391   -17.075197    -0.83276594]
+ [ 11.88611      3.728329    -0.07412505]
+ [ -7.9526896  -15.172362    -0.58083814]
+ [  2.643569     3.063016    -0.5818201 ]
+ [ -6.371544    23.632864    -0.55809104]
+ [-17.86413    -15.6682825   -0.51465684]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [4, 5, 6] pos_error= [ 5.202728 22.96573  21.614254] distance= [ 5.5477943 22.965786  21.669607 ] progress= [1. 2. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[4, 5, 6] start_pos=[[10.858305    3.6036766  -0.3583631 ]
+ [ 3.893814    0.8154087  -0.70238304]
+ [10.954125    4.906392   -0.16288316]] goals=[[ 25.865932     1.564266    -0.80879027]
+ [ 14.347321    21.467945    -0.44363695]
+ [  8.076389   -18.037462    -0.31533164]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 4, 6, 7, 8, 9] pos_error= [26.47243  15.175087 23.126345 13.291947 30.124727 37.654198] distance= [26.474615 15.186607 23.21094  13.30638  30.183561 37.671432] progress= [2. 1. 1. 2. 2. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[3, 4, 6, 7, 8, 9] start_pos=[[16.919092    4.7656765  -0.59784275]
+ [ 3.2649097   3.8539312  -0.25318003]
+ [ 0.9390011   3.7461166  -0.3089828 ]
+ [ 3.5035315   2.6186018  -0.13921207]
+ [15.904419    4.8400955  -0.45768672]
+ [ 8.854235    0.9177551  -0.09015679]] goals=[[ 2.21331024e+01 -1.49515190e+01 -6.10319376e-02]
+ [ 1.89944229e+01  3.56125689e+00 -5.83318472e-01]
+ [ 6.73653603e+00 -1.84392529e+01 -1.02961004e-01]
+ [ 1.47695541e-02  5.08362961e+00 -7.93244481e-01]
+ [-9.05524540e+00  2.32163334e+01 -8.21034014e-01]
+ [-2.27322235e+01 -1.58208694e+01 -3.52435648e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 6, 7, 9] pos_error= [30.495604  35.60672   15.750603  22.974663  22.929426   4.3979683
+ 35.766396 ] distance= [30.542906 35.647274 15.787993 22.98636  23.014938  4.474518 35.76995 ] progress= [3. 3. 1. 2. 1. 1. 1.] success= [False False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 6, 7, 9] start_pos=[[ 3.1611938   1.2344024  -0.9986535 ]
+ [17.248283    1.4155464  -0.93777657]
+ [ 6.7919674   2.7244935  -0.05338573]
+ [15.424776    2.7117615  -0.7113751 ]
+ [ 1.9220619   3.6811657  -0.93720675]
+ [ 9.673567    3.8774383  -0.94803727]
+ [ 3.6329117   2.15131    -0.07166797]] goals=[[ 36.320988     1.0633061   -0.44563264]
+ [ 31.578247    22.954403    -0.7684103 ]
+ [ 27.483583     1.8776314   -0.70548546]
+ [ 28.081642    23.863321    -0.08888239]
+ [ -3.8932323  -18.043839    -0.9086962 ]
+ [  6.97221      4.3285484   -0.37694305]
+ [-29.164768   -17.13703     -0.19975483]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 4, 8, 9] pos_error= [20.571331 20.702675 31.012865 38.04635 ] distance= [20.661245 20.710983 31.07045  38.08641 ] progress= [2. 1. 2. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[3, 4, 8, 9] start_pos=[[13.452492    3.969677   -0.20374542]
+ [11.412167    4.146698   -0.91336155]
+ [ 6.323619    1.6388702  -0.5885134 ]
+ [13.252071    1.3223591  -0.22955114]] goals=[[ 27.513834   -17.302456    -0.4721619 ]
+ [ 12.366592     1.6254112   -0.46387506]
+ [ -6.7893205   22.760397    -0.10628486]
+ [-17.870605   -16.89782     -0.7668193 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 5, 9] pos_error= [25.508213 24.649935 36.07486 ] distance= [25.508389 24.729042 36.111343] progress= [1. 2. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[3, 5, 9] start_pos=[[ 7.4073315   5.1137705  -0.88867176]
+ [ 2.5847692   2.5519333  -0.10614085]
+ [13.328831    1.4182262  -0.841273  ]] goals=[[ 18.764576   -15.617902    -0.20397997]
+ [ 13.640898    22.856033    -0.8912932 ]
+ [-16.195261   -16.835188    -0.11471009]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 5, 6, 7, 8] pos_error= [33.15548   25.875504  23.153778  22.511211   2.7996464 24.869875 ] distance= [33.167175  25.891996  23.178772  22.537031   2.8238232 24.874592 ] progress= [3. 3. 1. 3. 3. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 5, 6, 7, 8] start_pos=[[11.128162    3.380306   -0.7637796 ]
+ [ 2.5529404   1.4772968  -0.46999925]
+ [14.596657    2.9847927  -0.5055124 ]
+ [18.934368    3.098568   -0.20434219]
+ [ 5.524752    3.893258   -0.16060418]
+ [12.74497     2.443781   -0.93255156]] goals=[[ 39.58002      1.3388859   -0.40647346]
+ [ 48.8216      22.561207    -0.43763787]
+ [ 26.618874    23.932186    -0.17303312]
+ [ -1.4104414  -18.719131    -0.76704025]
+ [ -7.1844025    3.9362316   -0.59934276]
+ [  4.84375     22.719877    -0.50254726]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 6, 7] pos_error= [50.84895    2.7836943 29.84532   12.733761 ] distance= [50.88346    2.9609365 29.86611   12.821709 ] progress= [1. 3. 1. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 6, 7] start_pos=[[18.606892    4.047949   -0.8811154 ]
+ [ 7.2548103   2.1519566  -0.14923596]
+ [ 0.9499035   3.7683926  -0.31545013]
+ [18.706852    4.70329    -0.85815215]] goals=[[ 4.7647438e+01  2.3440088e+01 -1.6804087e-01]
+ [ 1.4023695e+01  2.1519482e+00 -1.5919924e-02]
+ [ 4.9706411e+00 -1.6999031e+01 -8.4604013e-01]
+ [ 6.5916233e+00  2.6000462e+00 -3.3686686e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 4, 5, 6, 9] pos_error= [28.561993  23.617214   6.7653556 24.16105   21.172283  34.708656 ] distance= [28.587105 23.629335  6.934461 24.168703 21.260979 34.730976] progress= [2. 3. 1. 2. 1. 3.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 5, 6, 9] start_pos=[[15.208878    3.6816974  -0.5600454 ]
+ [ 7.6330605   1.9727936  -0.9146566 ]
+ [ 5.4655075   3.3914883  -0.44264156]
+ [ 5.3610754   3.7807903  -0.43563348]
+ [ 1.768507    5.0762587  -0.9543773 ]
+ [18.620249    1.3159313  -0.86779743]] goals=[[ 42.894905     3.751738    -0.93231964]
+ [ 13.324577   -17.516642    -0.21718991]
+ [ 22.29321      1.498561    -0.86771196]
+ [ 22.067497    23.661316    -0.65704864]
+ [ -8.865681   -16.936296    -0.5204287 ]
+ [-16.59049    -15.771589    -0.06538057]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [8] pos_error= [21.782978] distance= [21.855919] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[8] start_pos=[[ 1.7628889  1.9855671 -0.6938181]] goals=[[ 3.3606215  22.53542    -0.84370536]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 7] pos_error= [27.712202 34.91888  16.972853 25.969948 12.295605] distance= [27.71296  34.973125 16.977503 26.01083  12.35051 ] progress= [2. 3. 2. 2. 3.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 7] start_pos=[[ 1.6523533   2.5468123  -0.74620444]
+ [ 5.5584297   4.0965233  -0.1275801 ]
+ [ 3.2657328   2.6513991  -0.7854518 ]
+ [ 7.3793297   2.669836   -0.91244733]
+ [ 2.5018296   4.021498   -0.09731954]] goals=[[41.960957    5.1111465  -0.1833123 ]
+ [42.944992   24.463991   -0.9297794 ]
+ [23.097538    4.484655   -0.84431255]
+ [21.885586   23.294525   -0.21049052]
+ [ 9.074873    3.242498   -0.29365355]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 6, 7, 8, 9] pos_error= [42.589813  20.323067  24.464619   6.6501822 20.637121  39.165718 ] distance= [42.592    20.38535  24.476427  6.709313 20.717388 39.2156  ] progress= [1. 3. 3. 1. 2. 3.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 6, 7, 8, 9] start_pos=[[14.670425    4.804861   -0.15846747]
+ [15.093267    1.5725899  -0.25786364]
+ [10.78207     2.3692417  -0.7672462 ]
+ [15.921177    4.563713   -0.8512008 ]
+ [ 5.410505    2.9914494  -0.25089514]
+ [ 1.9344215   4.234621   -0.7651325 ]] goals=[[ 39.172474    23.105543    -0.3833831 ]
+ [ 20.067251   -15.3741255   -0.21358204]
+ [  3.0049753  -17.284763    -0.75771624]
+ [  4.843918     4.967205    -0.0715996 ]
+ [  6.889263    22.684921    -0.6708579 ]
+ [-17.40355    -18.074017    -0.1857236 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 4, 8] pos_error= [40.38957  30.582607 17.665367 19.937605 19.765362] distance= [40.429977 30.636705 17.71933  19.945158 19.796782] progress= [2. 1. 1. 2. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 4, 8] start_pos=[[ 7.051296    4.25945    -0.7991677 ]
+ [ 2.9333267   4.400795   -0.35715902]
+ [ 1.3419342   4.5393143  -0.30543053]
+ [ 1.6626539   1.3342214  -0.6661692 ]
+ [17.562061    4.860037   -0.41303396]] goals=[[ 48.148155     3.68504     -0.3340639 ]
+ [ 46.729507    25.175203    -0.9805586 ]
+ [ 13.113277   -16.005445    -0.16284245]
+ [ 18.979568     4.250955    -0.08771235]
+ [ -0.5699253   21.783451    -0.44720733]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 5, 6, 9] pos_error= [48.445892 23.680943 25.200315 21.23877  29.518286] distance= [48.457348 23.7094   25.277803 21.327702 29.53052 ] progress= [1. 1. 3. 2. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 5, 6, 9] start_pos=[[ 3.3321457   3.1737423  -0.92639023]
+ [ 9.9323845   1.1055546  -0.7395437 ]
+ [ 5.175621    4.240505   -0.80239135]
+ [12.810821    4.436983   -0.70125955]
+ [10.939842    2.609459   -0.77641886]] goals=[[ 37.00581     22.21908     -0.95434403]
+ [ 15.281804   -17.747091    -0.3443703 ]
+ [ 11.285933    23.574606    -0.69351614]
+ [ -5.4247446  -16.207764    -0.05023295]
+ [-23.074663   -16.300867    -0.6698562 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4, 7] pos_error= [41.091774 17.571203 11.091019] distance= [41.130943 17.676195 11.172656] progress= [2. 2. 3.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 4, 7] start_pos=[[ 9.119453    3.315505   -0.9612376 ]
+ [ 7.20459     3.5391057  -0.15756983]
+ [ 0.8879757   2.4147325  -0.38176924]] goals=[[37.695858    1.6592393  -0.65318537]
+ [12.362772    4.582713   -0.681129  ]
+ [ 8.612082    2.3692765  -0.8678419 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 4, 6, 7, 9] pos_error= [19.601364   5.3312807 27.578001   7.7778077 38.933216 ] distance= [19.641748  5.657602 27.605     8.001715 38.97218 ] progress= [2. 1. 2. 1. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[3, 4, 6, 7, 9] start_pos=[[ 7.6612625   2.0285072  -0.6516235 ]
+ [17.012932    3.9170103  -0.14216012]
+ [ 4.92573     3.1323795  -0.81965125]
+ [ 6.180005    1.651526   -0.29143637]
+ [ 4.0614758   3.3936691  -0.9708239 ]] goals=[[ 14.446856   -17.36293     -0.14047879]
+ [ 20.327822     2.4792132   -0.9898752 ]
+ [  3.5579329  -15.833918    -0.08855259]
+ [ -8.9049       1.5809693   -0.9134705 ]
+ [-12.053333   -17.925674    -0.94366634]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 7] pos_error= [38.694958   3.8370154 20.291101  15.124896 ] distance= [38.703014   4.0424967 20.386461  15.165102 ] progress= [3. 1. 3. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 7] start_pos=[[ 6.656231    3.959608   -0.18865788]
+ [ 4.058502    2.5954838  -0.91777104]
+ [10.954987    2.474514   -0.26788634]
+ [ 1.2665119   1.5420246  -0.56560373]] goals=[[37.29899    21.602509   -0.7257002 ]
+ [18.9879      1.4753621  -0.73717564]
+ [14.263764   22.072386   -0.7147454 ]
+ [-8.867407    2.2536979  -0.9647183 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 5] pos_error= [28.630669 35.375385 20.545248 19.884243] distance= [28.685846 35.411064 20.550076 19.941069] progress= [3. 1. 2. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 5] start_pos=[[13.679508    5.1081214  -0.4875872 ]
+ [ 7.924652    1.8598804  -0.35690677]
+ [ 2.925974    3.3010235  -0.982298  ]
+ [13.940605    0.97574806 -0.42230076]] goals=[[ 38.841007     2.1759317   -0.6499945 ]
+ [ 43.821262    22.807652    -0.99983734]
+ [ 27.295462   -16.946651    -0.5410318 ]
+ [ 14.757267    22.782621    -0.9559707 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 7, 9] pos_error= [41.57337  18.992422 10.265496 26.637398] distance= [41.621197 19.075274 10.427494 26.639503] progress= [1. 3. 2. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 7, 9] start_pos=[[ 8.395393    3.4764137  -0.03943169]
+ [17.067266    5.1756535  -0.47578663]
+ [13.811968    4.4256177  -0.16412115]
+ [11.6646385   1.1884365  -0.81337094]] goals=[[ 43.303097    21.941042    -0.6111684 ]
+ [  5.8162203  -15.185787    -0.67646444]
+ [  8.376553     2.8108332   -0.12823784]
+ [-13.057154   -15.689228    -0.9836087 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+iter=0 frames=320 reward_mean=5.5739 progress=0.0% eta=26336.5s
+[train_ppo_behavior] saved checkpoint: /home/md-ether/MarineGym-main/bluerov_manual/checkpoints/ppo_behavior_iter_0.pt
+/home/md-ether/MarineGym-main/marinegym/robots/drone/underwaterVehicle.py:175: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 7] pos_error= [25.346277  39.48675   15.013761  21.859476   5.6838665] distance= [25.372486  39.48778   15.145115  21.942759   6.0106378] progress= [2. 1. 3. 2. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 7] start_pos=[[15.461472    4.3685737  -0.9978964 ]
+ [15.241692    1.3736439  -0.59877604]
+ [ 2.8082771   3.4829597  -0.96092516]
+ [ 2.8670492   2.7133484  -0.9820401 ]
+ [17.64806     1.6919464  -0.17820579]] goals=[[38.20446     3.9355288  -0.49684483]
+ [34.419525   20.93894    -0.94992816]
+ [24.941082    3.9469845  -0.1594069 ]
+ [26.071608   22.378107   -0.5273399 ]
+ [ 3.3177547   4.828149   -0.97403127]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 6, 7] pos_error= [31.684378 23.267118 14.730729] distance= [31.720808 23.289808 14.859885] progress= [3. 2. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[3, 6, 7] start_pos=[[ 3.2479486   4.6982975  -0.31817454]
+ [ 8.990904    2.354721   -0.57229847]
+ [12.155585    1.8272386  -0.11679065]] goals=[[ 21.606876   -15.610771    -0.30561423]
+ [  1.4993048  -16.893423    -0.4807461 ]
+ [ -4.041413     5.1066546   -0.93876445]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 7, 9] pos_error= [27.413443 27.381126 16.576412 29.996655] distance= [27.445425 27.393734 16.576897 30.001299] progress= [2. 1. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 7, 9] start_pos=[[11.233597    4.378517   -0.03320003]
+ [ 1.9238358   4.7378407  -0.74034613]
+ [12.619136    1.3765657  -0.23076391]
+ [11.301678    4.462927   -0.6049078 ]] goals=[[ 3.7531036e+01  2.0813988e+01 -3.7663311e-01]
+ [ 2.6090954e+01 -1.8530563e+01 -9.7985268e-03]
+ [-1.3721085e+00  2.2887411e+00 -8.0972314e-02]
+ [-1.4567123e+01 -1.8781309e+01 -3.9065659e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 6, 7] pos_error= [22.769146 31.000265 22.150167 30.422905 20.669615 14.022313] distance= [22.856642 31.04678  22.236736 30.486212 20.751377 14.164053] progress= [3. 1. 3. 3. 2. 1.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 6, 7] start_pos=[[17.787697    2.3191388  -0.08774179]
+ [10.087513    4.0038166  -0.22930801]
+ [11.032063    3.0167115  -0.7045872 ]
+ [ 9.486267    2.3441048  -0.79093117]
+ [ 7.0002418   1.9947796  -0.514253  ]
+ [ 8.776353    3.4426363  -0.25721616]] goals=[[ 40.541866     4.021039    -0.47459406]
+ [ 44.737434    20.997492    -0.23751491]
+ [ 22.421715     1.6398407   -0.37868726]
+ [ 16.857414    24.163366    -0.8352009 ]
+ [  5.8387938  -18.98772     -0.38628232]
+ [  2.911539     5.150144    -0.9778241 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 7, 9] pos_error= [22.83471  38.593445 33.551327  6.207708 34.78979 ] distance= [22.900942  38.603245  33.585144   6.5021324 34.829937 ] progress= [1. 1. 2. 1. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 7, 9] start_pos=[[ 8.573071    2.7792857  -0.29501164]
+ [14.110058    1.0570507  -0.96324533]
+ [ 5.484412    4.0908566  -0.09379333]
+ [11.781686    4.770967   -0.4841292 ]
+ [13.007256    1.4990997  -0.8967476 ]] goals=[[ 3.6093697e+01  9.7835600e-01 -1.4949501e-02]
+ [ 4.7964890e+01  2.1611929e+01 -9.9111557e-02]
+ [ 2.4981552e+01 -1.6874407e+01 -1.4402533e-01]
+ [-8.2581940e+00  4.9979715e+00 -1.3075668e-01]
+ [-2.7573298e+01 -1.7162647e+01 -4.3828785e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 4, 5, 6] pos_error= [27.58093  28.617634 11.465137 22.96825  21.03731 ] distance= [27.642385 28.651602 11.49673  22.9759   21.130175] progress= [1. 1. 2. 2. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 5, 6] start_pos=[[ 3.1666489   4.6108174  -0.11206746]
+ [ 3.9215279   4.703944   -0.35783845]
+ [18.158234    4.89455    -0.5109195 ]
+ [14.046545    4.0202007  -0.71612364]
+ [ 2.4338074   1.0639038  -0.85399944]] goals=[[ 33.98757      4.627021    -0.05309916]
+ [ 22.647226   -18.97995     -0.66058445]
+ [ 12.192759     3.940444    -0.1316452 ]
+ [ 15.33101     23.359705    -0.22810084]
+ [ -6.4117465  -16.71167     -0.132294  ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 7] pos_error= [30.81241  30.209867 20.050892] distance= [30.869213 30.237822 20.060326] progress= [1. 1. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 7] start_pos=[[ 9.013832   4.4020634 -0.990036 ]
+ [10.733017   3.8871632 -0.3149014]
+ [ 5.6503997  1.0990632 -0.2990558]] goals=[[ 4.2895386e+01  1.3104401e+00 -5.4087454e-01]
+ [ 2.8355404e+01 -1.8347132e+01 -4.6872592e-01]
+ [-5.0594625e+00  2.4054091e+00 -4.0326893e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 4, 5, 7, 9] pos_error= [39.58565   28.425304   6.1339927 19.38555   10.7894    44.681725 ] distance= [39.633366  28.487566   6.3841515 19.469673  10.815683  44.72611  ] progress= [3. 1. 2. 2. 1. 3.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 4, 5, 7, 9] start_pos=[[ 1.0714073   1.7896671  -0.3125124 ]
+ [18.152039    2.1356983  -0.57588625]
+ [ 7.724518    1.3390734  -0.6352072 ]
+ [12.575266    3.0115242  -0.54043955]
+ [ 7.8693056   1.8910596  -0.23339534]
+ [17.375137    2.0339966  -0.8382842 ]] goals=[[ 39.082558    22.426342    -0.72344583]
+ [ 26.431576   -17.467005    -0.39445907]
+ [ 23.573841     0.8890799   -0.96126574]
+ [ 11.48344     25.118477    -0.619191  ]
+ [  0.5672827    3.8645902   -0.15314549]
+ [-26.314734   -16.247932    -0.49175727]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 7] pos_error= [43.258694  19.84117    7.5708055] distance= [43.261353  19.90072    7.7933755] progress= [1. 3. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 7] start_pos=[[ 5.190914    5.0069275  -0.68247634]
+ [16.026796    3.2201252  -0.34189904]
+ [11.811241    4.3522153  -0.3320046 ]] goals=[[ 48.636017    22.240868    -0.41463053]
+ [ -8.846384   -16.083975    -0.8403576 ]
+ [ -5.50908      1.7762828   -0.27666515]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 4, 5, 6, 7, 9] pos_error= [34.02963  21.284475 15.878792 22.151596 31.49887  17.5116   47.591892] distance= [34.029716 21.291603 15.988747 22.157259 31.499079 17.555433 47.599308] progress= [3. 2. 2. 2. 1. 1. 2.] success= [False False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 5, 6, 7, 9] start_pos=[[ 2.4986      2.0931532  -0.28702635]
+ [ 8.802166    1.6331596  -0.05825573]
+ [ 6.2720985   5.032399   -0.60522926]
+ [18.451406    0.8354416  -0.43279207]
+ [12.529035    3.8581676  -0.95932466]
+ [10.059758    4.746855   -0.47959602]
+ [ 1.049736    3.512806   -0.05961514]] goals=[[ 4.09799423e+01  9.01104808e-01 -2.26360261e-01]
+ [ 1.74454041e+01 -1.83493004e+01 -5.81265211e-01]
+ [ 2.85800400e+01  2.77774477e+00 -8.24225128e-01]
+ [ 1.33911285e+01  2.47658730e+01 -1.57841444e-02]
+ [ 8.02875519e-01 -1.83794079e+01 -7.82241821e-01]
+ [ 3.99742317e+00  1.36708593e+00 -1.00085795e-01]
+ [-1.77214127e+01 -1.57014523e+01 -4.08764005e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 3, 9] pos_error= [38.49963  46.709812 21.770613 26.878483] distance= [38.51273  46.74357  21.82036  26.929432] progress= [1. 2. 1. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 3, 9] start_pos=[[ 4.1351547   3.1765218  -0.64562255]
+ [ 6.0884705   4.325638   -0.16735816]
+ [ 6.50136     4.841426   -0.44928104]
+ [ 8.640144    3.5474377  -0.8814034 ]] goals=[[ 41.450676     2.5663903   -0.33284163]
+ [ 34.628       21.72914     -0.20167696]
+ [ 18.86385    -17.603874    -0.43820226]
+ [-16.435596   -16.675003    -0.9245658 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 7] pos_error= [33.425064 22.455858 24.463352  6.980271] distance= [33.440666 22.524595 24.475292  7.18325 ] progress= [1. 2. 2. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 7] start_pos=[[ 9.222527    1.724659   -0.75067854]
+ [ 8.762299    1.2061105  -0.18967485]
+ [ 7.5115986   1.3603268  -0.13428247]
+ [ 3.4508734   1.6449018  -0.8598238 ]] goals=[[32.97634    21.745338   -0.23265713]
+ [14.467787    3.3377278  -0.7255944 ]
+ [28.91712    22.548897   -0.3853963 ]
+ [-5.3821588   3.1578863  -0.03956366]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 3, 4, 5, 6] pos_error= [37.324406  25.658682   6.1613894 30.116999  25.141016 ] distance= [37.375298  25.73483    6.2140784 30.119682  25.182228 ] progress= [2. 2. 1. 1. 3.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 5, 6] start_pos=[[ 8.384003    1.0519942  -0.8000772 ]
+ [17.684673    1.3642635  -0.15689427]
+ [18.233232    3.0129807  -0.17229438]
+ [ 8.735916    1.2338905  -0.5922517 ]
+ [ 6.454896    2.4568691  -0.9252044 ]] goals=[[ 3.1800625e+01  2.6383255e+00 -2.4067295e-01]
+ [ 2.2310171e+01 -1.8855997e+01 -3.0363983e-01]
+ [ 2.2008886e+01  4.2495632e+00 -5.3427893e-01]
+ [ 2.7750732e+01  2.3969408e+01 -4.3574315e-01]
+ [ 3.8214560e+00 -1.6838799e+01 -7.4996352e-03]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 4, 9] pos_error= [31.064896 20.757164  4.044795 32.23619 ] distance= [31.12402  20.76412   4.274836 32.272045] progress= [2. 1. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 4, 9] start_pos=[[17.73877     3.6203766  -0.66487575]
+ [ 7.9697113   1.406868   -0.77911717]
+ [ 5.529393    4.3247714  -0.39963776]
+ [15.720612    2.064909   -0.3055306 ]] goals=[[ 30.95394     24.670197    -0.72022307]
+ [ 19.774471   -18.09954     -0.3762157 ]
+ [ 16.732927     1.5068576   -0.98666555]
+ [-28.701956   -16.087748    -0.94623643]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4, 5, 7, 9] pos_error= [23.47567  11.58992  29.648867  8.972261 47.998966] distance= [23.55864   11.65777   29.687546   9.1886425 48.034817 ] progress= [2. 1. 2. 3. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 4, 5, 7, 9] start_pos=[[10.506031    1.1957546  -0.90591604]
+ [ 9.304924    4.7863426  -0.9785429 ]
+ [16.794292    4.8103447  -0.02811247]
+ [ 4.3346853   2.8305557  -0.32336664]
+ [18.737583    4.301325   -0.6206479 ]] goals=[[ 38.578896     4.85971     -0.92789143]
+ [ 27.841503     2.0513391   -0.42703545]
+ [ 22.327078    21.414726    -0.21437001]
+ [ -4.442115     1.9183762   -0.46515864]
+ [-13.941547   -18.2768      -0.7790695 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 3, 5, 6, 7] pos_error= [24.867643 22.810099 17.545282 19.511848  8.831343] distance= [24.918736 22.886822 17.652063 19.608225  8.950947] progress= [2. 2. 1. 3. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 3, 5, 6, 7] start_pos=[[16.842178    1.8705826  -0.85430294]
+ [ 8.161007    4.363531   -0.32260215]
+ [ 9.431541    3.9634762  -0.08536196]
+ [14.740786    1.0776672  -0.67496705]
+ [10.000789    1.6982951  -0.4671784 ]] goals=[[ 4.3599613e+01  2.1681128e+01 -2.2365087e-01]
+ [ 1.2433130e+01 -1.7237049e+01 -5.0475121e-01]
+ [ 1.9947117e+01  2.4237133e+01 -6.5246695e-01]
+ [-1.9874573e-02 -1.8366444e+01 -6.1627477e-01]
+ [-1.4575691e+00  3.7187700e+00 -8.1457853e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [3, 5, 9] pos_error= [22.025772 22.852255 39.72544 ] distance= [22.104645 22.938494 39.727146] progress= [1. 1. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[3, 5, 9] start_pos=[[11.738583    2.5253315  -0.07930249]
+ [13.742874    1.9624195  -0.235798  ]
+ [12.982094    3.1117287  -0.7796007 ]] goals=[[ 18.955189   -15.949928    -0.4266163 ]
+ [ 12.735746    23.975468    -0.9134864 ]
+ [-10.8808975  -15.339676    -0.26788658]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=50 pos=[18.945042    3.4520798  -0.26121062] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.659 wp=[ 30.         -14.          -0.22111154] wp_dist=20.659 wp_tol=1.200 path_idx=0/9 action_raw=[-1.135133981704712, -0.1369192898273468, -0.11659373342990875, 0.5888848304748535] action=[-1.0, -0.1369192898273468, -0.11659373342990875, 0.5888848304748535] min_range=0.755 depth_min=na wall_min=0.755 maze_min=na obst_min=23.484 safety_min=0.755 front_min=2.438 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=2.536 r_cmd=0.353 target_vel_w=[0.5730593800544739, -0.18313317000865936, -0.04010601341724396]
+[HoverTankPPO] done env_ids= [1, 3, 4, 5, 6, 7] pos_error= [28.424654 19.855642 18.748608 22.057846 24.423717 11.628848] distance= [28.492931 19.948692 18.84673  22.143005 24.50445  11.765943] progress= [3. 1. 3. 1. 2. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 3, 4, 5, 6, 7] start_pos=[[ 1.7572174   0.90229994 -0.29780263]
+ [17.28413     4.7003555  -0.7782377 ]
+ [13.298311    1.7888335  -0.16423011]
+ [11.8085575   1.0549049  -0.64363414]
+ [12.760045    1.0339909  -0.68487173]
+ [ 2.1260386   1.1450492  -0.41774464]] goals=[[ 41.631756     4.710016    -0.5577343 ]
+ [ 14.785302   -18.628506    -0.23886424]
+ [ 27.050959     1.0460614   -0.9059559 ]
+ [ 16.663116    20.968271    -0.51713055]
+ [  5.710843   -17.939602    -0.37101334]
+ [ -3.7626362    0.8309234   -0.77733   ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=50 pos=[18.945042    3.4520798  -0.26121062] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.659 wp=[ 30.         -14.          -0.22111154] wp_dist=20.659 wp_tol=1.200 path_idx=0/9 action_raw=[-1.135133981704712, -0.1369192898273468, -0.11659373342990875, 0.5888848304748535] action=[-1.0, -0.1369192898273468, -0.11659373342990875, 0.5888848304748535] min_range=0.755 depth_min=na wall_min=0.755 maze_min=na obst_min=23.484 safety_min=0.755 front_min=2.438 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=2.536 r_cmd=0.353 target_vel_w=[0.5730593800544739, -0.18313317000865936, -0.04010601341724396]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 9] pos_error= [40.059895 33.276447 13.820691 30.17279 ] distance= [40.072838 33.305737 13.903682 30.176048] progress= [1. 3. 1. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 9] start_pos=[[16.138664    4.7156334  -0.70584595]
+ [14.98682     2.0976105  -0.8423842 ]
+ [13.240126    4.2225385  -0.07657373]
+ [13.018909    0.8500042  -0.85411674]] goals=[[ 48.120544     3.7394261   -0.41994357]
+ [ 37.947136    24.601067    -0.44919872]
+ [ 27.612984     5.00711     -0.73221165]
+ [-20.261862   -15.126898    -0.10859126]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [4, 5, 6, 7] pos_error= [14.431461  20.516733  20.348806   5.9638925] distance= [14.548703  20.54766   20.408546   6.0157576] progress= [1. 2. 2. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[4, 5, 6, 7] start_pos=[[14.175238    2.2872527  -0.7884737 ]
+ [18.975359    2.4962082  -0.35936278]
+ [15.985689    3.865797   -0.18218064]
+ [16.284729    1.3752177  -0.7987137 ]] goals=[[ 17.476076     1.1271911   -0.44688565]
+ [ 13.658447    21.713583    -0.56064284]
+ [ -7.7575436  -18.018042    -0.9455808 ]
+ [  4.8393774    4.4950647   -0.34673387]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 5, 6] pos_error= [32.00579  19.945623 32.309082] distance= [32.011856 20.021742 32.356274] progress= [2. 1. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 5, 6] start_pos=[[ 3.779274    1.9502461  -0.7116618 ]
+ [19.115328    1.9637337  -0.9768983 ]
+ [13.730325    2.3151684  -0.30916595]] goals=[[ 3.3870289e+01  1.0803347e+00 -2.6695490e-02]
+ [ 2.2126278e+01  2.0823030e+01 -7.5944066e-02]
+ [ 5.6778793e+00 -1.8027195e+01 -9.3061060e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 6, 7, 9] pos_error= [32.131454   3.5190582 21.906029  11.744573  36.931797 ] distance= [32.141582   3.6923425 21.914026  11.759393  36.97297  ] progress= [3. 2. 1. 2. 3.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 6, 7, 9] start_pos=[[10.042824    1.180769   -0.9094664 ]
+ [ 7.3644505   1.6772225  -0.21718061]
+ [ 6.436302    3.9358788  -0.7459056 ]
+ [ 3.0535526   2.3501     -0.10146981]
+ [ 5.746628    1.9144001  -0.8873861 ]] goals=[[ 30.827484    24.61346     -0.7438167 ]
+ [ 24.722374     3.8895755   -0.58468354]
+ [  3.1046305  -17.037079    -0.4901483 ]
+ [ -3.7675037    2.693841    -0.04016083]
+ [-26.410828   -15.287616    -0.14049554]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4, 7] pos_error= [30.115282  17.515808   6.8521037] distance= [30.148083  17.557762   6.8684897] progress= [2. 1. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 4, 7] start_pos=[[ 0.8703995   4.25819    -0.73088676]
+ [16.76099     3.3812292  -0.9638124 ]
+ [ 1.7204876   4.490706   -0.29950655]] goals=[[38.827087    3.6309502  -0.8578138 ]
+ [16.132952    3.8695805  -0.17816454]
+ [-7.5604753   4.6820745  -0.9855855 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6, 7] pos_error= [19.096863 21.237959  9.346195] distance= [19.175383 21.243156  9.351371] progress= [3. 2. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 6, 7] start_pos=[[ 3.7129898   2.8858566  -0.35407996]
+ [ 1.1387644   3.5010147  -0.60759366]
+ [ 8.9261265   4.056352   -0.2897315 ]] goals=[[ 27.67142     24.70111     -0.7813508 ]
+ [  5.501384   -18.244158    -0.44161773]
+ [  1.2039738    2.56975     -0.82311136]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 5, 7, 9] pos_error= [37.97088   31.380655  32.43877    7.9189186 36.47715  ] distance= [37.979034 31.419706 32.485683  8.124934 36.506027] progress= [2. 3. 1. 1. 3.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 5, 7, 9] start_pos=[[11.9215355   2.887921   -0.36697763]
+ [ 8.640266    3.4799404  -0.5301668 ]
+ [13.294628    1.9038811  -0.3369742 ]
+ [ 3.6754642   2.0807562  -0.49842596]
+ [ 4.8337936   3.4045887  -0.36550146]] goals=[[ 3.8900082e+01  2.3369043e+00 -7.7362907e-01]
+ [ 3.1380058e+01  2.3437525e+01 -9.5191830e-01]
+ [ 2.2851435e+01  2.1824501e+01 -1.5290439e-02]
+ [-7.8087606e+00  3.8951030e+00 -8.5606033e-01]
+ [-1.8056860e+01 -1.5624163e+01 -8.4133381e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4, 5, 6, 9] pos_error= [26.994137    0.89837927 22.093578   22.161839   29.782639  ] distance= [27.061844   1.9568202 22.13237   22.244434  29.787785 ] progress= [1. 3. 1. 2. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 4, 5, 6, 9] start_pos=[[ 1.54807587e+01  1.39236259e+00 -5.46546817e-01]
+ [ 1.17489243e+01  2.85938311e+00 -5.18696010e-01]
+ [ 1.76592178e+01  3.17228317e+00 -8.69541764e-01]
+ [ 1.47990265e+01  4.49962616e+00 -1.00257397e-02]
+ [ 1.53005409e+00  3.73703384e+00 -9.13674772e-01]] goals=[[ 30.824638     1.3249595   -0.99700236]
+ [ 18.577583     5.141631    -0.7381549 ]
+ [ 12.288548    22.735228    -0.7317915 ]
+ [  2.4551382  -15.179173    -0.81482196]
+ [-16.603308   -17.684265    -0.8459994 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 7] pos_error= [30.270369 23.230618 11.675518] distance= [30.326704 23.245743 11.682476] progress= [2. 1. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 7] start_pos=[[ 4.3702316   4.851372   -0.89122546]
+ [ 8.76204     2.612341   -0.87701476]
+ [12.864085    1.7727785  -0.55274403]] goals=[[ 4.1295414e+01  2.2521236e+01 -1.9839883e-02]
+ [ 1.2085085e+00 -1.5940596e+01 -8.4105194e-01]
+ [ 7.5422325e+00  3.9982746e+00 -5.6084651e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4] pos_error= [15.399581   7.2569346] distance= [15.409516   7.5192447] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[1, 4] start_pos=[[18.127117    4.283094   -0.8541096 ]
+ [15.636715    2.5650263  -0.55649257]] goals=[[45.954742    3.5293062  -0.13518757]
+ [12.560812    1.713153   -0.77419513]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 7, 9] pos_error= [20.2878    5.825585 28.102362] distance= [20.381348  6.139421 28.133781] progress= [3. 2. 3.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 7, 9] start_pos=[[15.489992    1.2096233  -0.23856288]
+ [ 4.788426    2.3750935  -0.75107706]
+ [17.362871    2.6997032  -0.989571  ]] goals=[[ 21.885963   22.736923   -0.9147946]
+ [  2.5504208   4.6456323  -0.7978313]
+ [-13.452824  -18.77242    -0.6241295]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] plan_local env=0 start_local=[-10.999702453613281, 23.44086456298828, -0.2526644766330719] goal_local=[9.989063262939453, 1.4836444854736328, -0.6391199827194214] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 6] pos_error= [40.967205  3.353756 22.502449 20.061365] distance= [41.005383   3.3833811 22.558168  20.08947  ] progress= [3. 2. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 6] start_pos=[[ 6.364319    2.681261   -0.7381317 ]
+ [ 8.253624    4.5226855  -0.49148244]
+ [12.7366295   2.1196404  -0.07049799]
+ [ 3.2304435   2.7373428  -0.8226369 ]] goals=[[ 43.997616    22.571877    -0.6916394 ]
+ [ 16.892479     3.120737    -0.3206054 ]
+ [ 17.677334    21.257797    -0.10793608]
+ [  1.7529049  -15.88447     -0.8434087 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] plan_local env=0 start_local=[-10.997180938720703, 23.437158584594727, -0.2529590129852295] goal_local=[9.989063262939453, 1.4836444854736328, -0.6391199827194214] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 7] pos_error= [19.76716    3.2965093] distance= [19.84025    3.8525243] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 7] start_pos=[[ 3.9056358   4.917227   -0.06045651]
+ [ 1.0429134   1.7246859  -0.58999825]] goals=[[19.743214   23.956667   -0.67713994]
+ [-0.8950701   3.3231204  -0.12399101]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 9] pos_error= [42.565628  8.75498  24.8015   37.570488] distance= [42.605633  8.807558 24.84793  37.60946 ] progress= [2. 2. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 9] start_pos=[[ 3.039566    3.0421028  -0.54380596]
+ [ 1.7102604   4.3906884  -0.73629934]
+ [15.653364    4.623024   -0.04493439]
+ [11.444939    3.3238106  -0.75454354]] goals=[[ 37.37923     21.176655    -0.50619656]
+ [ 14.291304     4.9724226   -0.18678617]
+ [ 11.190023    23.779999    -0.2817911 ]
+ [-20.517368   -14.909445    -0.16441774]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 5, 6, 7] pos_error= [27.821434  19.674582  18.700396   2.5369406] distance= [27.825037 19.69344  18.762377  2.96103 ] progress= [5. 1. 3. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 5, 6, 7] start_pos=[[ 3.121727    2.1655846  -0.29157037]
+ [ 3.7424126   4.6153545  -0.48915583]
+ [18.60709     1.7619057  -0.31737113]
+ [16.055737    1.7510321  -0.36085296]] goals=[[ 36.055298     1.1050167   -0.2675687 ]
+ [ 15.387996    24.038233    -0.46973097]
+ [  1.3972254  -18.717756    -0.9776801 ]
+ [  0.09714413   2.230233    -0.9508115 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 6, 7, 9] pos_error= [32.952343 38.94879  12.590259 26.777058 15.993448 36.816456] distance= [32.964863 38.971645 12.734901 26.839369 16.107523 36.832546] progress= [1. 2. 2. 1. 1. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 6, 7, 9] start_pos=[[12.904453    3.3836734  -0.86237305]
+ [18.797379    4.9469585  -0.26518512]
+ [13.243561    1.2871393  -0.27561468]
+ [ 3.5178604   1.8925629  -0.33654332]
+ [16.162357    2.4440422  -0.65787476]
+ [ 9.175167    1.6064186  -0.7104836 ]] goals=[[ 40.208008     3.9438639   -0.61244315]
+ [ 42.374702    21.079254    -0.5175214 ]
+ [ 12.440126     1.825927    -0.99463195]
+ [  6.8652287  -17.03176     -0.88481957]
+ [ -1.2673349    3.2469332   -0.1597054 ]
+ [-22.916842   -15.593275    -0.2886517 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 6] pos_error= [28.529171   1.4794369 22.634584  19.235832 ] distance= [28.530706   1.6997339 22.670994  19.32438  ] progress= [1. 1. 2. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 6] start_pos=[[10.12159     1.6825867  -0.5104941 ]
+ [ 3.0005713   2.6299887  -0.66910136]
+ [ 4.5929337   4.5225697  -0.35137695]
+ [13.113011    3.9346123  -0.81722033]] goals=[[ 45.439564    22.24246     -0.06472379]
+ [ 20.32626      2.5398817   -0.2648995 ]
+ [ 20.043228    23.480423    -0.3384962 ]
+ [ -2.7417722  -17.266273    -0.13610041]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 7, 9] pos_error= [24.456825 17.440826 36.430668] distance= [24.486835 17.552593 36.48063 ] progress= [1. 2. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 7, 9] start_pos=[[ 7.831312    1.2514515  -0.20960945]
+ [ 5.0958896   5.1350226  -0.7371541 ]
+ [ 7.683426    4.3720226  -0.9267382 ]] goals=[[ 27.405352   21.077393   -0.8263922]
+ [ -7.4035997   2.7165234  -0.7677633]
+ [-22.621521  -18.30832    -0.7453789]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5] pos_error= [27.330454 40.93789  17.313747 27.879179] distance= [27.34342  40.97702  17.350964 27.925924] progress= [3. 2. 2. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5] start_pos=[[18.75774     4.9593987  -0.19595617]
+ [ 8.676834    2.4817104  -0.1389938 ]
+ [ 8.260178    5.138113   -0.32023323]
+ [ 6.6893005   2.7730446  -0.53885704]] goals=[[ 4.8297203e+01  8.4378886e-01 -1.8691492e-01]
+ [ 4.0533737e+01  2.1878790e+01 -1.4685303e-01]
+ [ 1.6145542e+01  2.8647730e+00 -2.6087266e-01]
+ [ 1.7776037e+01  2.3218876e+01 -2.0216167e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 6, 7] pos_error= [29.82736  37.3025    8.210502 26.466375 12.766226] distance= [29.867292 37.347378  8.35449  26.494556 12.912286] progress= [1. 1. 1. 3. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 6, 7] start_pos=[[ 3.7829437   4.1997085  -0.21346653]
+ [ 5.4034653   2.025343   -0.9393486 ]
+ [12.766342    2.4693897  -0.997392  ]
+ [ 2.3590326   5.1406765  -0.6013879 ]
+ [ 5.202929    2.59414    -0.1806488 ]] goals=[[ 39.946266     3.7682645   -0.16932046]
+ [ 35.19437     24.921646    -0.8409778 ]
+ [ 16.644136     4.813638    -0.0952729 ]
+ [ -7.444477   -17.944567    -0.06796438]
+ [  3.6445932    4.40389     -0.4517238 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 5, 7, 9] pos_error= [36.165386  23.251421   2.4726856 37.853683 ] distance= [36.174316 23.311457  2.628691 37.903976] progress= [1. 2. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 5, 7, 9] start_pos=[[ 4.398323    1.6092997  -0.28134596]
+ [11.624588    4.0189114  -0.74574316]
+ [16.843538    4.197592   -0.57714206]
+ [14.38664     2.639553   -0.8593488 ]] goals=[[ 40.548187     5.188898    -0.18797737]
+ [ 18.155449    23.356989    -0.9234639 ]
+ [  1.7449903    1.8602266   -0.15348023]
+ [-13.655268   -18.303759    -0.4117819 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 6] pos_error= [36.303886 25.078608] distance= [36.3173  25.14037] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[1, 6] start_pos=[[14.658539    1.9463885  -0.50621384]
+ [15.4555      2.9557858  -0.18256736]] goals=[[ 44.01205      4.7277575   -0.24898654]
+ [ -4.8950505  -16.225836    -0.1648153 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 6, 7] pos_error= [37.592747   4.5530705 20.43406   27.969723  15.193068 ] distance= [37.603012  4.949295 20.436993 28.018581 15.249615] progress= [3. 3. 2. 1. 2.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 6, 7] start_pos=[[ 2.3553238e+00  4.4259415e+00 -4.5189857e-03]
+ [ 1.9143112e+01  8.5440695e-01 -1.5037614e-01]
+ [ 1.5255581e+01  4.5167961e+00 -2.3645639e-01]
+ [ 1.3740503e+01  3.3363171e+00 -1.1128306e-02]
+ [ 1.6299141e+01  3.1089249e+00 -6.1788887e-01]] goals=[[ 40.211807    21.440945    -0.998639  ]
+ [ 20.714409     1.3260942   -0.37667215]
+ [ 22.895458    21.201275    -0.9828312 ]
+ [ -2.04524    -15.208798    -0.0691005 ]
+ [  5.77736      2.1396894   -0.24028319]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 6, 9] pos_error= [29.482613 41.50155   1.752609 18.42003  24.370533 35.021343] distance= [29.549932  41.54318    1.8035463 18.511515  24.415802  35.07122  ] progress= [2. 1. 1. 1. 1. 3.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 6, 9] start_pos=[[ 4.8211517   3.6860683  -0.9725089 ]
+ [ 1.9805107   1.4669743  -0.84188616]
+ [18.681875    1.3211632  -0.03708255]
+ [ 4.496957    2.028469   -0.503624  ]
+ [14.6209135   4.3417463  -0.1273883 ]
+ [ 8.538334    2.7280712  -0.24898553]] goals=[[ 36.255302     3.677503    -0.11011118]
+ [ 42.407978    21.240646    -0.8513677 ]
+ [ 24.50417      1.8269784   -0.5820948 ]
+ [ 22.611464    22.147266    -0.2067442 ]
+ [ -6.088443   -18.70176     -0.32037842]
+ [-28.078272   -17.87768     -0.05456322]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [4, 6, 7, 9] pos_error= [ 5.9295735 30.992373  10.578447  42.01768  ] distance= [ 6.0493855 30.995956  10.758738  42.018127 ] progress= [1. 1. 2. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[4, 6, 7, 9] start_pos=[[ 1.2257128   1.5518606  -0.41720414]
+ [11.518783    5.1820164  -0.4767533 ]
+ [13.534129    4.1702394  -0.9205463 ]
+ [ 1.8284111   3.7839355  -0.7511426 ]] goals=[[ 16.541874     1.6265261   -0.43754488]
+ [ -5.5928926  -15.479626    -0.66287833]
+ [ -3.824585     5.0601006   -0.18876189]
+ [-15.870794   -15.651818    -0.6187052 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [27.088488] distance= [27.132006] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 6.7294827   4.639099   -0.30375153]] goals=[[11.43528   23.699757  -0.1684528]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5, 6, 9] pos_error= [31.435497  45.002308  15.3304205 19.635231  26.838268  26.372463 ] distance= [31.458921 45.04625  15.369369 19.661865 26.904135 26.43601 ] progress= [3. 3. 2. 1. 2. 2.] success= [False False False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5, 6, 9] start_pos=[[10.932598    3.6862044  -0.8920339 ]
+ [ 7.4200745   1.9816036  -0.96028835]
+ [ 4.995493    2.2212884  -0.6340701 ]
+ [ 7.8421383   2.0012016  -0.9269661 ]
+ [ 1.4843416   3.687172   -0.11545742]
+ [ 8.422194    2.1921368  -0.42287534]] goals=[[ 37.268112     2.6477196   -0.56881696]
+ [ 36.212334    23.628933    -0.12973744]
+ [ 16.446949     4.7727213   -0.7418455 ]
+ [ 11.149346    22.646776    -0.19837344]
+ [  5.488846   -17.990885    -0.3974536 ]
+ [-15.839354   -15.773475    -0.55577004]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 7] pos_error= [22.057007 17.377445] distance= [22.11075  17.378004] progress= [1. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 7] start_pos=[[ 1.5870409   4.1334286  -0.8850494 ]
+ [12.27232     1.4593849  -0.89689016]] goals=[[  7.0843067  -16.984066    -0.13261539]
+ [  5.0896616    4.692893    -0.83354235]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [4, 9] pos_error= [11.748652 30.179195] distance= [11.858055 30.2394  ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[4, 9] start_pos=[[ 2.720274    2.6040685  -0.32171094]
+ [ 9.692324    4.521208   -0.54072267]] goals=[[ 20.135672     1.1474941   -0.9375093 ]
+ [-27.321564   -17.617298    -0.33095425]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 4, 5] pos_error= [26.384832 36.02907  17.505672 20.935524] distance= [26.413256 36.07757  17.51303  20.96722 ] progress= [3. 3. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 4, 5] start_pos=[[ 5.112278    1.3662058  -0.93415207]
+ [ 7.6875763   5.1505013  -0.62380344]
+ [ 9.632231    2.0331383  -0.22323799]
+ [ 1.2369156   3.465847   -0.5153673 ]] goals=[[37.639618    3.5137942  -0.8152899 ]
+ [45.308887   21.24534    -0.4348147 ]
+ [13.266964    3.276002   -0.68093985]
+ [24.627254   21.124256   -0.31555098]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [4, 6, 7, 9] pos_error= [ 3.9337726 21.837585   7.942854  43.128773 ] distance= [ 4.2154174 21.839025   8.1802845 43.130005 ] progress= [1. 3. 3. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[4, 6, 7, 9] start_pos=[[ 1.7245712   4.539855   -0.29956412]
+ [ 8.156281    4.806923   -0.267792  ]
+ [ 1.0999126   4.0329227  -0.66363144]
+ [ 8.963924    3.9881973  -0.32814842]] goals=[[ 16.332218     3.5621815   -0.09545469]
+ [ -1.9367914  -17.248688    -0.8587381 ]
+ [ -7.5636787    4.2118235   -0.28913802]
+ [-21.997204   -18.832241    -0.02866501]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 4, 5, 6, 9] pos_error= [40.922554 14.656695 29.351923 24.275183 38.4635  ] distance= [40.930424 14.713001 29.361044 24.28103  38.512146] progress= [2. 1. 2. 1. 1.] success= [False False False False False]
+[HoverTankPPO] reset env_ids=[2, 4, 5, 6, 9] start_pos=[[ 1.6530994e+01  4.8499298e+00 -6.1917204e-01]
+ [ 1.2013100e+01  2.0806949e+00 -1.3289094e-02]
+ [ 1.5815897e+01  3.4315987e+00 -1.3391030e-01]
+ [ 8.6115255e+00  3.4312992e+00 -4.4321704e-01]
+ [ 7.1258430e+00  1.3529949e+00 -7.3009664e-01]] goals=[[ 38.06566     23.56358     -0.24711156]
+ [ 19.931484     1.8634963   -0.06066883]
+ [ 27.61221     23.476686    -0.24915254]
+ [  4.755313   -18.71661     -0.2905531 ]
+ [-21.16415    -15.5571575   -0.6146795 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 4, 5, 7] pos_error= [32.618294  7.906439 23.277033  8.675975] distance= [32.67536   8.057058 23.298855  8.67789 ] progress= [3. 1. 1. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 4, 5, 7] start_pos=[[11.91172     2.39846    -0.20345336]
+ [10.814114    1.7719035  -0.95985544]
+ [ 2.3690567   2.8427792  -0.6376662 ]
+ [ 8.305322    5.0858364  -0.9762649 ]] goals=[[47.398064    4.097033   -0.19789708]
+ [16.395973    2.5255842  -0.11019766]
+ [29.106155   24.271324   -0.9420718 ]
+ [ 3.1999817   1.3848119  -0.57808346]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 2, 6, 9] pos_error= [35.530407 28.532982 22.490274 32.97937 ] distance= [35.54244  28.552849 22.567167 33.01174 ] progress= [1. 2. 2. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[1, 2, 6, 9] start_pos=[[10.8908615   4.4826627  -0.45838672]
+ [ 3.5154533   3.0882149  -0.03698409]
+ [ 5.238318    3.5664864  -0.80345607]
+ [10.109369    2.0277004  -0.9918687 ]] goals=[[ 47.007805     3.94789     -0.3107493 ]
+ [ 33.86195     22.035244    -0.5586579 ]
+ [ -2.8849707  -18.213108    -0.94040203]
+ [-21.471699   -17.380909    -0.8822466 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5] pos_error= [35.788246 34.280144] distance= [35.79903 34.28562] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[2, 5] start_pos=[[12.18679     2.8918495  -0.74909675]
+ [14.719389    2.3971844  -0.32085901]] goals=[[46.654358   24.718275   -0.92941743]
+ [18.588097   23.886393   -0.4387402 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [1, 5, 7] pos_error= [36.122196 21.85658   6.35232 ] distance= [36.174435 21.882566  6.37228 ] progress= [2. 1. 3.] success= [False False False]
+[HoverTankPPO] reset env_ids=[1, 5, 7] start_pos=[[11.449463    1.2331858  -0.67829424]
+ [14.86375     2.7113914  -0.5955239 ]
+ [ 6.5561676   3.7743578  -0.06291699]] goals=[[35.264526    0.9364043  -0.52717215]
+ [15.446649   21.951464   -0.36715895]
+ [-0.31123066  3.953353   -0.88355047]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 7, 9] pos_error= [40.807964  23.2826     6.9835124 37.078926 ] distance= [40.809853  23.305037   7.2585196 37.079063 ] progress= [2. 3. 1. 3.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 7, 9] start_pos=[[ 6.145897    4.000065   -0.1713134 ]
+ [10.878546    2.1947193  -0.17841476]
+ [ 3.72501     1.876344   -0.216672  ]
+ [11.315777    3.6870384  -0.5214198 ]] goals=[[ 43.731003    23.330338    -0.6248107 ]
+ [  3.2244024  -18.892073    -0.80897635]
+ [ -3.3029284    1.6214869   -0.7061597 ]
+ [-22.653683   -17.455183    -0.6645353 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 6, 7] pos_error= [42.277336 19.256195 22.468016  7.086729] distance= [42.279297  19.259462  22.554476   7.3529077] progress= [1. 2. 1. 1.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 6, 7] start_pos=[[11.154152    3.750187   -0.08028847]
+ [ 5.8431244   4.4722595  -0.18903244]
+ [15.179453    0.83540344 -0.2493366 ]
+ [18.61202     2.2406218  -0.7781641 ]] goals=[[ 36.912907    24.200127    -0.35200453]
+ [ 17.539152    24.239431    -0.6098495 ]
+ [  1.4522247  -18.056723    -0.82026446]
+ [ -2.9119534    0.99583197  -0.9042793 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 6, 9] pos_error= [32.920135 22.97788  23.37282  39.993427] distance= [32.972813 23.023554 23.380133 39.996136] progress= [1. 1. 1. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 6, 9] start_pos=[[ 6.7108955   4.156521   -0.17731178]
+ [ 9.441502    2.1436272  -0.59796345]
+ [ 1.0004396   4.887169   -0.21640348]
+ [ 9.939177    0.94921684 -0.63605183]] goals=[[ 33.63275     23.646149    -0.7567519 ]
+ [ 18.522568    21.313576    -0.92860043]
+ [  2.4113836  -19.153091    -0.08805054]
+ [-29.139824   -15.065874    -0.9641645 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 7] pos_error= [33.2528   24.082296 21.566828] distance= [33.257076 24.120516 21.600794] progress= [1. 1. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 7] start_pos=[[ 1.7123718   3.188095   -0.14108306]
+ [11.736525    4.5691586  -0.13252771]
+ [11.864844    3.6783106  -0.47519052]] goals=[[ 4.7126144e+01  2.2950018e+01 -3.8246799e-01]
+ [-6.5805864e+00 -1.5195756e+01 -9.4725531e-01]
+ [-1.0359430e+00  4.2217493e+00 -4.6411276e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 6, 9] pos_error= [49.521523 21.249899 26.974247 42.248394] distance= [49.548786 21.265726 27.038723 42.26176 ] progress= [1. 2. 1. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 6, 9] start_pos=[[15.001205    4.583826   -0.7533585 ]
+ [12.707338    3.6676025  -0.16944629]
+ [15.498819    2.8650532  -0.7593034 ]
+ [16.182985    2.7704182  -0.06821698]] goals=[[ 40.952423    21.88696     -0.25265527]
+ [ 12.933058    21.071589    -0.88358235]
+ [  6.0102196  -16.373507    -0.47178972]
+ [-12.906742   -17.864708    -0.43450552]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 7, 9] pos_error= [17.445478 12.936348 35.659092] distance= [17.474148 13.088264 35.701916] progress= [1. 2. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 7, 9] start_pos=[[15.077297    1.6564445  -0.5709318 ]
+ [11.025218    1.2583439  -0.98175347]
+ [ 6.21587     4.2413483  -0.5365875 ]] goals=[[ 17.479424    24.475918    -0.8344398 ]
+ [  3.1570635    2.3779905   -0.6774667 ]
+ [-14.961054   -18.47482     -0.76317483]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6] pos_error= [31.115044 21.459951] distance= [31.17845  21.519657] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[2, 6] start_pos=[[16.667664    2.238802   -0.9738179 ]
+ [11.018024    2.3329792  -0.43685156]] goals=[[ 3.3663578e+01  2.0920580e+01 -2.1568954e-02]
+ [-1.6769838e+00 -1.8284386e+01 -5.8085328e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 9] pos_error= [22.934006 31.072279] distance= [22.93495  31.086348] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 9] start_pos=[[ 8.578705    1.2209206  -0.41538483]
+ [ 2.7581196   4.0170355  -0.52227616]] goals=[[ 12.161219    20.888369    -0.81218475]
+ [-15.849487   -17.654373    -0.54131585]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [24.276125] distance= [24.31799] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[17.441963    3.5089855  -0.49973536]] goals=[[ -6.8393564 -19.03254    -0.5172158]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 9] pos_error= [25.250591 20.002235 28.560303] distance= [25.25476  20.0073   28.622995] progress= [3. 2. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 9] start_pos=[[10.866638    2.2344666  -0.47170812]
+ [11.608803    2.0619488  -0.21650147]
+ [15.694274    1.6960297  -0.4202845 ]] goals=[[ 47.4767      22.689098    -0.73066324]
+ [ 17.364584    23.120241    -0.57922524]
+ [-22.542513   -16.532085    -0.7120521 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6] pos_error= [21.764507 33.12257 ] distance= [21.847107 33.17334 ] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 6] start_pos=[[ 8.17498     4.1900597  -0.02765298]
+ [ 8.781404    3.874878   -0.36823016]] goals=[[ 20.956167    24.23469     -0.55254716]
+ [  5.9892216  -18.695835    -0.30760378]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 6, 9] pos_error= [41.920395 23.773634 22.744816 42.369564] distance= [41.965313 23.8004   22.79436  42.372253] progress= [2. 1. 1. 2.] success= [False False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 6, 9] start_pos=[[ 1.9763069   2.074314   -0.19628125]
+ [ 7.818327    2.1767101  -0.39363223]
+ [ 6.7810535   5.181425   -0.30055046]
+ [17.203402    4.243925   -0.75956845]] goals=[[ 37.154774    21.191307    -0.06418377]
+ [ 20.261944    24.0319      -0.25316453]
+ [ -8.815662   -18.387331    -0.6826635 ]
+ [-19.04141    -15.19743     -0.7090726 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 5, 6] pos_error= [40.038155 25.14847  28.272982] distance= [40.039097 25.163378 28.296535] progress= [1. 1. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 5, 6] start_pos=[[13.218132    3.1364994  -0.1496898 ]
+ [16.443415    2.687191   -0.9975943 ]
+ [15.304909    2.7803936  -0.41518605]] goals=[[ 43.086166    23.22095     -0.8553723 ]
+ [ 17.367996    22.191034    -0.71712977]
+ [ -4.7537174  -16.359533    -0.813139  ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=100 pos=[18.862362    3.3643265  -0.24332382] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.629 wp=[ 30.        -14.         -0.2545005] wp_dist=20.629 wp_tol=1.200 path_idx=0/9 action_raw=[-0.012131284922361374, 0.9928514361381531, 0.102714903652668, 0.38087543845176697] action=[-0.012131284922361374, 0.9928514361381531, 0.102714903652668, 0.38087543845176697] min_range=0.838 depth_min=na wall_min=0.838 maze_min=na obst_min=23.471 safety_min=0.838 front_min=3.480 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=1.852 r_cmd=0.229 target_vel_w=[0.12216317653656006, -0.37806087732315063, 0.018487682566046715]
+[HoverTankPPO] done env_ids= [2] pos_error= [36.017113] distance= [36.058212] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[2] start_pos=[[ 1.6362514  1.0434093 -0.9033511]] goals=[[43.338127   24.183636   -0.35886937]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=100 pos=[18.862362    3.3643265  -0.24332382] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.629 wp=[ 30.        -14.         -0.2545005] wp_dist=20.629 wp_tol=1.200 path_idx=0/9 action_raw=[-0.012131284922361374, 0.9928514361381531, 0.102714903652668, 0.38087543845176697] action=[-0.012131284922361374, 0.9928514361381531, 0.102714903652668, 0.38087543845176697] min_range=0.838 depth_min=na wall_min=0.838 maze_min=na obst_min=23.471 safety_min=0.838 front_min=3.480 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=1.852 r_cmd=0.229 target_vel_w=[0.12216317653656006, -0.37806087732315063, 0.018487682566046715]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [27.76437  41.083126] distance= [27.777985 41.095722] progress= [2. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[14.905067    1.4377556  -0.5533774 ]
+ [10.472038    3.3623905  -0.58662623]] goals=[[  1.6405888  -15.753592    -0.375791  ]
+ [-19.136482   -14.8078165   -0.46468467]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [19.532171] distance= [19.577236] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 0.9156952  4.0749226 -0.9928898]] goals=[[19.570663   21.581034   -0.37208778]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [2, 6, 9] pos_error= [47.673603 21.66393  34.69106 ] distance= [47.685596 21.664509 34.729218] progress= [3. 2. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[2, 6, 9] start_pos=[[10.870617   1.0468636 -0.8337808]
+ [ 3.6297636  1.9794655 -0.4051118]
+ [18.422974   2.8549404 -0.6976301]] goals=[[ 38.900154    22.553701    -0.59868455]
+ [  4.0063686  -18.254677    -0.25319755]
+ [-16.594982   -15.487791    -0.33509028]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6, 9] pos_error= [25.58016  20.248053 39.533672] distance= [25.612505 20.33665  39.583084] progress= [3. 2. 2.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 6, 9] start_pos=[[ 9.400291    3.3746948  -0.13397068]
+ [ 1.00247     2.563177   -0.68762517]
+ [ 8.8284645   3.3634453  -0.6725359 ]] goals=[[ 25.749142   22.15746    -0.1351316]
+ [ -3.6783342 -17.96352    -0.7865326]
+ [-18.80468   -15.922546   -0.422405 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [24.915102] distance= [24.923275] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 5.308588   2.0766258 -0.4779498]] goals=[[21.417889 23.409618 -0.904917]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [21.075172 33.700127] distance= [21.140835 33.71092 ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[12.8286495   4.2841425  -0.36095482]
+ [19.09058     1.8057175  -0.13824314]] goals=[[ -0.7452965 -15.612877   -0.862798 ]
+ [-23.963034  -15.4314575  -0.6201497]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6, 9] pos_error= [26.738632 24.103043 46.388683] distance= [26.807507 24.173346 46.417187] progress= [2. 1. 1.] success= [False False False]
+[HoverTankPPO] reset env_ids=[5, 6, 9] start_pos=[[14.480206    4.3939514  -0.7095732 ]
+ [ 2.3585424   2.0174046  -0.8232596 ]
+ [13.402317    3.8051147  -0.15293217]] goals=[[ 15.824514    22.869492    -0.46133155]
+ [ -5.890739   -15.087254    -0.63022643]
+ [-15.294956   -15.451288    -0.9303208 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [34.574593] distance= [34.593296] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[18.62456    4.6386566 -0.9399984]] goals=[[-20.888039  -18.12696    -0.8989275]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [18.54153] distance= [18.54966] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 4.0704403  1.6824322 -0.9191073]] goals=[[ 2.5820124e+01  2.2304155e+01 -1.0120213e-02]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.012714] distance= [19.115772] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 7.144797    4.5051937  -0.05131435]] goals=[[  4.5643024  -16.664164    -0.53605926]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [21.348879 45.66704 ] distance= [21.40459  45.710648] progress= [1. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 4.1131926   1.3956127  -0.7908935 ]
+ [ 2.6797066   2.1754398  -0.21409959]] goals=[[  2.9631424  -16.942377    -0.47764885]
+ [-19.27995    -18.239246    -0.38450402]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 9] pos_error= [29.992327 29.988571] distance= [30.003939 30.047304] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 9] start_pos=[[ 2.2047195   2.0398445  -0.06274849]
+ [ 8.826525    1.7707672  -0.8346014 ]] goals=[[ 18.207737    21.769777    -0.35308772]
+ [-16.515778   -16.65092     -0.13506562]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6] pos_error= [25.409615 18.478539] distance= [25.472868 18.585083] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 6] start_pos=[[ 3.0178394  5.069742  -0.9168541]
+ [ 3.9107919  2.184555  -0.8857653]] goals=[[ 14.351445   22.266954   -0.7993855]
+ [  5.877906  -18.096481   -0.6046005]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [31.337566] distance= [31.375847] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 9.349442   3.083891  -0.4953851]] goals=[[-18.337038  -15.393547   -0.9962156]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6] pos_error= [20.631777 20.42275 ] distance= [20.635323 20.517626] progress= [3. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 6] start_pos=[[ 8.091152    3.573944   -0.40076083]
+ [ 5.9125543   2.549364   -0.82709473]] goals=[[ 23.68879     23.942932    -0.63115543]
+ [  8.116972   -15.386504    -0.09010023]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [33.319904] distance= [33.356583] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[17.012253    3.3880787  -0.05821764]] goals=[[-18.558199   -17.131004    -0.75812143]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 9] pos_error= [25.64823  41.089024] distance= [25.720892 41.121227] progress= [2. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 9] start_pos=[[ 8.180687    1.7175617  -0.8363665 ]
+ [16.041231    2.9289627  -0.16470224]] goals=[[ 2.7522467e+01  2.1585152e+01 -8.9955330e-03]
+ [-2.3850664e+01 -1.6367907e+01 -9.2869294e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [18.058266 44.33247 ] distance= [18.061283 44.37706 ] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 6.8487444   1.51865    -0.89935374]
+ [ 9.737095    2.6649876  -0.51789415]] goals=[[ -7.289893   -15.965956    -0.69519556]
+ [-16.253056   -18.246117    -0.59775954]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 9] pos_error= [27.738983 33.382515] distance= [27.740572 33.392685] progress= [3. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 9] start_pos=[[16.734293    2.3467312  -0.3358972 ]
+ [15.713404    0.9875641  -0.88406926]] goals=[[ 19.98399    21.692497   -0.9029506]
+ [-13.786583  -16.880417   -0.4727586]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6] pos_error= [19.640913 22.516321] distance= [19.662714 22.581835] progress= [1. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 6] start_pos=[[ 3.7244492   1.4408054  -0.03406382]
+ [ 6.9212413   1.0726738  -0.74796855]] goals=[[ 17.624893   23.363123   -0.588757 ]
+ [  9.080313  -18.271997   -0.6511343]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [25.985964] distance= [25.988083] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[18.413034   2.381092  -0.4790098]] goals=[[16.911526   22.578339   -0.34386063]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [19.471033 34.52197 ] distance= [19.495964 34.57909 ] progress= [2. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.902475    4.013912   -0.35771954]
+ [12.216244    4.4890957  -0.57656384]] goals=[[ -4.666201   -18.073952    -0.73504907]
+ [-21.935543   -15.156023    -0.341213  ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5, 6] pos_error= [20.217438 26.471655] distance= [20.21894  26.474802] progress= [2. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[5, 6] start_pos=[[17.36879     3.8880692  -0.98096335]
+ [ 3.071344    4.797864   -0.48106748]] goals=[[ 24.417284   20.963045   -0.5943177]
+ [  5.4146347 -18.11332    -0.5265543]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [39.427895] distance= [39.429855] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 7.6961555   3.8619118  -0.20029658]] goals=[[-15.933862  -18.935596   -0.9116696]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [23.038998 32.85444 ] distance= [23.066982 32.86259 ] progress= [2. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.0576515   3.3283253  -0.9302508 ]
+ [ 4.038189    1.2813835  -0.55831915]] goals=[[ -6.979005   -17.0114      -0.92076623]
+ [-12.193481   -18.799221    -0.89767915]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [25.820026] distance= [25.823036] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 4.7160435   3.3831196  -0.35248363]] goals=[[-20.541847   -17.349365    -0.35496265]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [25.92495 32.68002] distance= [25.998772 32.73574 ] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 4.96184     4.2780666  -0.5195051 ]
+ [18.393164    0.9082985  -0.60102004]] goals=[[  2.453394   -18.180305    -0.41433597]
+ [-22.343418   -15.366358    -0.39591342]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [22.603752 43.890137] distance= [22.605621 43.92801 ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 1.9400673   4.5447407  -0.2788024 ]
+ [ 0.9309826   4.876587   -0.18991631]] goals=[[ -4.439895   -17.61734     -0.84115684]
+ [-27.641819   -18.339394    -0.5837411 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [23.080347 36.824806] distance= [23.083435 36.83386 ] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 3.8376904  3.4836063 -0.8683519]
+ [15.88532    4.4542637 -0.9177492]] goals=[[ -0.6708336 -17.92527    -0.3536976]
+ [-27.415289  -15.267376   -0.5839377]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [21.72011  47.586143] distance= [21.78951 47.60838] progress= [3. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[10.774017    4.493225   -0.9331903 ]
+ [ 8.661846    2.6305428  -0.09446806]] goals=[[ -6.171046   -16.109694    -0.40603274]
+ [-12.76269    -18.742056    -0.3963691 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [30.255955] distance= [30.321789] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 8.611256    3.788519   -0.33335054]] goals=[[-11.786425   -18.534155    -0.76255375]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [30.291855] distance= [30.354183] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 3.1656609   1.6203556  -0.28226697]] goals=[[-26.993055   -15.014332    -0.10516554]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [26.69456  34.440235] distance= [26.721783 34.4913  ] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 8.117093    0.9777527  -0.6209015 ]
+ [11.154474    1.4104958  -0.22334999]] goals=[[ -6.3972178  -17.700611    -0.48079818]
+ [-25.652609   -16.909039    -0.1854412 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [41.00288] distance= [41.05038] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 2.0202808   2.5807858  -0.40616244]] goals=[[-12.37096    -16.730913    -0.32481974]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.664877] distance= [23.678633] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 8.707024   2.1500454 -0.9824444]] goals=[[  4.1017914 -17.111576   -0.7527251]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [24.092888] distance= [24.109177] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 8.234482    1.8722019  -0.41160762]] goals=[[-24.440418   -16.671883    -0.36472785]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [19.834127 37.574986] distance= [19.927494 37.62098 ] progress= [3. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[10.394267    4.167569   -0.14761358]
+ [13.728104    1.7968884  -0.662896  ]] goals=[[ -8.491562   -19.195332    -0.4736501 ]
+ [-19.637192   -17.106009    -0.69464153]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [30.047993] distance= [30.107025] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[18.051987    3.088108   -0.76841515]] goals=[[ -8.345      -18.575645    -0.34233093]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [38.358868] distance= [38.36285] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 1.3131523  3.0228329 -0.6842666]] goals=[[-26.292913   -15.713927    -0.48878753]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [34.060616] distance= [34.062054] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 1.5034098e+01  2.3362465e+00 -1.0674477e-02]] goals=[[ -4.795461   -17.777773    -0.21773463]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [28.262571 33.37208 ] distance= [28.299637 33.41747 ] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 4.147689    2.743639   -0.54739356]
+ [15.348954    5.1233892  -0.52678096]] goals=[[ -4.976884   -16.21723     -0.56321263]
+ [-25.871868   -18.433437    -0.9601422 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=150 pos=[18.841015    3.245676   -0.23433894] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.541 wp=[ 30.        -14.         -0.2545005] wp_dist=20.541 wp_tol=1.200 path_idx=0/9 action_raw=[0.9503498077392578, -0.2742598056793213, 0.7855329513549805, 0.050922855734825134] action=[0.9503498077392578, -0.2742598056793213, 0.7855329513549805, 0.050922855734825134] min_range=0.859 depth_min=na wall_min=0.859 maze_min=na obst_min=23.396 safety_min=0.859 front_min=2.957 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=1.362 r_cmd=0.575 target_vel_w=[-0.49257713556289673, -0.3354352116584778, 0.08190099895000458]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [21.00142  47.487286] distance= [21.016182 47.51565 ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.144317    2.3334007  -0.83060807]
+ [ 8.755531    2.14575    -0.9003219 ]] goals=[[ -0.6821127  -16.476177    -0.04998255]
+ [-12.031906   -18.145325    -0.5317613 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [21.243628 29.049828] distance= [21.244318 29.060284] progress= [3. 3.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 3.1735816   3.2461033  -0.16065389]
+ [ 3.0929146   3.8761063  -0.11411607]] goals=[[ -2.4071283  -18.488243    -0.12327707]
+ [-19.1041     -16.367542    -0.9686512 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [22.445395 30.060648] distance= [22.454659 30.070272] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 7.6164827   3.0831432  -0.06433427]
+ [12.92664     4.4613113  -0.68086874]] goals=[[  3.8449507  -18.540049    -0.44510645]
+ [-19.58693    -15.357271    -0.14913714]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.933472] distance= [21.949226] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[14.077991    2.601759   -0.10038704]] goals=[[ -0.7117491  -15.791512    -0.79158854]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [23.617012 38.20635 ] distance= [23.644493 38.22443 ] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[11.324612    1.003458   -0.78500193]
+ [10.372379    3.3893757  -0.57527524]] goals=[[ -7.8148146  -16.524488    -0.41506678]
+ [-15.774847   -17.551962    -0.0361737 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [25.95232  33.459686] distance= [25.95963  33.498123] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 1.7278547  4.320034  -0.6084323]
+ [18.94394    3.7610474 -0.5268946]] goals=[[ -8.919421   -15.396442    -0.88350224]
+ [-17.07471    -16.339268    -0.39849502]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [22.435997 41.26125 ] distance= [22.497984 41.276028] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.220374    3.9227257  -0.14381152]
+ [ 4.9986763   3.4372616  -0.80136365]] goals=[[  3.4578161  -15.108608    -0.11451435]
+ [-22.837639   -17.466953    -0.85464025]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.894007] distance= [19.905863] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[11.320865    0.94908905 -0.66357195]] goals=[[  2.6412344  -17.257137    -0.07768768]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [34.832043] distance= [34.86328] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 5.7720184   2.018917   -0.29720032]] goals=[[-14.012149  -17.745304   -0.9960239]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [27.980333] distance= [28.020283] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 8.622044   3.3486462 -0.8418276]] goals=[[-14.376651  -17.831682   -0.0418818]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.15255] distance= [20.24664] progress= [4.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 2.7200317   2.7478065  -0.70579064]] goals=[[  1.2347174  -18.312325    -0.65878814]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [31.292448] distance= [31.338251] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[10.91745    5.098981  -0.6703008]] goals=[[-26.885567  -15.345052   -0.4518661]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.124172] distance= [21.145267] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[18.560543   1.9032764 -0.7876086]] goals=[[  6.866644  -18.379482   -0.5634172]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [42.981224] distance= [43.02639] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[18.655533    4.54858    -0.75319296]] goals=[[-13.964714  -17.958223   -0.7269925]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.410856] distance= [23.427372] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 7.8309784   0.98231125 -0.27537847]] goals=[[  0.66700554 -17.208488    -0.89745706]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [19.576666 39.6408  ] distance= [19.582516 39.64739 ] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 8.94501     1.9132442  -0.6798362 ]
+ [13.594255    4.9811726  -0.04490912]] goals=[[ -7.6930637  -15.932999    -0.06195432]
+ [-26.560638   -19.05951     -0.7940181 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [46.791763] distance= [46.822765] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 6.0235806  4.382366  -0.3256526]] goals=[[-11.101942   -15.283756    -0.46679538]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [24.400885 26.084078] distance= [24.466331 26.14283 ] progress= [2. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[11.460653    2.5772629  -0.22851986]
+ [15.642513    1.0582733  -0.19637346]] goals=[[ -5.262843   -18.418       -0.2641815 ]
+ [-11.276485   -18.619747    -0.38721192]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [26.849041 33.350323] distance= [26.91227  33.359318] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 8.095512    1.1472206  -0.34613603]
+ [ 6.435993    2.6247826  -0.4812144 ]] goals=[[ -2.7612119  -16.492456    -0.31223232]
+ [-27.855307   -19.048357    -0.56962556]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.71454] distance= [20.737024] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 7.151693    4.801092   -0.45702672]] goals=[[  3.5345888  -16.039364    -0.11426663]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [40.56891] distance= [40.59649] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[18.154175    2.5581474  -0.81350994]] goals=[[-18.264917   -16.739323    -0.09358758]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.167185] distance= [21.25813] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 5.425697   2.2632713 -0.9439565]] goals=[[ -6.1983457  -17.846426    -0.31794196]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [41.2395] distance= [41.24428] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[16.631721   4.3717775 -0.6533901]] goals=[[-24.292076  -18.108662   -0.5355091]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.249327] distance= [23.263336] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[19.099463   3.6212807 -0.4438675]] goals=[[ -8.877501  -19.062397   -0.4384054]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [46.676926] distance= [46.715393] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[16.587282    2.5813828  -0.20191008]] goals=[[-12.845348   -17.681446    -0.21394134]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [35.999973 35.735886] distance= [36.01202 35.77473] progress= [2. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 6.3079414   4.969452   -0.02025217]
+ [13.390934    4.625971   -0.29378527]] goals=[[ -7.748909   -15.945093    -0.74790585]
+ [-16.761917   -17.05853     -0.568531  ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [25.225403 37.146645] distance= [25.297632 37.14944 ] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[15.707903    2.978054   -0.1245566 ]
+ [11.043011    3.4668941  -0.25183702]] goals=[[ -1.2505751  -17.834122    -0.6308519 ]
+ [-27.69023    -16.755754    -0.03466439]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [26.849443 43.698177] distance= [26.918303 43.734917] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[16.538183   4.385112  -0.5098862]
+ [14.582354   1.1312084 -0.5585879]] goals=[[  4.4318123  -18.666527    -0.72755057]
+ [-25.10197    -16.858576    -0.27225822]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [26.039688 43.568707] distance= [26.085617 43.57188 ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[13.192387    4.466113   -0.64002067]
+ [17.507778    1.8123741  -0.48636305]] goals=[[ -4.5977974  -17.322544    -0.02713388]
+ [-19.96401    -16.21261     -0.7847436 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [28.128815 41.69695 ] distance= [28.190485 41.701508] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 1.8733576e+01  2.5101891e+00 -3.7097651e-01]
+ [ 1.8300604e+01  1.0736523e+00 -5.2316189e-03]] goals=[[ -7.738953   -18.107658    -0.86077696]
+ [-26.25159    -15.400959    -0.3840438 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [33.5702   47.509388] distance= [33.575405 47.527523] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[15.849795    1.3504734  -0.80984956]
+ [17.99592     1.341053   -0.74329406]] goals=[[ 1.5605669e+00 -1.7025833e+01 -4.8955083e-03]
+ [-2.0688435e+01 -1.6716742e+01 -8.4423006e-01]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [42.703896] distance= [42.75066] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[ 3.2167454   1.8119564  -0.02439076]] goals=[[-17.428242  -15.118375   -0.5949058]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [23.266026 26.691116] distance= [23.290907 26.758148] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[16.008131    4.875107   -0.6669808 ]
+ [12.650181    2.2589455  -0.49908715]] goals=[[ -7.899523   -16.910181    -0.8064845 ]
+ [-11.197386   -17.08419     -0.14403754]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [32.37602  30.730108] distance= [32.38306 30.78697] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[11.999699    1.9578857  -0.38414937]
+ [15.427288    3.5571308  -0.21359092]] goals=[[  7.387594   -14.945358    -0.88272506]
+ [-26.239698   -18.253813    -0.51323   ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [17.492659 47.03516 ] distance= [17.49515  47.068455] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 6.0318856  4.972438  -0.9370383]
+ [14.707373   3.998951  -0.7550613]] goals=[[ -7.341874   -18.591682    -0.40820825]
+ [-28.036674   -15.587082    -0.05408013]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [47.02202] distance= [47.035496] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[11.289312    1.438385   -0.44558668]] goals=[[-15.604039  -18.204245   -0.9264894]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [27.102768] distance= [27.103735] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 4.5839367  2.6841106 -0.3957705]] goals=[[ -0.5451231  -15.6496105   -0.54913056]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [19.04499  33.294025] distance= [19.05419 33.31044] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 1.6305178e+01  4.6768703e+00 -1.2931824e-02]
+ [ 1.8858505e+01  9.9430275e-01 -2.0728582e-01]] goals=[[ -4.1228986 -17.1768     -0.3915909]
+ [-14.791177  -17.327925   -0.7537375]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=200 pos=[18.703918    3.144186   -0.16459332] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.531 wp=[ 30.        -14.         -0.2545005] wp_dist=20.531 wp_tol=1.200 path_idx=0/9 action_raw=[0.2932434380054474, 0.31056684255599976, -0.7490707635879517, 0.2880213260650635] action=[0.2932434380054474, 0.31056684255599976, -0.7490707635879517, 0.2880213260650635] min_range=0.996 depth_min=na wall_min=0.996 maze_min=na obst_min=23.410 safety_min=0.996 front_min=2.184 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=0.894 r_cmd=0.173 target_vel_w=[0.061289746314287186, -0.21285408735275269, -0.14060693979263306]
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [29.928467 38.325954] distance= [29.979595 38.328976] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[14.898405    1.0620804  -0.52090806]
+ [16.908361    1.4848785  -0.6019705 ]] goals=[[  1.0103283  -16.985767    -0.62643564]
+ [-20.124176   -16.846315    -0.83909494]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=200 pos=[18.703918    3.144186   -0.16459332] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.531 wp=[ 30.        -14.         -0.2545005] wp_dist=20.531 wp_tol=1.200 path_idx=0/9 action_raw=[0.2932434380054474, 0.31056684255599976, -0.7490707635879517, 0.2880213260650635] action=[0.2932434380054474, 0.31056684255599976, -0.7490707635879517, 0.2880213260650635] min_range=0.996 depth_min=na wall_min=0.996 maze_min=na obst_min=23.410 safety_min=0.996 front_min=2.184 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=0.894 r_cmd=0.173 target_vel_w=[0.061289746314287186, -0.21285408735275269, -0.14060693979263306]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [22.79491 41.33204] distance= [22.865244 41.33431 ] progress= [2. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.55757     3.3485432  -0.17310011]
+ [ 6.258747    4.9434395  -0.19014364]] goals=[[  7.398758  -16.997929   -0.2447387]
+ [-21.583206  -18.658047   -0.5124897]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [20.465355 36.504505] distance= [20.513601 36.55408 ] progress= [1. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[ 9.702084    0.8419266  -0.18501884]
+ [18.5584      1.1505756  -0.40411508]] goals=[[ -2.9115534  -16.86579     -0.64727616]
+ [-28.15718    -15.515849    -0.64494914]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.75694] distance= [21.787111] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 7.4376454  4.721878  -0.8406001]] goals=[[ -6.1657553 -17.942692   -0.6852672]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [49.592915] distance= [49.595066] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[16.60401     1.7444172  -0.09142423]] goals=[[-21.117952  -18.964119   -0.8790415]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [9] pos_error= [43.032585] distance= [43.035625] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[9] start_pos=[[10.701584    3.0796661  -0.26175272]] goals=[[-17.834576  -16.872322   -0.4623118]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [26.520391 34.825916] distance= [26.59378 34.86491] progress= [3. 1.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[18.000563    3.5616913  -0.28893948]
+ [13.755268    2.5619812  -0.7524416 ]] goals=[[  7.575817  -17.992737   -0.9232878]
+ [-23.21998   -18.930326   -0.7480784]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.96489] distance= [24.025785] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[10.364195    3.923092   -0.18894559]] goals=[[ -4.6035495 -17.217419   -0.4215824]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6, 9] pos_error= [25.911207 42.776352] distance= [25.974434 42.799797] progress= [1. 2.] success= [False False]
+[HoverTankPPO] reset env_ids=[6, 9] start_pos=[[13.340568    3.5289936  -0.47417086]
+ [17.771196    4.269058   -0.46025854]] goals=[[  2.0731745  -15.215123    -0.21715337]
+ [-20.368698   -15.16324     -0.20856106]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.871777] distance= [21.929916] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[14.95389     1.7759876  -0.88427407]] goals=[[  8.326168   -18.028511    -0.09056097]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.899649] distance= [20.9519] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 9.899629   3.9567852 -0.7180115]] goals=[[  8.674433  -18.903658   -0.3403601]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [22.896683] distance= [22.965443] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[18.813158    1.0486774  -0.48249334]] goals=[[  4.355709   -17.52523     -0.69613653]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.55224] distance= [23.553865] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 1.4047241  3.5644455 -0.8181068]] goals=[[ -1.315012  -15.412998   -0.7026076]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.217445] distance= [19.21964] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 4.7000046   1.5905609  -0.71813756]] goals=[[  2.2315235  -15.188398    -0.07969409]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [16.960798] distance= [17.0037] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[12.731344    1.5734291  -0.38223404]] goals=[[  0.61075306 -17.352453    -0.04336154]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [22.477497] distance= [22.490602] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 6.141576    0.96707535 -0.2591446 ]] goals=[[ -0.5433254 -17.726969   -0.8359227]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.87762] distance= [19.93997] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 4.2102923   2.0776138  -0.56458414]] goals=[[  8.599176   -17.213966    -0.13503313]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.833416] distance= [19.918283] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[10.473353   3.1711197 -0.8956961]] goals=[[  4.8034897  -15.625993    -0.42465645]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.650637] distance= [19.72947] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 7.7724295   4.4608727  -0.40181178]] goals=[[  1.1202908 -15.007629   -0.580181 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.569523] distance= [20.664738] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 2.3564773  2.1130943 -0.0574373]] goals=[[ -5.442434   -18.595238    -0.49713153]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [22.148869] distance= [22.150064] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 5.403158   1.4462891 -0.754215 ]] goals=[[ -1.7082605  -17.480412    -0.48638391]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.224554] distance= [20.321367] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[11.148416    3.0321674  -0.04404253]] goals=[[ -8.970509   -18.9929      -0.64193135]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [29.8406] distance= [29.866734] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 6.3279653  2.008873  -0.9586481]] goals=[[  1.4805813  -18.999208    -0.42663598]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.561462] distance= [21.652422] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 6.6351185  1.0973682 -0.5507779]] goals=[[ -0.50642395 -15.859802    -0.32259303]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [18.41557] distance= [18.453642] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 2.1847906   3.5880642  -0.66898024]] goals=[[ -2.0773025  -18.342508    -0.66274023]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [22.356375] distance= [22.431995] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 3.3064213   3.7530499  -0.13205451]] goals=[[ -6.7939115  -16.96656     -0.42593706]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.05543] distance= [23.064459] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[15.338312    2.631483   -0.23821849]] goals=[[  3.485158   -19.118898    -0.15720946]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [24.77208] distance= [24.795158] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 9.347466   1.6358147 -0.3696677]] goals=[[  3.406581   -18.961996    -0.14392442]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.439095] distance= [21.53033] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 2.9813967   2.696869   -0.23639107]] goals=[[ -4.662258  -15.6059885  -0.3132797]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [19.838419] distance= [19.90392] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[ 9.884568    1.2679768  -0.17987639]] goals=[[ -0.16626167 -16.730877    -0.17219675]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [20.616278] distance= [20.632448] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[10.678721   3.8187332 -0.8685553]] goals=[[  3.2826319 -19.059797   -0.963304 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=250 pos=[18.623955    3.0375004  -0.10065178] goal=[ 39.989063 -18.516356  -0.63912 ] dist=20.487 wp=[ 30.        -14.         -0.2545005] wp_dist=20.487 wp_tol=1.200 path_idx=0/9 action_raw=[0.37258222699165344, 0.09132128208875656, 0.11288594454526901, 0.29879051446914673] action=[0.37258222699165344, 0.09132128208875656, 0.11288594454526901, 0.29879051446914673] min_range=1.076 depth_min=na wall_min=1.076 maze_min=na obst_min=23.385 safety_min=1.076 front_min=1.399 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.494 r_cmd=0.179 target_vel_w=[0.057863689959049225, -0.2201593816280365, -3.290455788373947e-05]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [24.108381] distance= [24.187214] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[13.166625   3.7952538 -0.3457213]] goals=[[  6.6841145 -17.711416   -0.742863 ]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [22.475348] distance= [22.494524] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[12.825675    1.028122   -0.76946074]] goals=[[ -8.997129   -17.574455    -0.90380085]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [28.826883] distance= [28.830389] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[19.142159    4.5924196  -0.38511062]] goals=[[  6.553173   -17.50998     -0.44313198]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [25.44143] distance= [25.51083] progress= [1.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[11.113026    3.3202171  -0.41169548]] goals=[[  4.397541  -19.161972   -0.9666847]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [23.508184] distance= [23.542698] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[15.803932    2.4574947  -0.84611136]] goals=[[  8.612345  -18.00514    -0.1716575]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [6] pos_error= [21.668238] distance= [21.673443] progress= [3.] success= [False]
+[HoverTankPPO] reset env_ids=[6] start_pos=[[17.220854   4.737097  -0.8595011]] goals=[[ -8.310535  -17.243376   -0.4107309]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [18.570839] distance= [18.641294] progress= [149.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 5.63793     2.8394775  -0.41370267]] goals=[[11.958077  23.425764  -0.1538831]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [21.548697] distance= [21.640787] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 8.422428   4.1296043 -0.5328679]] goals=[[17.037403  20.857786  -0.6665096]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [18.827206] distance= [18.872812] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 6.921894   1.9494457 -0.4037962]] goals=[[16.058506 23.199493 -0.706073]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [23.145075] distance= [23.167442] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[10.983219   1.5480251 -0.2973637]] goals=[[24.342913   23.223778   -0.53269804]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [25.507786] distance= [25.561407] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 8.2218     3.0737534 -0.6026452]] goals=[[18.352924   22.812843   -0.36751157]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [22.191525] distance= [22.273954] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[ 0.9755373  4.329975  -0.506895 ]] goals=[[18.92735   24.870228  -0.0656895]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] done env_ids= [5] pos_error= [27.273405] distance= [27.317091] progress= [2.] success= [False]
+[HoverTankPPO] reset env_ids=[5] start_pos=[[14.527252    0.8394356  -0.56136686]] goals=[[27.987926   20.973816   -0.17908883]]
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'

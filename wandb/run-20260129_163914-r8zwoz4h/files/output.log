@@ -1,0 +1,633 @@
+/home/md-ether/isaac51/kit/python/lib/python3.11/site-packages/torch/cuda/__init__.py:654: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+[HoverTankPPO] reset env_ids=[0] start_pos=[[14.039843    1.7669529  -0.20344067]] goals=[[ 4.1916394  2.2372186 -0.3177877]]
+[HoverTankPPO] plan_local env=0 start_local=[14.03984260559082, 1.7669528722763062, -0.20344066619873047] goal_local=[4.191639423370361, 2.2372186183929443, -0.31778770685195923] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] step=0 pos=[14.039843    1.7669529  -0.20344067] goal=[ 4.1916394  2.2372186 -0.3177877] dist=0.000 wp=[14.039843    1.7669529  -0.20344067] wp_dist=0.000 wp_tol=1.200 path_idx=0/8 action_raw=[0.0, 0.0, 0.0, 0.0] action=[0.0, 0.0, 0.0, 0.0] min_range=1.189 depth_min=na wall_min=1.467 maze_min=na obst_min=1.189 safety_min=1.189 front_min=3.939 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.000 r_cmd=0.000 target_vel_w=[0.0, 0.0, 0.0]
+/home/md-ether/MarineGym-main/marinegym/robots/drone/underwaterVehicle.py:175: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera read failed: unsupported operand type(s) for -: 'NoneType' and 'NoneType'
+[HoverTankPPO] depth camera disabled after repeated failures
+iter=0 frames=32 reward_mean=0.4680 progress=0.0% eta=66449.4s
+[train_ppo_behavior] saved checkpoint: /home/md-ether/MarineGym-main/bluerov_manual/checkpoints/ppo_behavior_iter_0.pt
+/home/md-ether/MarineGym-main/marinegym/robots/drone/underwaterVehicle.py:175: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  thrusts, moments = vmap(vmap(self.rotors, randomness="different"), randomness="same")(
+[HoverTankPPO] step=50 pos=[14.029121   1.6062913 -0.1218431] goal=[ 4.1916394  2.2372186 -0.3177877] dist=2.006 wp=[12.121537    2.1777847  -0.36547235] wp_dist=2.006 wp_tol=1.200 path_idx=1/8 action_raw=[0.0853138118982315, -0.20730189979076385, 0.6012547016143799, 0.7487218379974365] action=[0.0853138118982315, -0.20730189979076385, 0.6012547016143799, 0.7487218379974365] min_range=1.259 depth_min=na wall_min=1.306 maze_min=na obst_min=1.259 safety_min=1.259 front_min=4.102 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.699 r_cmd=0.449 target_vel_w=[0.037488821893930435, 0.09588133543729782, 0.11557572335004807]
+[HoverTankPPO] step=100 pos=[14.261978   1.4622074 -0.1186388] goal=[ 4.1916394  2.2372186 -0.3177877] dist=2.270 wp=[12.121537    2.1777847  -0.36547235] wp_dist=2.270 wp_tol=1.200 path_idx=1/8 action_raw=[0.18031498789787292, 0.3771442472934723, 0.0032157599925994873, 0.19766086339950562] action=[0.18031498789787292, 0.3771442472934723, 0.0032157599925994873, 0.19766086339950562] min_range=1.105 depth_min=na wall_min=1.162 maze_min=na obst_min=1.105 safety_min=1.105 front_min=2.886 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.133 r_cmd=0.077 target_vel_w=[-0.032407380640506744, -0.01774413511157036, -0.003666102420538664]
+[HoverTankPPO] step=150 pos=[14.385618    1.367443   -0.18488522] goal=[ 4.1916394  2.2372186 -0.3177877] dist=2.411 wp=[12.121537    2.1777847  -0.36547235] wp_dist=2.411 wp_tol=1.200 path_idx=1/8 action_raw=[0.23439985513687134, -0.5280331969261169, 0.23463642597198486, 0.6768940687179565] action=[0.23439985513687134, -0.5280331969261169, 0.23463642597198486, 0.6768940687179565] min_range=1.030 depth_min=na wall_min=1.067 maze_min=na obst_min=1.030 safety_min=1.030 front_min=2.174 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.072 r_cmd=0.406 target_vel_w=[-0.0816209465265274, 0.24203631281852722, 0.03673199564218521]
+[HoverTankPPO] step=200 pos=[14.217842    1.3974159  -0.16856776] goal=[ 4.1916394  2.2372186 -0.3177877] dist=2.245 wp=[12.121537    2.1777847  -0.36547235] wp_dist=2.245 wp_tol=1.200 path_idx=1/8 action_raw=[0.5988011956214905, -0.8347153067588806, 0.3813554644584656, 0.304927259683609] action=[0.5988011956214905, -0.8347153067588806, 0.3813554644584656, 0.304927259683609] min_range=1.097 depth_min=na wall_min=1.097 maze_min=na obst_min=1.158 safety_min=1.097 front_min=1.646 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.301 r_cmd=-0.084 target_vel_w=[-0.06402988731861115, 0.07022058218717575, 0.028713034465909004]
+[HoverTankPPO] step=250 pos=[13.919156    1.4734727  -0.05102634] goal=[ 4.1916394  2.2372186 -0.3177877] dist=1.956 wp=[12.121537    2.1777847  -0.36547235] wp_dist=1.956 wp_tol=1.200 path_idx=1/8 action_raw=[0.4006359279155731, 0.6258538365364075, 0.7730189561843872, 0.3617452085018158] action=[0.4006359279155731, 0.6258538365364075, 0.7730189561843872, 0.3617452085018158] min_range=1.173 depth_min=na wall_min=1.173 maze_min=na obst_min=1.420 safety_min=1.173 front_min=1.446 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.541 r_cmd=0.217 target_vel_w=[-0.19077089428901672, -0.28587403893470764, 0.1619846373796463]
+[HoverTankPPO] step=300 pos=[13.686686    1.7290646  -0.01868724] goal=[ 4.1916394  2.2372186 -0.3177877] dist=1.665 wp=[12.121537    2.1777847  -0.36547235] wp_dist=1.665 wp_tol=1.200 path_idx=1/8 action_raw=[0.8900936841964722, -0.20592954754829407, -0.015385210514068604, 0.8053668737411499] action=[0.8900936841964722, -0.20592954754829407, -0.015385210514068604, 0.8053668737411499] min_range=1.429 depth_min=na wall_min=1.429 maze_min=na obst_min=1.578 safety_min=1.429 front_min=1.459 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.881 r_cmd=0.483 target_vel_w=[-0.48229578137397766, -0.2301468849182129, -0.08021138608455658]
+[HoverTankPPO] done env_ids= [0] pos_error= [9.325126] distance= [9.368044] progress= [319.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[ 4.351667    2.472218   -0.77092034]] goals=[[ 7.720107    3.9339411  -0.31334192]]
+[HoverTankPPO] plan_local env=0 start_local=[4.3516669273376465, 2.4722180366516113, -0.7709203362464905] goal_local=[7.720107078552246, 3.933941125869751, -0.3133419156074524] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[ 4.351667    2.472218   -0.77092034] goal=[ 7.720107    3.9339411  -0.31334192] dist=0.000 wp=[ 4.351667    2.472218   -0.77092034] wp_dist=0.000 wp_tol=1.200 path_idx=0/5 action_raw=[-0.3110131323337555, -0.9807681441307068, -0.5962939858436584, 0.8286736011505127] action=[-0.3110131323337555, -0.9807681441307068, -0.5962939858436584, 0.8286736011505127] min_range=0.321 depth_min=na wall_min=2.172 maze_min=na obst_min=0.321 safety_min=0.321 front_min=4.566 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=-1.176 r_cmd=0.497 target_vel_w=[-0.1823025941848755, 0.3872641324996948, -0.14050760865211487]
+[HoverTankPPO] plan_local env=0 start_local=[4.3516669273376465, 2.4722180366516113, -0.7709203362464905] goal_local=[7.720107078552246, 3.933941125869751, -0.3133419156074524] bounds_min=[0.0, 0.0, -2.0] bounds_max=[20.0, 6.0, 2.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+/home/md-ether/MarineGym-main/bluerov_manual/src/bluerov_manual/envs/hover_tank_ppo.py:341: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+iter=10 frames=352 reward_mean=0.1302 progress=0.0% eta=114825.4s
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=50 pos=[ 4.494632   2.436719  -0.7151658] goal=[ 7.720107    3.9339411  -0.31334192] dist=0.991 wp=[ 5.469906   2.5284522 -0.5671066] wp_dist=0.991 wp_tol=1.200 path_idx=1/5 action_raw=[1.3747735023498535, -0.7448247671127319, 0.1943153291940689, 1.1037461757659912] action=[1.0, -0.7448247671127319, 0.1943153291940689, 1.0] min_range=0.387 depth_min=na wall_min=2.137 maze_min=na obst_min=0.387 safety_min=0.387 front_min=3.541 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=-0.380 r_cmd=0.600 target_vel_w=[0.6641749739646912, -0.05429680272936821, 0.07871481776237488]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=100 pos=[ 4.9766126   2.3502498  -0.64661276] goal=[ 7.720107    3.9339411  -0.31334192] dist=1.373 wp=[ 6.058953   3.1947422 -0.6182768] wp_dist=1.373 wp_tol=1.200 path_idx=1/4 action_raw=[0.5639369487762451, -0.8593701720237732, 0.0487675741314888, 0.8702135682106018] action=[0.5639369487762451, -0.8593701720237732, 0.0487675741314888, 0.8702135682106018] min_range=0.737 depth_min=na wall_min=2.050 maze_min=na obst_min=0.737 safety_min=0.737 front_min=2.141 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-0.210 r_cmd=0.522 target_vel_w=[0.47784560918807983, 0.03284936025738716, 0.05771786719560623]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=150 pos=[ 5.4343085   2.5592752  -0.46693462] goal=[ 7.720107    3.9339411  -0.31334192] dist=2.387 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=2.387 wp_tol=1.200 path_idx=2/4 action_raw=[1.080016016960144, -0.7415645122528076, 0.35450294613838196, 0.7814751863479614] action=[1.0, -0.7415645122528076, 0.35450294613838196, 0.7814751863479614] min_range=0.730 depth_min=na wall_min=2.259 maze_min=na obst_min=0.730 safety_min=0.730 front_min=3.188 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-0.666 r_cmd=-0.173 target_vel_w=[0.10570936650037766, 0.0753040760755539, 0.03571241348981857]
+[HoverTankPPO] step=200 pos=[ 5.7744474   2.7269213  -0.34894773] goal=[ 7.720107    3.9339411  -0.31334192] dist=2.004 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=2.004 wp_tol=1.200 path_idx=2/4 action_raw=[0.3713436424732208, 0.614730179309845, 0.019630327820777893, 0.7738571166992188] action=[0.3713436424732208, 0.614730179309845, 0.019630327820777893, 0.7738571166992188] min_range=0.905 depth_min=na wall_min=2.427 maze_min=na obst_min=0.905 safety_min=0.905 front_min=2.693 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-1.289 r_cmd=0.464 target_vel_w=[-0.2746506333351135, 0.18622039258480072, -0.0031553744338452816]
+[HoverTankPPO] step=250 pos=[ 5.831282    3.028576   -0.21630464] goal=[ 7.720107    3.9339411  -0.31334192] dist=1.850 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=1.850 wp_tol=1.200 path_idx=2/4 action_raw=[0.045666567981243134, -1.096195936203003, 0.5566290616989136, 0.9801576137542725] action=[0.045666567981243134, -1.0, 0.5566290616989136, 0.9801576137542725] min_range=1.211 depth_min=na wall_min=2.671 maze_min=na obst_min=1.211 safety_min=1.211 front_min=2.689 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-1.732 r_cmd=0.588 target_vel_w=[0.35319066047668457, 0.18273013830184937, 0.1225164383649826]
+[HoverTankPPO] step=300 pos=[ 6.0076566   3.3402674  -0.06126927] goal=[ 7.720107    3.9339411  -0.31334192] dist=1.631 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=1.631 wp_tol=1.200 path_idx=2/4 action_raw=[-0.3190962076187134, -1.2879302501678467, -0.2954804301261902, 0.7316656708717346] action=[-0.3190962076187134, -1.0, -0.2954804301261902, 0.7316656708717346] min_range=1.467 depth_min=na wall_min=2.360 maze_min=na obst_min=1.467 safety_min=1.467 front_min=2.474 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-2.519 r_cmd=0.439 target_vel_w=[0.3537202477455139, 0.26478999853134155, -0.07011891156435013]
+[HoverTankPPO] step=350 pos=[ 6.059197    3.5176697  -0.03965845] goal=[ 7.720107    3.9339411  -0.31334192] dist=1.571 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=1.571 wp_tol=1.200 path_idx=2/4 action_raw=[0.05392010509967804, -0.3605145812034607, 0.853554904460907, 0.6431246399879456] action=[0.05392010509967804, -0.3605145812034607, 0.853554904460907, 0.6431246399879456] min_range=0.632 depth_min=na wall_min=2.182 maze_min=na obst_min=1.438 safety_min=1.438 front_min=2.318 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-2.650 r_cmd=-0.600 target_vel_w=[-0.001115960069000721, 0.03242522478103638, 0.03141222894191742]
+iter=20 frames=672 reward_mean=-0.0370 progress=0.0% eta=64517.0s
+[HoverTankPPO] step=400 pos=[ 5.9427762e+00  3.7637525e+00 -9.8989403e-04] goal=[ 7.720107    3.9339411  -0.31334192] dist=1.706 wp=[ 7.602598    3.5478318  -0.33324206] wp_dist=1.706 wp_tol=1.200 path_idx=2/4 action_raw=[0.6699742078781128, -0.2124457061290741, 0.14644542336463928, 1.0463731288909912] action=[0.6699742078781128, -0.2124457061290741, 0.14644542336463928, 1.0] min_range=1.592 depth_min=na wall_min=1.936 maze_min=na obst_min=1.592 safety_min=1.592 front_min=2.048 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-2.801 r_cmd=-0.600 target_vel_w=[-0.061159662902355194, 0.05021965503692627, 0.022897860035300255]
+[HoverTankPPO] done env_ids= [0] pos_error= [1.8125764] distance= [2.6411636] progress= [400.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[ 6.6635675   4.9155607  -0.19843233]] goals=[[ 5.3031716  3.4670675 -0.7622955]]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[ 6.6635675   4.9155607  -0.19843233] goal=[ 5.3031716  3.4670675 -0.7622955] dist=0.000 wp=[ 6.6635675   4.9155607  -0.19843233] wp_dist=0.000 wp_tol=1.200 path_idx=0/4 action_raw=[0.6699742078781128, -0.2124457061290741, 0.14644542336463928, 1.0463731288909912] action=[0.6699742078781128, -0.2124457061290741, 0.14644542336463928, 1.0] min_range=0.784 depth_min=na wall_min=0.784 maze_min=na obst_min=4.065 safety_min=0.784 front_min=0.797 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-2.801 r_cmd=-0.600 target_vel_w=[-0.061159662902355194, 0.05021965503692627, 0.022897860035300255]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=50 pos=[ 6.703824    5.012272   -0.13137032] goal=[ 5.3031716  3.4670675 -0.7622955] dist=1.695 wp=[ 5.409024   4.0896897 -0.7201355] wp_dist=1.695 wp_tol=1.200 path_idx=1/3 action_raw=[0.08833359181880951, -1.3690468072891235, 0.7006568908691406, 0.3818175792694092] action=[0.08833359181880951, -1.0, 0.7006568908691406, 0.3818175792694092] min_range=0.688 depth_min=na wall_min=0.688 maze_min=na obst_min=4.109 safety_min=0.688 front_min=0.690 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-1.862 r_cmd=0.229 target_vel_w=[0.37133684754371643, 0.15573856234550476, 0.14247891306877136]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=100 pos=[ 6.8734655   5.351373   -0.03056484] goal=[ 5.3031716  3.4670675 -0.7622955] dist=2.314 wp=[ 5.2731805  3.783416  -0.6108859] wp_dist=2.314 wp_tol=1.200 path_idx=2/4 action_raw=[-0.5093772411346436, -0.4848165512084961, 0.2972775101661682, 0.3445180356502533] action=[-0.5093772411346436, -0.4848165512084961, 0.2972775101661682, 0.3445180356502533] min_range=0.349 depth_min=na wall_min=0.349 maze_min=na obst_min=4.244 safety_min=0.349 front_min=0.352 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=1.753 r_cmd=0.600 target_vel_w=[0.0, 0.0, 0.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=150 pos=[ 6.867839    5.3778334  -0.04774449] goal=[ 5.3031716  3.4670675 -0.7622955] dist=2.564 wp=[ 5.3182764   3.33528    -0.05245602] wp_dist=2.564 wp_tol=1.200 path_idx=2/4 action_raw=[-0.038412630558013916, -0.6415232419967651, 1.433713674545288, 0.5037772059440613] action=[-0.038412630558013916, -0.6415232419967651, 1.0, 0.5037772059440613] min_range=0.322 depth_min=na wall_min=0.322 maze_min=na obst_min=4.265 safety_min=0.322 front_min=0.365 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=1.229 r_cmd=0.492 target_vel_w=[0.0, 0.0, 0.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=200 pos=[ 7.0284457   5.500853   -0.03192376] goal=[ 5.3031716  3.4670675 -0.7622955] dist=1.420 wp=[ 6.6033716   4.1894035  -0.37246186] wp_dist=1.420 wp_tol=1.200 path_idx=1/4 action_raw=[-0.010415174067020416, -0.01844402402639389, 0.3479839563369751, -0.025689370930194855] action=[-0.010415174067020416, -0.01844402402639389, 0.3479839563369751, -0.025689370930194855] min_range=0.199 depth_min=na wall_min=0.199 maze_min=na obst_min=4.255 safety_min=0.199 front_min=0.398 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=1.004 r_cmd=0.402 target_vel_w=[0.0, -0.0, 0.0]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] done env_ids= [0] pos_error= [2.8830926] distance= [2.9136488] progress= [214.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[18.494232    1.294033   -0.29001307]] goals=[[15.750277    1.4277074  -0.94666713]]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[18.494232    1.294033   -0.29001307] goal=[15.750277    1.4277074  -0.94666713] dist=0.000 wp=[18.494232    1.294033   -0.29001307] wp_dist=0.000 wp_tol=1.200 path_idx=0/4 action_raw=[0.02052750438451767, 0.23565995693206787, 0.16070595383644104, 1.1763553619384766] action=[0.02052750438451767, 0.23565995693206787, 0.16070595383644104, 1.0] min_range=0.994 depth_min=na wall_min=0.994 maze_min=na obst_min=3.225 safety_min=0.994 front_min=1.106 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=0.453 r_cmd=0.181 target_vel_w=[0.0, -0.0, 0.0]
+[HoverTankPPO] step=50 pos=[18.384829    1.487827   -0.25130513] goal=[15.750277    1.4277074  -0.94666713] dist=2.674 wp=[15.79315     1.4184326  -0.90438396] wp_dist=2.674 wp_tol=1.200 path_idx=2/4 action_raw=[-0.4285212755203247, -0.4706621766090393, 0.18944336473941803, 0.16046442091464996] action=[-0.4285212755203247, -0.4706621766090393, 0.18944336473941803, 0.16046442091464996] min_range=1.188 depth_min=na wall_min=1.188 maze_min=na obst_min=3.050 safety_min=1.188 front_min=1.202 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-1.185 r_cmd=-0.378 target_vel_w=[-0.08925852179527283, 0.2980811297893524, 0.07852869480848312]
+iter=30 frames=992 reward_mean=0.2123 progress=0.0% eta=70798.6s
+[HoverTankPPO] step=100 pos=[18.27516     1.8586389  -0.14260775] goal=[15.750277    1.4277074  -0.94666713] dist=2.633 wp=[15.79315     1.4184326  -0.90438396] wp_dist=2.633 wp_tol=1.200 path_idx=2/4 action_raw=[0.5450087189674377, -0.5369685888290405, 0.7119065523147583, -0.10917720198631287] action=[0.5450087189674377, -0.5369685888290405, 0.7119065523147583, -0.10917720198631287] min_range=1.425 depth_min=na wall_min=1.425 maze_min=na obst_min=2.835 safety_min=1.425 front_min=1.569 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.809 r_cmd=-0.389 target_vel_w=[-0.3711426854133606, -0.16692756116390228, 0.08790230751037598]
+[HoverTankPPO] step=150 pos=[18.014746    1.9056683  -0.07573772] goal=[15.750277    1.4277074  -0.94666713] dist=2.421 wp=[15.79315     1.4184326  -0.90438396] wp_dist=2.421 wp_tol=1.200 path_idx=2/4 action_raw=[-0.15225759148597717, -0.21107958257198334, 0.9026381969451904, 0.8794326782226562] action=[-0.15225759148597717, -0.21107958257198334, 0.9026381969451904, 0.8794326782226562] min_range=1.606 depth_min=na wall_min=1.606 maze_min=na obst_min=2.586 safety_min=1.606 front_min=1.608 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.654 r_cmd=0.528 target_vel_w=[0.005711602047085762, 0.1346655786037445, 0.1729080229997635]
+[HoverTankPPO] done env_ids= [0] pos_error= [2.3372085] distance= [2.5505698] progress= [192.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[18.1618      2.6479905  -0.10482126]] goals=[[19.141008    4.934148   -0.97786766]]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[18.1618      2.6479905  -0.10482126] goal=[19.141008    4.934148   -0.97786766] dist=0.000 wp=[18.1618      2.6479905  -0.10482126] wp_dist=0.000 wp_tol=1.200 path_idx=0/4 action_raw=[0.0620022788643837, -0.6216028928756714, 0.8829408884048462, 0.6640960574150085] action=[0.0620022788643837, -0.6216028928756714, 0.8829408884048462, 0.6640960574150085] min_range=1.538 depth_min=na wall_min=1.538 maze_min=na obst_min=3.915 safety_min=1.538 front_min=1.707 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.959 r_cmd=0.398 target_vel_w=[-0.24947158992290497, 0.031136106699705124, 0.0009226324036717415]
+[HoverTankPPO] step=50 pos=[17.960363    2.5106208  -0.07899745] goal=[19.141008    4.934148   -0.97786766] dist=2.207 wp=[18.9048      4.382671   -0.76726764] wp_dist=2.207 wp_tol=1.200 path_idx=2/4 action_raw=[0.1569439172744751, -0.23551005125045776, 0.9083795547485352, 1.2046821117401123] action=[0.1569439172744751, -0.23551005125045776, 0.9083795547485352, 1.0] min_range=1.740 depth_min=na wall_min=1.740 maze_min=na obst_min=3.705 safety_min=1.740 front_min=1.744 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=1.627 r_cmd=0.600 target_vel_w=[0.02222309447824955, -0.12172123044729233, 0.1882495880126953]
+[HoverTankPPO] done env_ids= [0] pos_error= [3.0102134] distance= [3.237062] progress= [73.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[12.635912    1.9919119  -0.76402074]] goals=[[17.787197    2.35936    -0.77714336]]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[12.635912    1.9919119  -0.76402074] goal=[17.787197    2.35936    -0.77714336] dist=0.000 wp=[12.635912    1.9919119  -0.76402074] wp_dist=0.000 wp_tol=1.200 path_idx=0/5 action_raw=[-0.19554805755615234, -0.035291627049446106, 0.8355557918548584, 0.24929118156433105] action=[-0.19554805755615234, -0.035291627049446106, 0.8355557918548584, 0.24929118156433105] min_range=0.403 depth_min=na wall_min=1.692 maze_min=na obst_min=2.753 safety_min=1.692 front_min=1.697 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=1.239 r_cmd=0.600 target_vel_w=[-0.11797239631414413, 0.006563965231180191, -0.0021851451601833105]
+[HoverTankPPO] step=50 pos=[12.590191   1.7454672 -0.6954374] goal=[17.787197    2.35936    -0.77714336] dist=1.528 wp=[13.821894   2.159455  -1.4990406] wp_dist=1.528 wp_tol=1.200 path_idx=1/5 action_raw=[0.7224732041358948, 0.20791937410831451, -0.29027634859085083, 0.6471635699272156] action=[0.7224732041358948, 0.20791937410831451, -0.29027634859085083, 0.6471635699272156] min_range=1.445 depth_min=na wall_min=1.445 maze_min=na obst_min=2.983 safety_min=1.445 front_min=1.466 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.969 r_cmd=0.388 target_vel_w=[0.39968904852867126, -0.19596219062805176, -0.0065689911134541035]
+[HoverTankPPO] step=100 pos=[12.7184725  1.5093865 -0.7675275] goal=[17.787197    2.35936    -0.77714336] dist=1.475 wp=[13.821894   2.159455  -1.4990406] wp_dist=1.475 wp_tol=1.200 path_idx=1/5 action_raw=[-0.31237006187438965, 0.4320848882198334, -0.334579199552536, 0.8858098983764648] action=[-0.31237006187438965, 0.4320848882198334, -0.334579199552536, 0.8858098983764648] min_range=1.209 depth_min=na wall_min=1.209 maze_min=na obst_min=3.240 safety_min=1.209 front_min=1.563 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.652 r_cmd=0.367 target_vel_w=[-0.02503521740436554, 0.03766193240880966, -0.027090059593319893]
+iter=40 frames=1312 reward_mean=0.1424 progress=0.1% eta=57230.6s
+[HoverTankPPO] step=150 pos=[12.854734   1.4258012 -0.767394 ] goal=[17.787197    2.35936    -0.77714336] dist=1.417 wp=[13.821894   2.159455  -1.4990406] wp_dist=1.417 wp_tol=1.200 path_idx=1/5 action_raw=[1.123419165611267, -0.5503069758415222, -0.39602068066596985, 0.6893435716629028] action=[1.0, -0.5503069758415222, -0.39602068066596985, 0.6893435716629028] min_range=1.126 depth_min=na wall_min=1.126 maze_min=na obst_min=3.344 safety_min=1.126 front_min=2.967 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=0.260 r_cmd=0.414 target_vel_w=[0.6395639777183533, 0.02121937833726406, -0.0723540335893631]
+[HoverTankPPO] step=200 pos=[13.276291    1.5129443  -0.73381823] goal=[17.787197    2.35936    -0.77714336] dist=2.594 wp=[15.630691    2.5765615  -0.96569806] wp_dist=2.594 wp_tol=1.200 path_idx=2/5 action_raw=[-0.04663372039794922, -0.36046409606933594, -0.3821931779384613, 0.7798662781715393] action=[-0.04663372039794922, -0.36046409606933594, -0.3821931779384613, 0.7798662781715393] min_range=1.213 depth_min=na wall_min=1.213 maze_min=na obst_min=3.356 safety_min=1.213 front_min=4.229 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.361 r_cmd=-0.051 target_vel_w=[0.01849120482802391, -0.022116011008620262, -0.016296261921525]
+[HoverTankPPO] step=250 pos=[13.571179  1.634918 -0.772224] goal=[17.787197    2.35936    -0.77714336] dist=2.273 wp=[15.630691    2.5765615  -0.96569806] wp_dist=2.273 wp_tol=1.200 path_idx=2/5 action_raw=[0.3056786060333252, -1.1787623167037964, 0.5079598426818848, 0.28881675004959106] action=[0.3056786060333252, -1.0, 0.5079598426818848, 0.28881675004959106] min_range=1.335 depth_min=na wall_min=1.335 maze_min=na obst_min=3.345 safety_min=1.335 front_min=4.121 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.598 r_cmd=-0.204 target_vel_w=[0.0851317048072815, -0.01398639939725399, 0.026745811104774475]
+[HoverTankPPO] step=300 pos=[13.856056   1.7964268 -0.7546595] goal=[17.787197    2.35936    -0.77714336] dist=1.950 wp=[15.630691    2.5765615  -0.96569806] wp_dist=1.950 wp_tol=1.200 path_idx=2/5 action_raw=[0.055869609117507935, 0.013583984225988388, 0.43013936281204224, -0.2650659680366516] action=[0.055869609117507935, 0.013583984225988388, 0.43013936281204224, -0.2650659680366516] min_range=1.496 depth_min=na wall_min=1.496 maze_min=na obst_min=3.317 safety_min=1.496 front_min=3.922 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-0.718 r_cmd=-0.159 target_vel_w=[0.006466615945100784, 0.023655693978071213, 0.08917748928070068]
+[HoverTankPPO] step=350 pos=[14.252676   1.891514  -0.6466132] goal=[17.787197    2.35936    -0.77714336] dist=1.572 wp=[15.630691    2.5765615  -0.96569806] wp_dist=1.572 wp_tol=1.200 path_idx=2/5 action_raw=[0.2759157419204712, -0.3779376745223999, 0.26216843724250793, -0.17566289007663727] action=[0.2759157419204712, -0.3779376745223999, 0.26216843724250793, -0.17566289007663727] min_range=1.592 depth_min=na wall_min=1.592 maze_min=na obst_min=3.428 safety_min=1.592 front_min=3.823 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-1.079 r_cmd=-0.537 target_vel_w=[0.15720881521701813, 0.16422130167484283, 0.036422375589609146]
+[HoverTankPPO] step=400 pos=[14.511538   2.207999  -0.6615713] goal=[17.787197    2.35936    -0.77714336] dist=1.217 wp=[15.630691    2.5765615  -0.96569806] wp_dist=1.217 wp_tol=1.200 path_idx=2/5 action_raw=[-0.09211340546607971, -1.1443818807601929, 0.0397031307220459, 0.17683222889900208] action=[-0.09211340546607971, -1.0, 0.0397031307220459, 0.17683222889900208] min_range=1.908 depth_min=na wall_min=1.908 maze_min=na obst_min=3.332 safety_min=1.908 front_min=3.325 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-1.150 r_cmd=-0.354 target_vel_w=[0.3918086290359497, -0.09754908829927444, 0.009371219202876091]
+[HoverTankPPO] done env_ids= [0] pos_error= [3.2811906] distance= [3.535594] progress= [400.] success= [False]
+[HoverTankPPO] reset env_ids=[0] start_pos=[[13.1252365   1.3199219  -0.91541374]] goals=[[ 1.9251175  1.7572265 -0.7702862]]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=0 pos=[13.1252365   1.3199219  -0.91541374] goal=[ 1.9251175  1.7572265 -0.7702862] dist=0.000 wp=[13.1252365   1.3199219  -0.91541374] wp_dist=0.000 wp_tol=1.200 path_idx=0/10 action_raw=[-0.09211340546607971, -1.1443818807601929, 0.0397031307220459, 0.17683222889900208] action=[-0.09211340546607971, -1.0, 0.0397031307220459, 0.17683222889900208] min_range=1.020 depth_min=na wall_min=1.020 maze_min=na obst_min=1.203 safety_min=1.020 front_min=1.264 obst_ids=[0, 1, 2, 3, 4] zone=clear yaw_err=-1.150 r_cmd=-0.354 target_vel_w=[0.3918086290359497, -0.09754908829927444, 0.009371219202876091]
+iter=50 frames=1632 reward_mean=0.1112 progress=0.1% eta=56423.5s
+[HoverTankPPO] step=50 pos=[12.977666   1.4811891 -0.9911197] goal=[ 1.9251175  1.7572265 -0.7702862] dist=2.107 wp=[11.320524   2.5981607 -0.323636 ] wp_dist=2.107 wp_tol=1.200 path_idx=2/10 action_raw=[0.04701106250286102, -0.6066157817840576, 0.14187657833099365, 0.33894082903862] action=[0.04701106250286102, -0.6066157817840576, 0.14187657833099365, 0.33894082903862] min_range=0.989 depth_min=na wall_min=1.181 maze_min=na obst_min=0.989 safety_min=0.989 front_min=1.757 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=-0.550 r_cmd=-0.179 target_vel_w=[-0.0018589324317872524, 0.04866800457239151, 0.006862234324216843]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=100 pos=[12.691591    1.6806298  -0.95382404] goal=[ 1.9251175  1.7572265 -0.7702862] dist=1.455 wp=[11.506988   2.326695  -1.4970843] wp_dist=1.455 wp_tol=1.200 path_idx=1/12 action_raw=[0.43790337443351746, -0.6304621696472168, 0.40495312213897705, 0.5028481483459473] action=[0.43790337443351746, -0.6304621696472168, 0.40495312213897705, 0.5028481483459473] min_range=0.639 depth_min=na wall_min=1.381 maze_min=na obst_min=0.639 safety_min=0.639 front_min=1.563 obst_ids=[0, 1, 2, 3, 4] zone=avoid yaw_err=2.844 r_cmd=0.302 target_vel_w=[-0.31000015139579773, 0.16797330975532532, 0.12196283042430878]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] step=150 pos=[12.547506   1.9569799 -0.990707 ] goal=[ 1.9251175  1.7572265 -0.7702862] dist=0.997 wp=[11.600933   1.9590003 -0.6781823] wp_dist=0.997 wp_tol=1.200 path_idx=1/11 action_raw=[0.8416412472724915, -0.45721012353897095, -0.16058558225631714, 0.4264267086982727] action=[0.8416412472724915, -0.45721012353897095, -0.16058558225631714, 0.4264267086982727] min_range=0.378 depth_min=na wall_min=1.657 maze_min=na obst_min=0.378 safety_min=0.378 front_min=1.661 obst_ids=[0, 1, 2, 3, 4] zone=stop yaw_err=2.030 r_cmd=0.256 target_vel_w=[-0.38591670989990234, -0.3677685260772705, -0.07281706482172012]
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined
+[HoverTankPPO] rrt plot failed: name 'goal_w' is not defined

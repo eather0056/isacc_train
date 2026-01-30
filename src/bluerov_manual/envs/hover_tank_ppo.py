@@ -1,5 +1,6 @@
 import os
 import torch
+import numpy as np
 
 import omni.isaac.core.utils.prims as prim_utils
 import marinegym.utils.kit as kit_utils
@@ -20,6 +21,18 @@ from .hover_tank import HoverTank
 
 class HoverTankPPO(HoverTank):
     """HoverTank with PPO local velocity actions (continuous)."""
+
+    def _wandb_log(self, data: dict, step: int | None = None) -> None:
+        try:
+            import wandb  # type: ignore
+        except Exception:
+            return
+        if wandb.run is None:
+            return
+        if step is None:
+            wandb.log(data)
+        else:
+            wandb.log(data, step=step)
 
     @staticmethod
     def _quat_mul(q1: torch.Tensor, q2: torch.Tensor) -> torch.Tensor:
@@ -62,12 +75,21 @@ class HoverTankPPO(HoverTank):
         self.debug_interval = int(cfg.task.get("debug_interval", 50))
         self.depth_cfg = cfg.task.get("depth_camera", {}) or {}
         self.depth_enabled = bool(self.depth_cfg.get("enable", False))
+        self.depth_obs_cfg = cfg.task.get("depth_obs", {}) or {}
+        self.depth_obs_enabled = bool(self.depth_obs_cfg.get("enable", False))
+        self.occ_cfg = cfg.task.get("occ_grid", {}) or {}
+        self.occ_enabled = bool(self.occ_cfg.get("enable", False))
         self.depth_camera = None
         self.depth_camera_view = None
         self._last_depth_min = None
         self._depth_viz_every = int(self.depth_cfg.get("viz_every", 50))
         self._depth_viz_count = 0
         self._depth_rot_offset_q = None
+        self._depth_fail_count = 0
+        self._depth_fail_limit = int(self.depth_cfg.get("fail_limit", 10))
+        self._depth_disabled = False
+        self._depth_log_wandb = bool(self.depth_cfg.get("log_wandb", False))
+        self._depth_fuse_occ = bool(self.depth_cfg.get("fuse_occ", False))
         super().__init__(cfg, headless)
         self._reset_cooldown = torch.zeros(self.num_envs, dtype=torch.int, device=self.device)
         print(
@@ -122,6 +144,8 @@ class HoverTankPPO(HoverTank):
         self._plot_rrt_gif_every = int(self.planner_cfg.get("plot_gif_every", 10))
         self._plot_rrt_history = int(self.planner_cfg.get("plot_history", 50))
         self._plot_rrt_3d = bool(self.planner_cfg.get("plot_3d", False))
+        self._plot_rrt_log_wandb = bool(self.planner_cfg.get("log_wandb", False))
+        self._plot_rrt_log_gif_wandb = bool(self.planner_cfg.get("log_gif_wandb", False))
         self._rrt_plot_paths = {}
         bounds_min = self.planner_cfg.get("bounds_min", [0.0, 0.0, -2.0])
         bounds_max = self.planner_cfg.get("bounds_max", [20.0, 6.0, 2.0])
@@ -174,6 +198,12 @@ class HoverTankPPO(HoverTank):
     def _set_specs(self):
         num_rays = int(self.sonar_cfg.get("num_rays", 32))
         obs_dim = 3 + 2 + 3 + 1 + 1 + 2 + num_rays
+        if self.occ_enabled:
+            grid_size = int(self.occ_cfg.get("grid_size", 16))
+            obs_dim += grid_size * grid_size
+        if self.depth_obs_enabled:
+            down = self.depth_obs_cfg.get("downsample", [16, 9])
+            obs_dim += int(down[0]) * int(down[1])
         self.observation_spec = CompositeSpec(
             {
                 "agents": CompositeSpec(
@@ -271,6 +301,7 @@ class HoverTankPPO(HoverTank):
                 goal_w=goal_local,
                 obstacles=obstacles,
             )
+            goal_w = self.target_pos[env_id, 0, :].detach().cpu().numpy().tolist()
             # Convert path to world coordinates
             if plan:
                 plan = [(p[0] + env_offset[0].item(), p[1] + env_offset[1].item(), p[2] + env_offset[2].item()) for p in plan]
@@ -280,8 +311,6 @@ class HoverTankPPO(HoverTank):
             if self._plot_rrt_every > 0 and (self._plan_counts[env_id] % self._plot_rrt_every == 0):
                 try:
                     import matplotlib.pyplot as plt
-                    out_dir = os.path.join(os.getcwd(), "outputs", "rrt_paths")
-                    os.makedirs(out_dir, exist_ok=True)
                     xs = [p[0] for p in plan] if plan else []
                     ys = [p[1] for p in plan] if plan else []
                     zs = [p[2] for p in plan] if plan else []
@@ -319,26 +348,41 @@ class HoverTankPPO(HoverTank):
                         ax.set_ylim(y_min, y_max)
                     ax.set_title(f"env_{env_id} plan_{int(self._plan_counts[env_id].item())}")
                     ax.legend(loc="best")
-                    frame_path = os.path.join(
-                        out_dir, f"rrt_env_{env_id}_plan_{int(self._plan_counts[env_id].item()):06d}.png"
-                    )
-                    fig.savefig(frame_path, dpi=150)
+                    fig.canvas.draw()
+                    w, h = fig.canvas.get_width_height()
+                    rgba = np.asarray(fig.canvas.buffer_rgba())
+                    if rgba.shape[0] != h or rgba.shape[1] != w:
+                        rgba = rgba.reshape(h, w, 4)
+                    frame = rgba[:, :, :3].copy()
                     plt.close(fig)
                     history = self._rrt_plot_paths.get(env_id, [])
-                    history.append(frame_path)
+                    history.append(frame)
                     if len(history) > self._plot_rrt_history:
                         history = history[-self._plot_rrt_history:]
                     self._rrt_plot_paths[env_id] = history
+                    if self._plot_rrt_log_wandb:
+                        import wandb
+                        self._wandb_log(
+                            {
+                                "viz/rrt_path": wandb.Image(
+                                    frame,
+                                    caption=f"env_{env_id}_plan_{int(self._plan_counts[env_id].item())}",
+                                )
+                            },
+                            step=int(self._plan_counts[env_id].item()),
+                        )
                     if self._plot_rrt_gif and (self._plan_counts[env_id] % self._plot_rrt_gif_every == 0):
-                        try:
-                            import imageio.v2 as imageio
-                            gif_path = os.path.join(out_dir, f"rrt_env_{env_id}.gif")
-                            frames = [imageio.imread(p) for p in history if os.path.exists(p)]
-                            if frames:
-                                imageio.mimsave(gif_path, frames, duration=0.2)
-                        except Exception as gif_exc:
-                            if self.debug:
-                                print(f"[HoverTankPPO] rrt gif failed: {gif_exc}")
+                        if self._plot_rrt_log_gif_wandb and history:
+                            try:
+                                import wandb
+                                frames = np.stack(history, axis=0)
+                                self._wandb_log(
+                                    {"viz/rrt_gif": wandb.Video(frames, fps=5, format="gif")},
+                                    step=int(self._plan_counts[env_id].item()),
+                                )
+                            except Exception as gif_exc:
+                                if self.debug:
+                                    print(f"[HoverTankPPO] rrt gif failed: {gif_exc}")
                 except Exception as exc:
                     if self.debug:
                         print(f"[HoverTankPPO] rrt plot failed: {exc}")
@@ -822,15 +866,23 @@ class HoverTankPPO(HoverTank):
             )
         self._last_sonar = sonar_obs
         self._last_depth_min = None
+        self._last_depth_obs = None
+        depth_img_for_occ = None
         self._last_wall_dist = self._wall_clearance(pos_w)
         self._last_maze_dist = self._maze_clearance(pos_w)
         self._last_obst_dist = self._obstacle_clearance(pos_w)
-        if self.depth_enabled and self.depth_camera is not None:
+        depth_obs = None
+        if self.depth_enabled and self.depth_camera is not None and not self._depth_disabled:
             try:
                 imgs = self.depth_camera.get_images()
             except Exception as exc:
                 if self.debug:
                     print(f"[HoverTankPPO] depth camera read failed: {exc}")
+                self._depth_fail_count += 1
+                if self._depth_fail_count >= self._depth_fail_limit:
+                    self._depth_disabled = True
+                    if self.debug:
+                        print("[HoverTankPPO] depth camera disabled after repeated failures")
                 imgs = None
             data_type = str(self.depth_cfg.get("data_type", "distance_to_camera"))
             depth_img = None
@@ -848,17 +900,25 @@ class HoverTankPPO(HoverTank):
                     else:
                         depth_img = depth_img[: pos_w.shape[0]]
                 if depth_img is not None:
+                    if not torch.isfinite(depth_img).all():
+                        depth_img = None
+                if depth_img is not None:
                     max_range = float(self.depth_cfg.get("max_range", 10.0))
                     min_filter = float(self.depth_cfg.get("min_range_filter", 0.2))
                     depth_img = depth_img.clamp(min=0.0, max=max_range)
+                    depth_img_for_occ = depth_img
                     if float(depth_img.max() - depth_img.min()) < 1e-3:
                         alt_type = "depth" if data_type != "depth" else "distance_to_camera"
-                        if alt_type in imgs.keys(True, True):
+                        if imgs is not None and alt_type in imgs.keys(True, True):
                             alt_img = imgs[alt_type].squeeze(1)
                             if alt_img.dim() == 2:
                                 alt_img = alt_img.unsqueeze(0)
                             if alt_img.dim() == 3:
                                 depth_img = alt_img.clamp(min=0.0, max=max_range)
+                    if depth_img is None:
+                        if self.debug:
+                            print("[HoverTankPPO] depth camera read failed: empty frame")
+                        imgs = None
                     valid = depth_img > min_filter
                     depth_min = torch.where(
                         valid.any(dim=(1, 2)),
@@ -866,17 +926,34 @@ class HoverTankPPO(HoverTank):
                         torch.full((depth_img.shape[0],), max_range, device=depth_img.device),
                     )
                     self._last_depth_min = depth_min
+                    if self.depth_obs_enabled:
+                        down = self.depth_obs_cfg.get("downsample", [16, 9])
+                        dh, dw = int(down[1]), int(down[0])
+                        # Simple stride downsample to keep it cheap.
+                        stride_h = max(1, depth_img.shape[1] // dh)
+                        stride_w = max(1, depth_img.shape[2] // dw)
+                        depth_obs = depth_img[:, ::stride_h, ::stride_w]
+                        depth_obs = depth_obs[:, :dh, :dw]
+                        depth_obs = depth_obs.reshape(depth_obs.shape[0], -1)
+                        self._last_depth_obs = depth_obs
                     if self._depth_viz_every > 0:
                         self._depth_viz_count += 1
-                        if self._depth_viz_count % self._depth_viz_every == 0:
-                            from marinegym.utils.image import save_depth
-                            out_dir = os.path.join(os.getcwd(), "outputs")
-                            os.makedirs(out_dir, exist_ok=True)
-                            # save_depth expects (1, H, W)
-                            depth_viz = depth_img[0].detach().cpu().unsqueeze(0)
-                            step_dir = os.path.join(out_dir, f"depth_step_{self._depth_viz_count:06d}")
-                            os.makedirs(step_dir, exist_ok=True)
-                            save_depth(depth_viz, save_path=step_dir)
+                        if self._depth_viz_count % self._depth_viz_every == 0 and self._depth_log_wandb:
+                            import matplotlib.pyplot as plt
+                            import wandb
+                            depth_np = depth_img[0].detach().cpu().numpy()
+                            denom = max(float(depth_np.max() - depth_np.min()), 1e-6)
+                            norm = (depth_np - depth_np.min()) / denom
+                            cmap = np.uint8(plt.get_cmap("jet")(norm)[:, :, :3] * 255)
+                            self._wandb_log(
+                                {
+                                    "viz/depth": wandb.Image(
+                                        cmap,
+                                        caption=f"depth_step_{self._depth_viz_count:06d}",
+                                    )
+                                },
+                                step=int(self.progress_buf[0].item()) if self.num_envs > 0 else None,
+                            )
 
         if self.debug and self.num_envs > 0:
             step = int(self.progress_buf[0].item())
@@ -960,6 +1037,7 @@ class HoverTankPPO(HoverTank):
                     f"obst_min={obst_min_dbg:.3f}" if obst_min_dbg is not None else "obst_min=na",
                     f"safety_min={safety_min_dbg:.3f}" if safety_min_dbg is not None else "safety_min=na",
                     f"front_min={front_min_dbg:.3f}" if front_min_dbg is not None else "front_min=na",
+                    f"obst_ids={list(range(self.num_obstacles)) if getattr(self, 'enable_obstacles', False) else []}",
                     f"zone={zone}",
                     f"yaw_err={yaw_err_val:.3f}",
                     f"r_cmd={r_cmd_val:.3f}",
@@ -976,6 +1054,47 @@ class HoverTankPPO(HoverTank):
             roll_pitch,
             sonar_obs,
         ]
+        if self.depth_obs_enabled:
+            if depth_obs is None:
+                down = self.depth_obs_cfg.get("downsample", [16, 9])
+                depth_obs = torch.zeros((pos_w.shape[0], int(down[0]) * int(down[1])), device=self.device)
+            parts.append(depth_obs)
+        if self.occ_enabled:
+            grid_size = int(self.occ_cfg.get("grid_size", 16))
+            grid_range = float(self.occ_cfg.get("grid_range", 5.0))
+            occ = torch.zeros((pos_w.shape[0], grid_size, grid_size), device=self.device)
+            angles = self.sonar.angles.to(self.device)
+            ranges = sonar_obs.clamp(max=grid_range)
+            hit = ranges < grid_range
+            cos_a = torch.cos(angles)
+            sin_a = torch.sin(angles)
+            x = ranges * cos_a
+            y = ranges * sin_a
+            ix = ((x + grid_range) / (2 * grid_range) * (grid_size - 1)).long().clamp(0, grid_size - 1)
+            iy = ((y + grid_range) / (2 * grid_range) * (grid_size - 1)).long().clamp(0, grid_size - 1)
+            for e in range(pos_w.shape[0]):
+                if hit[e].any():
+                    occ[e, iy[e, hit[e]], ix[e, hit[e]]] = 1.0
+            if depth_img_for_occ is not None and self._depth_fuse_occ:
+                fov_deg = float(self.depth_cfg.get("fov_deg", 90.0))
+                width = depth_img_for_occ.shape[2]
+                angles_d = torch.linspace(
+                    -0.5 * fov_deg, 0.5 * fov_deg, width, device=self.device
+                ) * (torch.pi / 180.0)
+                depth_cols = depth_img_for_occ.median(dim=1).values
+                depth_cols = depth_cols.clamp(max=grid_range)
+                hit_d = depth_cols < grid_range
+                cos_d = torch.cos(angles_d)
+                sin_d = torch.sin(angles_d)
+                x_d = depth_cols * cos_d
+                y_d = depth_cols * sin_d
+                ix_d = ((x_d + grid_range) / (2 * grid_range) * (grid_size - 1)).long().clamp(0, grid_size - 1)
+                iy_d = ((y_d + grid_range) / (2 * grid_range) * (grid_size - 1)).long().clamp(0, grid_size - 1)
+                for e in range(pos_w.shape[0]):
+                    if hit_d[e].any():
+                        occ[e, iy_d[e, hit_d[e]], ix_d[e, hit_d[e]]] = 1.0
+            self._last_occ_grid = occ
+            parts.append(occ.view(pos_w.shape[0], -1))
         fixed = []
         for part in parts:
             if part.dim() == 1:
@@ -983,7 +1102,15 @@ class HoverTankPPO(HoverTank):
             if part.dim() > 2:
                 part = part.reshape(part.shape[0], -1)
             fixed.append(part)
-        obs = torch.cat(fixed, dim=-1).unsqueeze(1)
+        obs = torch.cat(fixed, dim=-1)
+        expected_dim = int(self.observation_spec["agents", "observation"].shape[-1])
+        if obs.shape[-1] != expected_dim:
+            if obs.shape[-1] < expected_dim:
+                pad = torch.zeros((obs.shape[0], expected_dim - obs.shape[-1]), device=obs.device)
+                obs = torch.cat([obs, pad], dim=-1)
+            else:
+                obs = obs[:, :expected_dim]
+        obs = obs.unsqueeze(1)
 
         return TensorDict(
             {
